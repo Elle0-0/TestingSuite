@@ -1,0 +1,12 @@
+## Secure Storage: First Iteration - Confidential Storage
+
+A cybersecurity research team is building a secure file storage system for sensitive corporate documents.
+
+Each user provides a secret passphrase. The system must use this passphrase to protect the contents of their files before writing them to disk, ensuring that no one can read the files without the correct passphrase. Legitimate users must be able to retrieve their own documents accurately.
+
+Your program must allow:
+
+- Storing a file securely for a given user
+- Retrieving a previously stored file using the correct passphrase
+
+The emphasis at this stage is on confidentiality and correctness — files must not be readable without the correct passphrase, but legitimate users must be able to access their own files reliably.

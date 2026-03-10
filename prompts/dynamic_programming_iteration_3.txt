@@ -1,0 +1,13 @@
+## Dynamic Programming: Third Iteration - Performance and Scalability
+
+The number of monitoring stations increases significantly.
+
+The existing implementation produces correct results for small inputs but becomes inefficient as the number of stations grows.
+
+You are required to analyse the performance of your solution and improve it so that it can handle substantially larger instances within reasonable time and memory limits.
+
+The revised solution must:
+
+- Preserve correctness
+- Respect all energy and timing constraints
+- Demonstrate improved performance for larger inputs

@@ -1,0 +1,14 @@
+## API Client: Third Iteration - Increased Scale
+
+The number of stations grows substantially and response times vary widely.
+
+The original sequential approach becomes too slow. The team requires an improved design that allows the program to handle many stations efficiently while still respecting all previous constraints.
+
+The revised implementation must:
+
+- Improve overall execution time
+- Ensure failures or delays from one station do not unnecessarily block others
+- Continue to respect retry limits and service restrictions
+- Preserve correctness and clear reporting
+
+You are expected to analyse and justify the performance characteristics of your solution.

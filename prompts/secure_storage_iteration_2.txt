@@ -1,0 +1,14 @@
+## Secure Storage: Second Iteration - Integrity and Fault Awareness
+
+After initial testing, the team discovers that:
+
+- Files may become corrupted during transmission or disk operations
+- Users sometimes enter incorrect passphrases
+
+The system must now detect when a file has been altered or when an incorrect passphrase is provided. It must:
+
+- Notify the user if a file cannot be retrieved due to corruption or wrong passphrase
+- Ensure that failed access attempts do not compromise the security of other stored files
+- Maintain confidentiality of all other files at all times
+
+The program must still allow legitimate users to store and retrieve their files correctly, but now also handle errors safely and provide clear feedback.

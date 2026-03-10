@@ -1,0 +1,21 @@
+## API Client: Second Iteration - Unreliable Services
+
+After deployment, the team observes that the external service is not always reliable.
+
+Some stations:
+
+- Occasionally fail due to temporary server errors
+- Sometimes time out
+- May return malformed or incomplete data
+- Enforce a request rate limit
+
+The program must now be extended so that a failure from one station does not terminate the entire process.
+
+The updated system must:
+
+- Attempt a limited number of retries for temporary failures
+- Respect any waiting requirements imposed by the service
+- Continue processing remaining stations even if some fail
+- Record enough information about failures to allow later inspection
+
+The program must still return the collection of successfully retrieved readings.

@@ -1,0 +1,20 @@
+## Dynamic Programming: Second Iteration - Access Windows
+
+Operational constraints are later introduced.
+
+Each monitoring station is now associated with an inspection window defined by an earliest and latest allowable arrival time. The drone requires a fixed amount of time to complete an inspection at any station.
+
+If the drone arrives before the allowed time, it may wait. If it arrives after the permitted window has closed, the inspection cannot be performed.
+
+You must extend the same program so that, in addition to travel energy, it also considers these timing constraints. The program must determine whether it is possible to complete all inspections while respecting the time windows.
+
+If a valid schedule exists, the program must return:
+
+- The visiting order
+- The arrival time at each station
+- The total energy required
+- An indication that the schedule is feasible
+
+If no valid schedule exists, the program must clearly indicate this.
+
+The core task remains the same: determine the optimal inspection order under the given constraints.

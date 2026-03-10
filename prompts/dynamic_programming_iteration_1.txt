@@ -1,0 +1,12 @@
+## Dynamic Programming: First Iteration - Core Route Planning
+
+A research team is developing software for an autonomous drone that must inspect a number of monitoring stations distributed across a region.
+
+The drone starts at a designated base location, must visit every other station exactly once, and must return to the base when all inspections are complete. The energy required to travel between any two locations is known in advance, and travel costs may differ depending on direction.
+
+Your task is to implement a program that, given the number of locations and the travel energy required between them, determines the order in which the drone should visit the stations so that the total energy used for the entire journey is as small as possible.
+
+Your program must return:
+
+- The visiting order, starting and ending at the base
+- The total energy required for that journey
