@@ -1,20 +1,22 @@
 ## Dynamic Programming: Second Iteration - Access Windows
 
+Write your solution in Python. Build upon the approach from the previous iteration.
+
 Operational constraints are later introduced.
 
-Each monitoring station is now associated with an inspection window defined by an earliest and latest allowable arrival time. The drone requires a fixed amount of time to complete an inspection at any station.
+Each monitoring station (except the base at index 0) is now associated with an inspection window defined by an earliest and latest allowable arrival time. The drone requires a fixed inspection duration at each station.
 
 If the drone arrives before the allowed time, it may wait. If it arrives after the permitted window has closed, the inspection cannot be performed.
 
-You must extend the same program so that, in addition to travel energy, it also considers these timing constraints. The program must determine whether it is possible to complete all inspections while respecting the time windows.
+You must extend the program so that, in addition to travel energy, it also considers these timing constraints.
 
-If a valid schedule exists, the program must return:
+Your program must provide:
 
-- The visiting order
-- The arrival time at each station
-- The total energy required
-- An indication that the schedule is feasible
+- A function `find_optimal_route(cost_matrix: list[list[int]], time_windows: list[tuple[int, int]], inspection_time: int, speed: int = 1) -> dict` that returns a dictionary with keys:
+  - "feasible": bool
+  - "route": list of station indices (starting and ending at 0)
+  - "arrival_times": list of arrival times at each station in the route
+  - "total_energy": int
+- A `main()` function that demonstrates the solution with an example that includes time windows, and prints the route, arrival times, feasibility, and total energy
 
-If no valid schedule exists, the program must clearly indicate this.
-
-The core task remains the same: determine the optimal inspection order under the given constraints.
+If no valid schedule exists, the function must return feasible=False with an empty route.

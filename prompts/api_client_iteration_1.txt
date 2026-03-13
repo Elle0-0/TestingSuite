@@ -1,14 +1,16 @@
 ## API Client: First Iteration - Data Collection Client
 
+Write your solution in Python.
+
 A development team is building a monitoring tool that gathers sensor readings from a number of weather stations distributed across a country.
 
-Each station exposes an online endpoint that returns its latest reading. The program is given a collection of station endpoints and must contact each one, retrieve the data and combine the results into a single in-memory collection.
+Each station exposes an online endpoint that returns its latest reading as JSON with the fields: station_id, temperature, humidity, and timestamp. The program is given a list of station URLs and must contact each one, retrieve the data and combine the results into a single list.
 
 For this initial version, you may assume that all stations respond correctly and return valid data.
 
-Your program must return:
+Your program must provide:
 
-- The collection of successfully retrieved station readings
-- Any relevant summary information needed to verify correctness
+- A function `fetch_all_stations(urls: list[str]) -> list[dict]` that takes a list of endpoint URLs and returns the collected readings
+- A `main()` function that demonstrates the solution with example URLs and prints the results
 
 The emphasis at this stage is correctness and clear structure.

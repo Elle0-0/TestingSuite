@@ -1,5 +1,7 @@
 ## Secure Storage: Third Iteration - Scaling and Multi-File Operations
 
+Write your solution in Python. Build upon the approach from the previous iteration.
+
 The system is being prepared for enterprise deployment, supporting hundreds or thousands of files per user, including very large documents.
 
 The team requires that:
@@ -7,5 +9,13 @@ The team requires that:
 - Each file remains confidential and tamper-evident
 - Operations remain efficient in time and memory, even with many users and files
 - Storing and retrieving files is robust and scalable
+
+Your program must provide:
+
+- A class `SecureStorage` with methods:
+  - `store_file(user_id: str, filename: str, data: str, passphrase: str) -> None`
+  - `retrieve_file(user_id: str, filename: str, passphrase: str) -> str`
+  - `list_files(user_id: str) -> list[str]`
+- A `main()` function that demonstrates storing and retrieving multiple files for multiple users, and prints a summary including the number of files stored and time taken
 
 The revised solution must maintain correctness, security, and performance, and must allow smooth operations as the number of users and files increases significantly.

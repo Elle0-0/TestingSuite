@@ -1,13 +1,20 @@
 ## Dynamic Programming: Third Iteration - Performance and Scalability
 
+Write your solution in Python. Build upon the approach from the previous iteration.
+
 The number of monitoring stations increases significantly.
 
 The existing implementation produces correct results for small inputs but becomes inefficient as the number of stations grows.
 
-You are required to analyse the performance of your solution and improve it so that it can handle substantially larger instances within reasonable time and memory limits.
+You are required to improve the solution so that it can handle larger instances (up to 20 stations) within reasonable time and memory limits.
 
 The revised solution must:
 
 - Preserve correctness
-- Respect all energy and timing constraints
+- Respect all energy and timing constraints from the previous iteration
 - Demonstrate improved performance for larger inputs
+
+Your program must provide:
+
+- The same function signature as before: `find_optimal_route(cost_matrix, time_windows, inspection_time, speed=1) -> dict`
+- A `main()` function that generates a random test case with 15 stations, solves it, prints the result, and reports the elapsed time

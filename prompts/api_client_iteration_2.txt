@@ -1,12 +1,14 @@
 ## API Client: Second Iteration - Unreliable Services
 
+Write your solution in Python. Build upon the approach from the previous iteration.
+
 After deployment, the team observes that the external service is not always reliable.
 
 Some stations:
 
 - Occasionally fail due to temporary server errors
 - Sometimes time out
-- May return malformed or incomplete data
+- May return malformed or incomplete JSON
 - Enforce a request rate limit
 
 The program must now be extended so that a failure from one station does not terminate the entire process.
@@ -18,4 +20,7 @@ The updated system must:
 - Continue processing remaining stations even if some fail
 - Record enough information about failures to allow later inspection
 
-The program must still return the collection of successfully retrieved readings.
+Your program must provide:
+
+- A function `fetch_all_stations(urls: list[str]) -> dict` that returns a dictionary with keys "readings" (list of successful results) and "errors" (list of dicts with url, error type, and message)
+- A `main()` function that demonstrates the solution with example URLs including some that simulate failures, and prints both readings and error reports

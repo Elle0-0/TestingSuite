@@ -1,5 +1,7 @@
 ## Secure Storage: Second Iteration - Integrity and Fault Awareness
 
+Write your solution in Python. Build upon the approach from the previous iteration.
+
 After initial testing, the team discovers that:
 
 - Files may become corrupted during transmission or disk operations
@@ -11,4 +13,8 @@ The system must now detect when a file has been altered or when an incorrect pas
 - Ensure that failed access attempts do not compromise the security of other stored files
 - Maintain confidentiality of all other files at all times
 
-The program must still allow legitimate users to store and retrieve their files correctly, but now also handle errors safely and provide clear feedback.
+Your program must provide:
+
+- A function `store_file(filepath: str, data: str, passphrase: str) -> None` that encrypts data with integrity protection and saves it
+- A function `retrieve_file(filepath: str, passphrase: str) -> str` that returns the original data on success, or raises an appropriate exception for wrong passphrase or corrupted file
+- A `main()` function that demonstrates: successful storage and retrieval, a failed attempt with the wrong passphrase, and a failed attempt with a corrupted file — printing clear feedback for each case

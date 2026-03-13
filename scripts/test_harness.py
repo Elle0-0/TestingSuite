@@ -1,60 +1,139 @@
 import os
+import glob
 import subprocess
 import time
+import json
 import psutil
+
+# ---------------------------------------------------------------------------
+# Configuration
+# ---------------------------------------------------------------------------
+PERF_RUNS = 3          # Number of executions per script (take the median)
+EXECUTION_TIMEOUT = 120  # Seconds before killing a script
 
 # Directory paths
 OUTPUTS_DIR = "../outputs"
-RESULTS_FILE = "../results/test_results.txt"
+RESULTS_DIR = "../results"
 
-# Function to measure runtime and memory usage
-def measure_performance(script_path):
+
+def measure_performance(script_path, timeout=EXECUTION_TIMEOUT):
+    """Execute a Python script and measure its runtime and peak memory usage."""
     start_time = time.time()
     process = subprocess.Popen(
-        ["python", script_path], stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        ["python3", script_path], stdout=subprocess.PIPE, stderr=subprocess.PIPE
     )
-    pid = process.pid
-    process_memory = psutil.Process(pid)
+    peak_memory = 0
 
     try:
+        ps = psutil.Process(process.pid)
         while process.poll() is None:
-            time.sleep(0.1)
+            try:
+                mem = ps.memory_info().rss / (1024 * 1024)  # MB
+                peak_memory = max(peak_memory, mem)
+            except psutil.NoSuchProcess:
+                break
+            time.sleep(0.05)
         runtime = time.time() - start_time
-        memory_usage = process_memory.memory_info().rss / (1024 * 1024)  # MB
     except psutil.NoSuchProcess:
-        runtime = None
-        memory_usage = None
+        runtime = time.time() - start_time
 
     stdout, stderr = process.communicate()
-    return runtime, memory_usage, stdout.decode(), stderr.decode()
+    return runtime, peak_memory, stdout.decode(), stderr.decode(), process.returncode
 
-# Function to test all generated scripts
+
+def median(values):
+    """Return the median of a list of numbers."""
+    s = sorted(values)
+    n = len(s)
+    if n % 2 == 1:
+        return s[n // 2]
+    return (s[n // 2 - 1] + s[n // 2]) / 2
+
+
 def run_tests():
-    with open(RESULTS_FILE, "w") as results:
-        for model_dir in os.listdir(OUTPUTS_DIR):
-            model_path = os.path.join(OUTPUTS_DIR, model_dir)
+    run_dirs = sorted(glob.glob(os.path.join(OUTPUTS_DIR, "run_*")))
+    if not run_dirs:
+        print("No run directories found in outputs/. Run generate_code.py first.")
+        return
 
-            if os.path.isdir(model_path):
-                results.write(f"Testing model: {model_dir}\n")
+    for run_dir in run_dirs:
+        run_name = os.path.basename(run_dir)
+        run_results_dir = os.path.join(RESULTS_DIR, run_name)
+        os.makedirs(run_results_dir, exist_ok=True)
 
-                for task_dir in os.listdir(model_path):
-                    task_path = os.path.join(model_path, task_dir)
+        results_txt = os.path.join(run_results_dir, "test_results.txt")
+        results_json_path = os.path.join(run_results_dir, "test_results.json")
+        all_results = {}
 
-                    if os.path.isdir(task_path):
-                        results.write(f"  Task: {task_dir}\n")
+        print(f"\n{'='*60}")
+        print(f"  Testing {run_name} ({PERF_RUNS} perf runs per script)")
+        print(f"{'='*60}")
 
-                        for script_file in os.listdir(task_path):
-                            if script_file.endswith(".py"):
-                                script_path = os.path.join(task_path, script_file)
-                                results.write(f"    Script: {script_file}\n")
+        with open(results_txt, "w") as out:
+            for model_dir in sorted(os.listdir(run_dir)):
+                model_path = os.path.join(run_dir, model_dir)
+                if not os.path.isdir(model_path):
+                    continue
 
-                                runtime, memory, stdout, stderr = measure_performance(script_path)
+                out.write(f"Model: {model_dir}\n")
+                out.write("=" * 50 + "\n")
+                all_results[model_dir] = {}
 
-                                results.write(f"      Runtime: {runtime:.2f} seconds\n")
-                                results.write(f"      Memory Usage: {memory:.2f} MB\n")
-                                results.write(f"      Stdout: {stdout}\n")
-                                results.write(f"      Stderr: {stderr}\n")
-                                results.write("\n")
+                for script_file in sorted(os.listdir(model_path)):
+                    if not script_file.endswith(".py") or script_file.startswith("."):
+                        continue
+
+                    script_path = os.path.join(model_path, script_file)
+                    out.write(f"  Script: {script_file}\n")
+                    print(f"    {model_dir}/{script_file}...", end=" ", flush=True)
+
+                    # Run PERF_RUNS times and collect metrics
+                    runtimes = []
+                    memories = []
+                    last_stdout = ""
+                    last_stderr = ""
+                    last_returncode = 0
+
+                    for perf_run in range(PERF_RUNS):
+                        runtime, memory, stdout, stderr, returncode = measure_performance(script_path)
+                        runtimes.append(runtime)
+                        memories.append(memory)
+                        last_stdout = stdout
+                        last_stderr = stderr
+                        last_returncode = returncode
+
+                    med_runtime = median(runtimes)
+                    med_memory = median(memories)
+
+                    out.write(f"    Exit code: {last_returncode}\n")
+                    out.write(f"    Runtime (median of {PERF_RUNS}): {med_runtime:.4f} seconds\n")
+                    out.write(f"    Peak Memory (median of {PERF_RUNS}): {med_memory:.2f} MB\n")
+                    if last_stdout.strip():
+                        out.write(f"    Stdout: {last_stdout.strip()}\n")
+                    if last_stderr.strip():
+                        out.write(f"    Stderr: {last_stderr.strip()}\n")
+                    out.write("\n")
+
+                    all_results[model_dir][script_file] = {
+                        "exit_code": last_returncode,
+                        "runtime_median": round(med_runtime, 4),
+                        "runtime_all": [round(r, 4) for r in runtimes],
+                        "memory_median": round(med_memory, 2),
+                        "memory_all": [round(m, 2) for m in memories],
+                    }
+
+                    status = "PASS" if last_returncode == 0 else "FAIL"
+                    print(f"{status} ({med_runtime:.2f}s, {med_memory:.1f}MB)")
+
+                out.write("\n")
+
+        with open(results_json_path, "w") as jf:
+            json.dump(all_results, jf, indent=2)
+
+        print(f"  Results: {results_txt}")
+
+    print(f"\nAll runs tested.")
+
 
 if __name__ == "__main__":
     run_tests()

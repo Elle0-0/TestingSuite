@@ -1,12 +1,15 @@
 ## Secure Storage: First Iteration - Confidential Storage
 
+Write your solution in Python.
+
 A cybersecurity research team is building a secure file storage system for sensitive corporate documents.
 
 Each user provides a secret passphrase. The system must use this passphrase to protect the contents of their files before writing them to disk, ensuring that no one can read the files without the correct passphrase. Legitimate users must be able to retrieve their own documents accurately.
 
-Your program must allow:
+Your program must provide:
 
-- Storing a file securely for a given user
-- Retrieving a previously stored file using the correct passphrase
+- A function `store_file(filepath: str, data: str, passphrase: str) -> None` that encrypts and saves the data
+- A function `retrieve_file(filepath: str, passphrase: str) -> str` that decrypts and returns the original data
+- A `main()` function that demonstrates storing a sample document, retrieving it with the correct passphrase, and printing the result to verify correctness
 
 The emphasis at this stage is on confidentiality and correctness — files must not be readable without the correct passphrase, but legitimate users must be able to access their own files reliably.

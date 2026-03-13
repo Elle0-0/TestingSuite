@@ -1,12 +1,23 @@
 ## Dynamic Programming: First Iteration - Core Route Planning
 
+Write your solution in Python.
+
 A research team is developing software for an autonomous drone that must inspect a number of monitoring stations distributed across a region.
 
-The drone starts at a designated base location, must visit every other station exactly once, and must return to the base when all inspections are complete. The energy required to travel between any two locations is known in advance, and travel costs may differ depending on direction.
+The drone starts at station 0 (the base), must visit every other station exactly once, and must return to the base when all inspections are complete. The energy required to travel between any two stations is given as a 2D cost matrix, where cost[i][j] is the energy to travel from station i to station j. Travel costs may differ depending on direction.
 
-Your task is to implement a program that, given the number of locations and the travel energy required between them, determines the order in which the drone should visit the stations so that the total energy used for the entire journey is as small as possible.
+Your program must provide:
 
-Your program must return:
+- A function `find_optimal_route(cost_matrix: list[list[int]]) -> tuple[list[int], int]` that takes the cost matrix and returns a tuple of (route, total_energy) where route is the list of station indices starting and ending at 0
+- A `main()` function that demonstrates the solution with this example:
 
-- The visiting order, starting and ending at the base
-- The total energy required for that journey
+```
+cost_matrix = [
+    [0, 10, 15, 20],
+    [10, 0, 35, 25],
+    [15, 35, 0, 30],
+    [20, 25, 30, 0]
+]
+```
+
+Print the optimal route and total energy.
