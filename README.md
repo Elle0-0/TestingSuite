@@ -121,7 +121,7 @@ Attempt 4 (retry_3 — final):
   Same pattern, with the full conversation history from all 3 prior attempts.
 ```
 
-Scripts that pass on any attempt stop immediately — retries only happen on failure. The execution timeout is 60 seconds per attempt.
+Scripts that pass on any attempt stop immediately — retries only happen on failure. The execution timeout is 60 seconds per attempt. All models share a uniform output token cap of **16,384 tokens** (`MAX_OUTPUT_TOKENS`) to ensure no model is advantaged or truncated by differing generation limits.
 
 **Models used:**
 - `gpt-5.4-2026-03-05` (OpenAI)
@@ -280,53 +280,54 @@ Each task domain has 3 iterations that mirror a real developer workflow:
 
 ## Results & Observations
 
-All results below are aggregated across **5 independent generation runs** (mean ± std) to account for LLM non-determinism. Each run generates 27 scripts (9 prompts × 3 models), tested 3 times each for performance, and analysed with all 6 static analysis tools.
+All results below are aggregated across **5 independent generation runs** (mean ± std) to account for LLM non-determinism. Each run generates 27 scripts (9 prompts × 3 models), tested 3 times each for performance, and analysed with all 6 static analysis tools. All models used a uniform output token cap of 16,384 tokens.
 
 ### 1. Functional Correctness & Reliability
 
 | Model | Pass Rate | Avg Retries per Script | Total Retries (across 5 runs) |
 |-------|-----------|------------------------|-------------------------------|
-| GPT-5.4 | **100%** | 1.04 | 2 |
-| Claude Opus 4.6 | **100%** | 1.07 | 3 |
-| Gemini 2.5 Pro | 97.8% | 1.33 | 15 |
+| GPT-5.4 | **100%** | 1.09 | 4 |
+| Claude Opus 4.6 | **100%** | 1.09 | 4 |
+| Gemini 2.5 Pro | **100%** | 1.22 | 10 |
 
-- **GPT and Claude are highly reliable** — both achieved 100% pass rates across all 5 runs with minimal retries (2–3 total across 45 scripts each).
-- **Gemini required significantly more error correction** — 15 total retries across 5 runs, and one outright failure (secure_storage iteration 3 in Run 3 did not pass even after 3 retries). This suggests Gemini's initial code generation is less robust, particularly for complex prompts.
+- **All three models achieved 100% pass rates** across all 5 runs. Every script ultimately ran successfully (exit code 0), though some required retries.
+- **GPT and Claude are nearly identical in reliability** — both averaging 1.09 retries per script with just 4 total retries across 45 scripts each.
+- **Gemini required the most error correction** — 10 total retries across 5 runs (2.5× more than GPT or Claude). This suggests Gemini's initial code generation is less robust, particularly for complex prompts, though it always recovers within the retry budget.
 - The retry mechanism itself is a useful research signal: models that need retries are generating code they cannot verify internally before outputting.
 
 ### 2. Code Size (SLOC — Source Lines of Code)
 
 | Model | Total SLOC (mean) | Avg SLOC Std per Script |
 |-------|-------------------|-------------------------|
-| Claude Opus 4.6 | **1,177** | 10.9 |
-| GPT-5.4 | 1,021 | 21.7 |
-| Gemini 2.5 Pro | 882 | 17.0 |
+| Claude Opus 4.6 | **1,154** | 11.5 |
+| GPT-5.4 | 1,050 | 19.1 |
+| Gemini 2.5 Pro | 834 | 18.1 |
 
-- **Claude consistently produces the most code** — 34% more than Gemini and 15% more than GPT for identical prompts. This is the strongest signal for over-engineering: more code to achieve the same functional outcome.
-- **Claude's output is the most consistent across runs** (lowest std of 10.9 per script), meaning its verbosity is systematic, not random. GPT shows the most variation (std 21.7), suggesting it sometimes generates compact solutions and sometimes more elaborate ones.
-- Gemini is the **most concise**, producing the least code overall. This raises a trade-off: less code but lower reliability (see Section 1).
+- **Claude consistently produces the most code** — 38% more than Gemini and 10% more than GPT for identical prompts. This is the strongest signal for over-engineering: more code to achieve the same functional outcome.
+- **Claude's output is the most consistent across runs** (lowest std of 11.5 per script), meaning its verbosity is systematic, not random. GPT shows the most variation (std 19.1), suggesting it sometimes generates compact solutions and sometimes more elaborate ones.
+- Gemini is the **most concise**, producing the least code overall.
 
 ### 3. Cyclomatic Complexity
 
 | Model | Avg CC per Script | Avg Std |
 |-------|-------------------|---------|
-| Claude Opus 4.6 | **7.86** | 1.27 |
-| Gemini 2.5 Pro | 6.39 | 1.32 |
-| GPT-5.4 | 5.72 | 1.29 |
+| Claude Opus 4.6 | **8.26** | 1.52 |
+| Gemini 2.5 Pro | 5.92 | 1.71 |
+| GPT-5.4 | 5.43 | 1.18 |
 
-- **Claude has the highest branching complexity** — averaging 7.86 per function, which falls in the "moderate complexity" range (B grade). This aligns with the SLOC finding: Claude is not just writing more lines, it is adding more decision paths (if/else, error handling, edge cases).
-- **GPT produces the simplest control flow** at 5.72 — well within the "simple" range. Combined with its high SLOC, this suggests GPT tends toward straightforward, linear code rather than deeply nested branching.
-- Claude's dynamic_programming iteration 3 showed the highest individual CC across all models (mean 19.93), placing it in the "too complex" D range.
+- **Claude has the highest branching complexity** — averaging 8.26 per function, which falls in the "moderate complexity" range (B grade). This aligns with the SLOC finding: Claude is not just writing more lines, it is adding more decision paths (if/else, error handling, edge cases).
+- **GPT produces the simplest control flow** at 5.43 — well within the "simple" range (A grade). Combined with its moderate SLOC, this suggests GPT tends toward straightforward, linear code rather than deeply nested branching.
+- Claude's dynamic_programming iteration 3 showed the highest individual CC across all models (mean 22.27 ± 6.63), placing it in the "unstable" E range — more than double GPT's 9.35 for the same prompt.
 
 ### 4. Code Quality (Pylint Score, out of 10)
 
 | Model | Avg Pylint Score |
 |-------|-----------------|
 | GPT-5.4 | **9.37** |
-| Gemini 2.5 Pro | 8.23 |
-| Claude Opus 4.6 | 7.17 |
+| Gemini 2.5 Pro | 8.40 |
+| Claude Opus 4.6 | 7.29 |
 
-- **GPT produces the cleanest, most PEP-8-compliant code** by a wide margin (9.37 vs Claude's 7.17). GPT's scores are consistently high across all scripts with low variance.
+- **GPT produces the cleanest, most PEP-8-compliant code** by a wide margin (9.37 vs Claude's 7.29). GPT's scores are consistently high across all scripts with low variance.
 - **Claude scores lowest in code quality** despite writing the most code. The additional code Claude generates introduces more style violations, naming convention issues, and refactoring opportunities flagged by pylint.
 - This creates an interesting tension: Claude writes more code (potential over-engineering) that is also less clean. A human developer would likely need to refactor Claude's output more than GPT's.
 
@@ -334,60 +335,64 @@ All results below are aggregated across **5 independent generation runs** (mean 
 
 | Model | Avg MI |
 |-------|--------|
-| Claude Opus 4.6 | **58.50** |
-| Gemini 2.5 Pro | 51.03 |
-| GPT-5.4 | 37.07 |
+| Claude Opus 4.6 | **58.45** |
+| Gemini 2.5 Pro | 55.57 |
+| GPT-5.4 | 36.78 |
 
 - **Claude has the highest maintainability** — this is the paradox of the results. Claude writes the most code with the highest complexity, yet scores best on maintainability. This is because the MI formula rewards **modularity**: many small functions, comments, and lower complexity *per function*. Claude's approach of breaking tasks into many small pieces inflates the MI even though total code volume is high.
-- **GPT has the lowest maintainability** despite the highest pylint score. GPT tends to pack logic into fewer, denser functions. Each function is well-formatted (high pylint) but individually harder to maintain (lower MI).
+- **Gemini is close behind** at 55.57, benefiting from its concise code and moderate modularity.
+- **GPT has the lowest maintainability** (36.78) despite the highest pylint score. GPT tends to pack logic into fewer, denser functions. Each function is well-formatted (high pylint) but individually harder to maintain (lower MI).
 - This distinction is important for the over-engineering argument: Claude's code is easier to modify in isolation (high MI) but requires reading more total code. GPT's code is compact but denser to understand per function.
 
 ### 6. Halstead Metrics (Cognitive Effort)
 
 | Model | Total Effort | Avg Effort per Script |
 |-------|-------------|----------------------|
-| Claude Opus 4.6 | **53,308** | 5,923 |
-| GPT-5.4 | 50,872 | 5,652 |
-| Gemini 2.5 Pro | 38,016 | 4,224 |
+| Claude Opus 4.6 | **57,780** | 6,420 |
+| GPT-5.4 | 47,285 | 5,254 |
+| Gemini 2.5 Pro | 32,664 | 3,629 |
 
-- **Claude and GPT require similar total cognitive effort** to understand (~51–53K), despite Claude writing more code. This means GPT's code, while shorter, uses more complex operators and operands per line — it's denser.
-- **Gemini requires the least mental effort** (38K total) — 29% less than Claude. This aligns with its minimal code size and suggests Gemini produces the most straightforward implementations.
-- Halstead estimated bugs follow the same pattern: Claude 0.17 avg, GPT 0.16 avg, Gemini 0.12 avg — more complexity correlates with more predicted defects.
+- **Claude requires the most cognitive effort** to understand (57,780 total) — 22% more than GPT and 77% more than Gemini. This is the clearest quantitative measure of over-engineering: Claude's code demands significantly more mental effort to comprehend for the same set of tasks.
+- **Gemini requires the least mental effort** (32,664 total) — 43% less than Claude. This aligns with its minimal code size and suggests Gemini produces the most straightforward implementations.
+- Claude's dynamic_programming iteration 3 alone averages 21,013 Halstead effort — more than Gemini's entire secure_storage domain combined.
 
 ### 7. Security (Bandit Findings)
 
-| Model | Total Findings (mean) | Breakdown |
-|-------|-----------------------|-----------|
-| Claude Opus 4.6 | **13.2** | Fewest overall |
-| Gemini 2.5 Pro | 15.6 | Moderate |
-| GPT-5.4 | 16.0 | Most findings |
+| Model | Total Findings (mean) |
+|-------|-----------------------|
+| Gemini 2.5 Pro | **11.2** |
+| Claude Opus 4.6 | 14.8 |
+| GPT-5.4 | 15.2 |
 
-- **Claude produces the most secure code** with the fewest Bandit findings across all scripts. Despite writing more code (which creates more surface area for vulnerabilities), Claude appears to use more secure patterns.
-- **GPT has the most security findings** (16.0), concentrated in the secure_storage and api_client domains. GPT's dynamic_programming iteration 3 alone averages 5.2 findings per run.
+- **Gemini produces the most secure code** with the fewest Bandit findings (11.2 total). Its concise implementations have less surface area for security issues.
+- **GPT has the most security findings** (15.2), with dynamic_programming iteration 3 alone averaging 5.6 findings per run — the highest single-script security count in the dataset.
+- Claude and GPT are close (14.8 vs 15.2). Claude's secure_storage iteration 2 is a notable outlier at 5.4 findings — the most in the secure_storage domain across all models.
 - The secure_storage domain produces the most security findings across all models, which is expected — encryption code inherently triggers Bandit rules around cryptographic operations (e.g., use of `os.urandom`, `hashlib`, `subprocess` for key derivation).
 
 ### 8. Domain-Specific Observations
 
 **API Client domain:**
-- Claude's api_client iteration 2 shows the longest runtimes (mean 35.87s) — it tends to implement real HTTP requests with retry logic that actually executes against live endpoints, leading to timeout-heavy runs.
-- GPT's api_client implementations are more conservative with simulated/mocked data, resulting in faster execution.
+- Claude's api_client iteration 2 shows the longest runtimes (mean 18.50s) — it tends to implement real HTTP requests with retry logic that actually executes against live endpoints, leading to variable runtimes. Gemini's iteration 2 is even more extreme at 20.87s mean.
+- GPT's api_client implementations are more conservative with simulated/mocked data, resulting in faster execution (3.08s mean for iteration 2).
+- Gemini's api_client SLOC has the highest variance (std 35.0 for iteration 2), indicating highly inconsistent approaches across runs.
 
 **Dynamic Programming domain:**
 - All three models produce the most complex code here (highest CC across the board), as expected for algorithmically demanding TSP-style problems.
-- Claude's DP iteration 3 reaches CC of 19.93 — the highest single-script complexity in the entire dataset — suggesting it adds extensive optimisation heuristics beyond what was requested.
-- GPT's DP iteration 3 is notable for its high SLOC variance (std 30.2), meaning it sometimes generates compact algorithms and sometimes elaborate multi-heuristic solutions.
+- Claude's DP iteration 3 reaches CC of 22.27 ± 6.63 — the highest single-script complexity in the entire dataset — suggesting it adds extensive optimisation heuristics beyond what was requested. The high std (6.63) also means Claude's approach varies dramatically between runs.
+- Gemini's DP iteration 3 has the highest SLOC variance in the entire dataset (std 44.9), meaning it sometimes generates compact algorithms (~35 lines) and sometimes elaborate multi-heuristic solutions (~125 lines).
+- GPT's DP iteration 3 is notable for generating the most Bandit findings of any script (5.6 mean), despite not being a security-focused domain.
 
 **Secure Storage domain:**
-- Gemini's only failure across all runs occurred here (secure_storage iteration 3, Run 3), suggesting enterprise-scale encryption is the hardest prompt category.
-- Claude's secure_storage code is the most consistent (low SLOC std) — it has a reliable template for encryption/decryption that it applies each run.
-- All models generate the most Bandit findings in this domain, which is inherent to cryptographic code.
+- All models are 100% reliable here (no failures across any run), but this domain produces the most Bandit findings across all models, which is inherent to cryptographic code.
+- Claude's secure_storage code is the most consistent (low SLOC std of 4.2 for iteration 1) — it has a reliable template for encryption/decryption that it applies each run.
+- Claude's secure_storage iteration 2 generates the most security findings (5.4 mean) — its additional abstractions (wrapper classes, key management utilities) introduce more flagged patterns.
 
 ### 9. Over-Engineering Verdict
 
-Based on the aggregated data across 5 runs:
+Based on the aggregated data across 5 runs with uniform generation parameters:
 
-**Claude Opus 4.6 is the most over-engineered.** It consistently produces 34% more code than Gemini, has the highest cyclomatic complexity (7.86 avg), and the highest Halstead effort. Its code is modular (high MI of 58.50) but at the cost of unnecessary abstraction — extra classes, wrapper functions, and defensive error handling that was not requested in the prompts.
+**Claude Opus 4.6 is the most over-engineered.** It consistently produces 38% more code than Gemini, has the highest cyclomatic complexity (8.26 avg), and the highest Halstead effort (57,780 total — 77% more than Gemini). Its code is modular (high MI of 58.45) but at the cost of unnecessary abstraction — extra classes, wrapper functions, and defensive error handling that was not requested in the prompts. Claude's DP iteration 3 exemplifies this: CC of 22.27 with Halstead effort of 21,013 for a problem the other models solve with far less complexity.
 
-**GPT-5.4 over-engineers differently.** It writes less code than Claude but packs it more densely (similar total Halstead effort of 50,872). GPT's approach is fewer but more complex functions, resulting in low maintainability (37.07) despite excellent code quality (pylint 9.37). This is "dense over-engineering" rather than "verbose over-engineering."
+**GPT-5.4 over-engineers differently.** It writes less code than Claude but packs it more densely (total Halstead effort of 47,285). GPT's approach is fewer but more complex functions, resulting in the lowest maintainability (36.78) despite the best code quality (pylint 9.37). This is "dense over-engineering" rather than "verbose over-engineering."
 
-**Gemini 2.5 Pro is the most minimal.** It produces the least code, lowest cognitive effort, and simplest implementations. However, this comes at a reliability cost (97.8% pass rate, 15 retries). Gemini may actually **under-engineer** in cases where more robust error handling would have prevented its failures.
+**Gemini 2.5 Pro is the most minimal.** It produces the least code (834 SLOC), lowest cognitive effort (32,664 Halstead), fewest security findings (11.2), and the most concise implementations. However, this comes at a reliability cost (10 retries vs 4 for the other models), suggesting Gemini sometimes cuts corners that require correction. Gemini demonstrates that minimalism and reliability exist in tension: its concise code is easier to understand but more likely to contain initial errors.

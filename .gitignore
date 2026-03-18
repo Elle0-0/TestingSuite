@@ -4,3 +4,12 @@ outputs/
 results/
 __pycache__/
 *.pyc
+
+# Artifacts created by generated scripts during execution
+scripts/station_*.json
+scripts/secure_*
+scripts/sample_*
+scripts/demo_*
+scripts/*.dat
+scripts/*.ssf
+scripts/*.bin

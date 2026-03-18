@@ -41,6 +41,7 @@ SYSTEM_INSTRUCTION = "You are a Python programming assistant. Respond ONLY with 
 NUM_RUNS = 5           # Number of generation runs for statistical validity
 MAX_RETRIES = 3        # Max retry attempts per script on failure
 EXECUTION_TIMEOUT = 60  # Seconds before a script execution is killed
+MAX_OUTPUT_TOKENS = 16384  # Uniform token cap across all models
 
 RETRY_PROMPT = (
     "The code you provided produced the following error when executed:\n\n"
@@ -61,7 +62,7 @@ def call_gpt(messages):
     response = openai_client.chat.completions.create(
         model="gpt-5.4-2026-03-05",
         messages=api_messages,
-        max_completion_tokens=4096,
+        max_completion_tokens=MAX_OUTPUT_TOKENS,
     )
     return response.choices[0].message.content
 
@@ -70,7 +71,7 @@ def call_claude(messages):
     api_messages = [{"role": m["role"], "content": m["content"]} for m in messages]
     response = anthropic_client.messages.create(
         model="claude-opus-4-6",
-        max_tokens=4096,
+        max_tokens=MAX_OUTPUT_TOKENS,
         system=SYSTEM_INSTRUCTION,
         messages=api_messages,
     )
@@ -89,6 +90,7 @@ def call_gemini(messages):
     response = gemini_client.models.generate_content(
         model="gemini-2.5-pro",
         contents=contents,
+        config={"max_output_tokens": MAX_OUTPUT_TOKENS},
     )
     return response.text
 

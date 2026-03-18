@@ -61,7 +61,7 @@ Each prompt specifies Python, includes concrete function signatures, and require
 - `test_harness.py` uses `python3` to execute generated scripts — ensure this points to the correct interpreter
 - Models used: `gpt-5.4-2026-03-05` (OpenAI), `claude-opus-4-6` (Anthropic), `gemini-2.5-pro` (Google)
 - Pylint has missing-docstring warnings disabled (`C0114`, `C0115`, `C0116`) since generated code rarely includes docstrings
-- Configurable: `NUM_RUNS` in generate_code.py (default 5), `PERF_RUNS` in test_harness.py (default 3)
+- Configurable: `NUM_RUNS` in generate_code.py (default 5), `PERF_RUNS` in test_harness.py (default 3), `MAX_OUTPUT_TOKENS` (default 16384, uniform across all models)
 
 ## Rules
 
