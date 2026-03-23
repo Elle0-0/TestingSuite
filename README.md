@@ -26,10 +26,17 @@ TestingSuite/
 │   │   └── analysis_results.json
 │   ├── run_2/
 │   └── aggregated_results.json    # Mean ± std across all runs
+├── outputs_verify/                   # Verification data (created by verify_run.py)
+│   └── run_N/                        # One run per invocation
+├── results_verify/
+│   ├── run_N/                        # Per-run verification results
+│   ├── aggregated_results.json       # Mean ± std across verify runs
+│   └── comparison.json               # Original vs verify comparison
 ├── scripts/
 │   ├── generate_code.py           # Step 1: Generate + execute + retry (N runs)
 │   ├── test_harness.py            # Step 2: Execute + measure performance
-│   └── analyze_results.py         # Step 3: Static analysis + aggregation
+│   ├── analyze_results.py         # Step 3: Static analysis + aggregation
+│   └── verify_run.py              # Incremental verification runner
 ├── requirements.txt
 └── README.md
 ```
@@ -59,6 +66,13 @@ cd scripts
 python generate_code.py     # Step 1 — generates code across N runs
 python test_harness.py      # Step 2 — tests all runs (3 perf runs per script)
 python analyze_results.py   # Step 3 — static analysis + aggregation
+
+# Incremental verification (one run per invocation)
+python verify_run.py               # Run one verification iteration
+python verify_run.py --compare     # Run + compare against original results
+python verify_run.py --compare-only   # Just compare (no new run)
+python verify_run.py --aggregate-only # Just re-aggregate verify runs
+python verify_run.py --run-number N   # Force specific run number
 ```
 
 ## Statistical Methodology
@@ -145,6 +159,95 @@ Per-run results are written to `results/run_{n}/test_results.txt` and `results/r
 Iterates over all `outputs/run_*/` directories and runs six analysis tools on every generated script. Per-run results are written to `results/run_{n}/analysis_results.txt` and `.json`.
 
 After all runs are analysed, the script **aggregates** results across runs into `results/aggregated_results.json`, computing mean ± standard deviation for every metric per model per script.
+
+### `verify_run.py` — Incremental Verification Runner
+
+Orchestrates the full pipeline (generate → test → analyze) **one run at a time** into separate `outputs_verify/` and `results_verify/` directories. This supports reproducibility validation: accumulate verification runs incrementally (e.g. twice daily over several days), then compare against the original 5-run batch to demonstrate result consistency in the FYP paper.
+
+Each invocation auto-detects the next run number (e.g. `run_1`, `run_2`, ...) and calls the existing pipeline scripts with overridden output paths. After each run, all existing verify runs are re-aggregated into `results_verify/aggregated_results.json`.
+
+The existing scripts (`generate_code.py`, `test_harness.py`, `analyze_results.py`) accept optional path parameters but retain their original defaults, so standalone usage is unchanged.
+
+#### How to Run Each Mode
+
+All commands must be run from the `scripts/` directory:
+
+```bash
+cd scripts
+```
+
+**1. Run one verification iteration** (most common — use this to accumulate data):
+```bash
+python verify_run.py
+```
+Auto-detects the next run number (`run_1` on first use, `run_2` next time, etc.). Executes the full pipeline: generate → test → analyze → aggregate across all existing verify runs.
+
+**2. Run + compare against original results:**
+```bash
+python verify_run.py --compare
+```
+Same as above, but after finishing prints a side-by-side table showing original vs verification metrics with % differences for every model and script. Saves `results_verify/comparison.json`.
+
+**3. Compare without running anything new:**
+```bash
+python verify_run.py --compare-only
+```
+Loads existing `results/aggregated_results.json` and `results_verify/aggregated_results.json`, prints the comparison table, and saves `results_verify/comparison.json`. No code is generated, tested, or analysed.
+
+**4. Re-aggregate existing verify runs:**
+```bash
+python verify_run.py --aggregate-only
+```
+Recomputes `results_verify/aggregated_results.json` from all existing per-run JSON files. Useful if you manually deleted a bad run directory and want to recalculate statistics.
+
+**5. Force a specific run number:**
+```bash
+python verify_run.py --run-number N
+```
+Overrides auto-detection and uses run number `N`. Useful to re-do a specific run (e.g. if `run_3` had an API outage). Can be combined with `--compare`:
+```bash
+python verify_run.py --run-number 3 --compare
+```
+
+#### Typical Verification Workflow
+
+```bash
+# Day 1 — morning & evening
+python verify_run.py                  # creates outputs_verify/run_1/
+python verify_run.py                  # creates outputs_verify/run_2/
+
+# Day 2 — continue accumulating
+python verify_run.py                  # creates run_3
+python verify_run.py                  # creates run_4
+
+# ... repeat until enough data collected ...
+
+# Final check — compare all verify runs against original 5-run batch
+python verify_run.py --compare-only
+```
+
+#### Statistical Tests in Comparison Output
+
+The `--compare` and `--compare-only` modes run **Welch's t-test** (two-sided, unequal variance) on the per-run raw values from both batches. For each model × script × metric combination, the output includes:
+
+| Column | Meaning |
+|---|---|
+| **Orig Mean** | Mean across original runs |
+| **Ver Mean** | Mean across verification runs |
+| **Diff %** | Percentage difference between means |
+| **p-value** | Welch's t-test p-value. p > 0.05 = no significant difference |
+| **Cohen d** | Effect size (how large the difference is in practice) |
+| **Effect** | Plain-language interpretation: negligible / small / medium / large |
+
+**Cohen's d interpretation:**
+| d | Effect Size | Meaning |
+|---|---|---|
+| < 0.2 | Negligible | No meaningful difference |
+| 0.2–0.5 | Small | Minor difference |
+| 0.5–0.8 | Medium | Moderate difference |
+| > 0.8 | Large | Substantial difference |
+
+A summary line reports how many metrics showed significant differences (p < 0.05). If this count is 0 or within the expected false-positive rate (~5%), results are considered reproducible. The full comparison data (including t-statistics, p-values, and effect sizes) is saved to `results_verify/comparison.json`.
 
 ---
 

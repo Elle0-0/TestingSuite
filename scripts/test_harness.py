@@ -50,15 +50,17 @@ def median(values):
     return (s[n // 2 - 1] + s[n // 2]) / 2
 
 
-def run_tests():
-    run_dirs = sorted(glob.glob(os.path.join(OUTPUTS_DIR, "run_*")))
+def run_tests(outputs_dir=OUTPUTS_DIR, results_dir=RESULTS_DIR, run_filter=None):
+    run_dirs = sorted(glob.glob(os.path.join(outputs_dir, "run_*")))
+    if run_filter:
+        run_dirs = [d for d in run_dirs if os.path.basename(d) == run_filter]
     if not run_dirs:
-        print("No run directories found in outputs/. Run generate_code.py first.")
+        print("No run directories found. Run generate_code.py first.")
         return
 
     for run_dir in run_dirs:
         run_name = os.path.basename(run_dir)
-        run_results_dir = os.path.join(RESULTS_DIR, run_name)
+        run_results_dir = os.path.join(results_dir, run_name)
         os.makedirs(run_results_dir, exist_ok=True)
 
         results_txt = os.path.join(run_results_dir, "test_results.txt")

@@ -131,14 +131,17 @@ OUTPUTS_DIR = "../outputs"
 RESULTS_DIR = "../results"
 
 
-def generate_code():
-    for run in range(1, NUM_RUNS + 1):
+def generate_code(prompts_dir=PROMPTS_DIR, outputs_dir=OUTPUTS_DIR,
+                  results_dir=RESULTS_DIR, num_runs=NUM_RUNS, single_run=None):
+    runs = [single_run] if single_run is not None else range(1, num_runs + 1)
+    total = 1 if single_run is not None else num_runs
+    for run in runs:
         print(f"\n{'='*60}")
-        print(f"  RUN {run}/{NUM_RUNS}")
+        print(f"  RUN {run}/{total}")
         print(f"{'='*60}")
 
-        run_output_dir = os.path.join(OUTPUTS_DIR, f"run_{run}")
-        run_results_dir = os.path.join(RESULTS_DIR, f"run_{run}")
+        run_output_dir = os.path.join(outputs_dir, f"run_{run}")
+        run_results_dir = os.path.join(results_dir, f"run_{run}")
         retry_log = {}
 
         for model_name, model_fn in MODELS.items():
@@ -146,11 +149,11 @@ def generate_code():
             os.makedirs(model_output_dir, exist_ok=True)
             retry_log[model_name] = {}
 
-            for prompt_file in sorted(os.listdir(PROMPTS_DIR)):
+            for prompt_file in sorted(os.listdir(prompts_dir)):
                 if not prompt_file.endswith(".txt"):
                     continue
 
-                prompt_path = os.path.join(PROMPTS_DIR, prompt_file)
+                prompt_path = os.path.join(prompts_dir, prompt_file)
                 with open(prompt_path, "r") as f:
                     prompt = f.read()
 
@@ -226,7 +229,7 @@ def generate_code():
             json.dump(retry_log, f, indent=2)
         print(f"  Run {run} retry log saved to {log_path}")
 
-    print(f"\nAll {NUM_RUNS} runs complete.")
+    print(f"\nAll {total} run(s) complete.")
 
 
 if __name__ == "__main__":

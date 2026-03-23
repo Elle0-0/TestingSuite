@@ -16,21 +16,30 @@ cd scripts
 python generate_code.py    # Step 1: Generate code across N runs (default 5)
 python test_harness.py     # Step 2: Execute + measure (3 perf runs per script)
 python analyze_results.py  # Step 3: Static analysis + aggregate across runs
+
+# Incremental verification (one run per invocation, separate directories)
+python verify_run.py               # Run one verification iteration
+python verify_run.py --compare     # Run + compare against original results
+python verify_run.py --compare-only   # Just compare (no new run)
+python verify_run.py --aggregate-only # Just re-aggregate verify runs
+python verify_run.py --run-number N   # Force specific run number
 ```
 
 ## Architecture
 
 Three-stage pipeline, all in `scripts/`:
 
-- **`generate_code.py`** — Calls OpenAI, Anthropic, and Google Generative AI APIs. Runs the full generation pipeline `NUM_RUNS` times (default 5) for statistical validity. Each prompt is sent to all 3 models; outputs saved to `outputs/run_{n}/<model>/`. After generation, each script is **executed immediately** — if it fails, the model receives the error and gets up to **3 retries** via multi-turn conversation. Only the final version is saved (failed attempts discarded). Retry data saved to `results/run_{n}/retry_log.json`.
-- **`test_harness.py`** — Iterates over all `outputs/run_*/` directories. Runs each script `PERF_RUNS` times (default 3), taking the **median** runtime and peak memory. Results → `results/run_{n}/test_results.txt` and `.json`.
-- **`analyze_results.py`** — Iterates over all `outputs/run_*/` directories. Runs 6 analysis tools on each script, saves per-run results, then **aggregates** across all runs into `results/aggregated_results.json` (mean ± std for every metric):
+- **`generate_code.py`** — Calls OpenAI, Anthropic, and Google Generative AI APIs. Runs the full generation pipeline `NUM_RUNS` times (default 5) for statistical validity. Each prompt is sent to all 3 models; outputs saved to `outputs/run_{n}/<model>/`. After generation, each script is **executed immediately** — if it fails, the model receives the error and gets up to **3 retries** via multi-turn conversation. Only the final version is saved (failed attempts discarded). Retry data saved to `results/run_{n}/retry_log.json`. Accepts optional path/run parameters for use by `verify_run.py`.
+- **`test_harness.py`** — Iterates over all `outputs/run_*/` directories. Runs each script `PERF_RUNS` times (default 3), taking the **median** runtime and peak memory. Results → `results/run_{n}/test_results.txt` and `.json`. Accepts optional path/filter parameters.
+- **`analyze_results.py`** — Iterates over all `outputs/run_*/` directories. Runs 6 analysis tools on each script, saves per-run results, then **aggregates** across all runs into `results/aggregated_results.json` (mean ± std for every metric). Also provides `aggregate_all_runs()` for re-aggregating from saved JSON without re-running tools:
   1. `radon cc` — Cyclomatic complexity (branching paths per function)
   2. `radon raw` — Line counts (LOC, SLOC, comments, blanks)
   3. `radon hal` — Halstead metrics (volume, difficulty, effort, est. bugs)
   4. `radon mi` — Maintainability Index (composite 0–100 score)
   5. `pylint` — Code quality score (0–10) and issue breakdown
   6. `bandit` — Security vulnerability scan (severity: LOW/MEDIUM/HIGH)
+
+- **`verify_run.py`** — Incremental verification orchestrator. Runs one pipeline iteration at a time into `outputs_verify/` and `results_verify/`, auto-detecting the next run number. After each run, re-aggregates all verify runs. Supports `--compare` to print a side-by-side table against original results and save `results_verify/comparison.json`.
 
 **All scripts use relative paths (`../prompts`, `../outputs`, `../results`) and must be run from the `scripts/` directory.**
 
@@ -42,6 +51,12 @@ results/run_{n}/retry_log.json          # Retry data per run
 results/run_{n}/test_results.json       # Runtime/memory per run
 results/run_{n}/analysis_results.json   # Static analysis per run
 results/aggregated_results.json         # Mean ± std across all runs
+
+# Verification (same structure, separate directories)
+outputs_verify/run_{n}/<model>/*_solution.py
+results_verify/run_{n}/{retry_log,test_results,analysis_results}.json
+results_verify/aggregated_results.json  # Re-computed after each verify run
+results_verify/comparison.json          # Original vs verify comparison
 ```
 
 ## Prompt Structure

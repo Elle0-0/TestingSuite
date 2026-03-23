@@ -394,10 +394,15 @@ def aggregate_results(all_run_data, all_test_data, all_retry_data):
 # Main
 # ---------------------------------------------------------------------------
 
-def run_analysis():
-    run_dirs = sorted(glob.glob(os.path.join(OUTPUTS_DIR, "run_*")))
+def aggregate_all_runs(outputs_dir=OUTPUTS_DIR, results_dir=RESULTS_DIR):
+    """Re-aggregate across all existing runs by loading saved per-run JSON files.
+
+    Unlike run_analysis(), this does NOT re-run the analysis tools — it just
+    loads the previously saved JSON results and computes mean ± std.
+    """
+    run_dirs = sorted(glob.glob(os.path.join(outputs_dir, "run_*")))
     if not run_dirs:
-        print("No run directories found in outputs/. Run generate_code.py first.")
+        print("No run directories found for aggregation.")
         return
 
     all_run_analysis = []
@@ -406,7 +411,52 @@ def run_analysis():
 
     for run_dir in run_dirs:
         run_name = os.path.basename(run_dir)
-        run_results_dir = os.path.join(RESULTS_DIR, run_name)
+        run_results_dir = os.path.join(results_dir, run_name)
+
+        analysis_json = os.path.join(run_results_dir, "analysis_results.json")
+        if os.path.exists(analysis_json):
+            with open(analysis_json) as f:
+                all_run_analysis.append(json.load(f))
+
+        test_json = os.path.join(run_results_dir, "test_results.json")
+        if os.path.exists(test_json):
+            with open(test_json) as f:
+                all_test_data.append(json.load(f))
+
+        retry_json = os.path.join(run_results_dir, "retry_log.json")
+        if os.path.exists(retry_json):
+            with open(retry_json) as f:
+                all_retry_data.append(json.load(f))
+
+    if not all_run_analysis:
+        print("No analysis results found to aggregate.")
+        return
+
+    print(f"Aggregating across {len(all_run_analysis)} runs...")
+    aggregated = aggregate_results(all_run_analysis, all_test_data, all_retry_data)
+    agg_path = os.path.join(results_dir, "aggregated_results.json")
+    os.makedirs(results_dir, exist_ok=True)
+    with open(agg_path, "w") as f:
+        json.dump(aggregated, f, indent=2)
+    print(f"Aggregated results saved to {agg_path}")
+    return aggregated
+
+
+def run_analysis(outputs_dir=OUTPUTS_DIR, results_dir=RESULTS_DIR, run_filter=None):
+    run_dirs = sorted(glob.glob(os.path.join(outputs_dir, "run_*")))
+    if run_filter:
+        run_dirs = [d for d in run_dirs if os.path.basename(d) == run_filter]
+    if not run_dirs:
+        print("No run directories found. Run generate_code.py first.")
+        return
+
+    all_run_analysis = []
+    all_test_data = []
+    all_retry_data = []
+
+    for run_dir in run_dirs:
+        run_name = os.path.basename(run_dir)
+        run_results_dir = os.path.join(results_dir, run_name)
 
         print(f"\nAnalysing {run_name}...")
         analysis = analyze_single_run(run_dir, run_results_dir)
@@ -430,7 +480,7 @@ def run_analysis():
     if len(all_run_analysis) > 0:
         print(f"\nAggregating across {len(all_run_analysis)} runs...")
         aggregated = aggregate_results(all_run_analysis, all_test_data, all_retry_data)
-        agg_path = os.path.join(RESULTS_DIR, "aggregated_results.json")
+        agg_path = os.path.join(results_dir, "aggregated_results.json")
         with open(agg_path, "w") as f:
             json.dump(aggregated, f, indent=2)
         print(f"Aggregated results saved to {agg_path}")
