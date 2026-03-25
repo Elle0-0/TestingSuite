@@ -23,19 +23,25 @@ TestingSuite/
 │   │   ├── test_results.txt
 │   │   ├── test_results.json
 │   │   ├── analysis_results.txt
-│   │   └── analysis_results.json
+│   │   ├── analysis_results.json
+│   │   └── requirement_scores.json
 │   ├── run_2/
-│   └── aggregated_results.json    # Mean ± std across all runs
+│   ├── aggregated_results.json    # Mean ± std across all runs
+│   ├── requirement_coverage.json  # Coverage per model per script
+│   └── normalised_results.json    # Complexity ÷ coverage
 ├── outputs_verify/                   # Verification data (created by verify_run.py)
 │   └── run_N/                        # One run per invocation
 ├── results_verify/
 │   ├── run_N/                        # Per-run verification results
 │   ├── aggregated_results.json       # Mean ± std across verify runs
 │   └── comparison.json               # Original vs verify comparison
+├── requirements/
+│   └── requirements.json          # 45 formal requirements (9 prompts × 4–8 each)
 ├── scripts/
 │   ├── generate_code.py           # Step 1: Generate + execute + retry (N runs)
 │   ├── test_harness.py            # Step 2: Execute + measure performance
 │   ├── analyze_results.py         # Step 3: Static analysis + aggregation
+│   ├── score_requirements.py      # Step 4: Requirement coverage + normalised metrics
 │   └── verify_run.py              # Incremental verification runner
 ├── requirements.txt
 └── README.md
@@ -57,6 +63,8 @@ GOOGLE_API_KEY=AIza...
 
 The `.env` file is git-ignored and loaded automatically by the scripts via `python-dotenv`.
 
+The `requirements/requirements.json` file contains 45 formal requirements extracted from the 9 prompts (4–8 per prompt), used by `score_requirements.py` for automated requirement coverage evaluation. This file is checked into the repository — no setup needed.
+
 ## Workflow
 
 All scripts use relative paths and **must be run from the `scripts/` directory**:
@@ -66,6 +74,8 @@ cd scripts
 python generate_code.py     # Step 1 — generates code across N runs
 python test_harness.py      # Step 2 — tests all runs (3 perf runs per script)
 python analyze_results.py   # Step 3 — static analysis + aggregation
+python score_requirements.py           # Step 4 — requirement coverage scoring
+python score_requirements.py --normalize  # Step 4 + normalised complexity metrics
 
 # Incremental verification (one run per invocation)
 python verify_run.py               # Run one verification iteration
@@ -160,6 +170,128 @@ Iterates over all `outputs/run_*/` directories and runs six analysis tools on ev
 
 After all runs are analysed, the script **aggregates** results across runs into `results/aggregated_results.json`, computing mean ± standard deviation for every metric per model per script.
 
+#### The 6 Analysis Tools
+
+#### Tool 1: Cyclomatic Complexity — `radon cc`
+
+**What it measures:** The number of independent execution paths through the code. Every `if`, `elif`, `for`, `while`, `except`, `and`, `or` adds a path.
+
+**Output:** A score and letter grade per function:
+| Grade | CC Score | Meaning |
+|---|---|---|
+| A | 1–5 | Simple, low risk |
+| B | 6–10 | Moderate complexity |
+| C | 11–15 | Complex, higher risk |
+| D | 16–20 | Too complex |
+| E | 21–30 | Unstable |
+| F | 31+ | Error-prone, untestable |
+
+**Why it matters for your research:** A function with CC of 25 that could be written with CC of 5 is a direct signal of over-engineering — unnecessary branching and edge-case handling that wasn't asked for.
+
+#### Tool 2: Raw Metrics — `radon raw`
+
+**What it measures:** Line-level counts for each file:
+| Metric | Meaning |
+|---|---|
+| **LOC** | Total lines (including blanks and comments) |
+| **LLOC** | Logical lines of code |
+| **SLOC** | Source lines (non-blank, non-comment) |
+| **Comments** | Number of comment lines |
+| **Multi** | Multi-line string lines |
+| **Blank** | Blank lines |
+
+**Why it matters:** High SLOC with low CC = lots of code that doesn't actually do much branching logic. This is the clearest indicator of over-engineering — the model generated verbose abstractions (extra classes, wrapper functions, excessive error handling) for something simple.
+
+#### Tool 3: Halstead Metrics — `radon hal`
+
+**What it measures:** Cognitive complexity based on the operators and operands in the code:
+| Metric | Formula / Meaning |
+|---|---|
+| **Vocabulary** | Distinct operators + distinct operands |
+| **Length** | Total operators + total operands |
+| **Volume** | Length × log2(Vocabulary) — "size" of the algorithm |
+| **Difficulty** | (distinct operators / 2) × (total operands / distinct operands) |
+| **Effort** | Difficulty × Volume — total mental effort to understand |
+| **Time** | Effort / 18 — estimated seconds to understand the code |
+| **Bugs** | Volume / 3000 — estimated number of delivered bugs |
+
+**Why it matters:** Two scripts can have the same CC but very different Halstead effort. If a model uses 50 unique operators where 15 would suffice, the *effort* to understand that code is measurably higher — even if it technically works. The "estimated bugs" metric is also useful: more complexity = more places for bugs.
+
+#### Tool 4: Maintainability Index — `radon mi`
+
+**What it measures:** A single composite score (0–100) combining Cyclomatic Complexity, Halstead Volume, and Lines of Code:
+| Grade | Score | Meaning |
+|---|---|---|
+| A | 20–100 | Very maintainable |
+| B | 10–19 | Moderately maintainable |
+| C | 0–9 | Difficult to maintain |
+
+**Why it matters:** This is your best single-number comparison metric across models. If GPT produces MI=75 and Claude produces MI=45 for the same task, that's a quantifiable difference in maintainability regardless of whether both solutions are functionally correct.
+
+#### Tool 5: Pylint Score — `pylint`
+
+**What it measures:** Code quality and PEP 8 conformance on a scale of 0.00 to 10.00. Checks for:
+- Convention violations (naming, spacing)
+- Refactoring opportunities (duplicated code, too many arguments)
+- Warnings (unused variables, unreachable code)
+- Errors (undefined variables, wrong types)
+
+Missing docstring warnings (`C0114`, `C0115`, `C0116`) are disabled since generated code rarely includes docstrings and these would dominate the results.
+
+**Why it matters:** Measures readability and adherence to Python conventions. A working script with a pylint score of 3.0 is harder to maintain than one scoring 8.5, even if both pass tests.
+
+#### Tool 6: Bandit — Security Scan
+
+**What it measures:** Python-specific security vulnerabilities:
+- Hard-coded passwords and secrets
+- Use of `eval()`, `exec()`, `pickle` (code injection risk)
+- Insecure `subprocess` usage (shell injection)
+- Weak cryptographic choices (MD5, SHA1 for hashing passwords)
+- SQL injection patterns
+- Path traversal vulnerabilities
+
+Each finding is classified by severity (**LOW** / **MEDIUM** / **HIGH**) and confidence level.
+
+**Why it matters:** Directly maps to your paper's security evaluation criterion. Models that generate code using `os.system()` or hard-coded keys produce functionally correct but insecure code.
+
+### Step 4: `score_requirements.py` — Requirement Coverage + Normalised Metrics
+
+Addresses the distinction between **structural complexity** and **over-engineering**. Raw metrics (SLOC, CC, Halstead effort) measure how complex the code is, but not whether that complexity is *justified* by the requirements. This script adds the missing link: a formal **Requirement Coverage Score (RCS)** that measures how many explicit prompt requirements each solution fulfils.
+
+**How it works:**
+
+1. Loads `requirements/requirements.json`, which contains **45 formal requirements** extracted from the 9 prompts (4–8 per prompt). Each requirement is traced back to a specific sentence in the prompt text.
+2. For each generated solution, runs **45 fully automated checks** that verify structural properties via AST analysis and source pattern matching — function/class existence, parameter names, import usage, algorithmic patterns, error handling structures — without executing the code. No manual or subjective scoring is used, eliminating evaluator bias.
+3. Computes **Requirement Coverage Score**: `requirements passed / total requirements` per model per script.
+4. When `--normalize` is used, divides raw complexity metrics by coverage to produce **normalised metrics** — complexity per unit of requirement fulfilment.
+
+**Key output — Normalised Complexity:**
+
+| Metric | Formula | What it reveals |
+|---|---|---|
+| SLOC / Coverage | Raw SLOC ÷ RCS | Lines of code per requirement fulfilled — separates verbosity from thoroughness |
+| CC / Coverage | Raw CC ÷ RCS | Branching complexity per requirement — separates justified branches from unnecessary ones |
+| Halstead Effort / Coverage | Raw Effort ÷ RCS | Cognitive effort per requirement — the most direct over-engineering measure |
+
+A model that scores high on raw complexity but also high on coverage may not be over-engineered — its complexity is **justified**. A model with high complexity and low coverage is genuinely over-engineered (adding complexity beyond what the requirements demand — known in SE literature as **"gold plating"**).
+
+**Usage:**
+
+```bash
+cd scripts
+
+# Run automated scoring on all runs
+python score_requirements.py
+
+# Run + compute normalised complexity metrics
+python score_requirements.py --normalize
+
+# Score a specific run only
+python score_requirements.py --run run_1
+```
+
+All 45 requirements are evaluated via automated AST and source pattern analysis. No manual scoring is used — the evaluation is fully deterministic and reproducible, eliminating evaluator bias. Check types include function/class existence, parameter verification, import detection, algorithmic pattern matching (e.g., bitmask DP vs brute-force), and behavioural pattern detection (e.g., wrong-passphrase testing, corruption simulation).
+
 ### `verify_run.py` — Incremental Verification Runner
 
 Orchestrates the full pipeline (generate → test → analyze) **one run at a time** into separate `outputs_verify/` and `results_verify/` directories. This supports reproducibility validation: accumulate verification runs incrementally (e.g. twice daily over several days), then compare against the original 5-run batch to demonstrate result consistency in the FYP paper.
@@ -251,100 +383,6 @@ A summary line reports how many metrics showed significant differences (p < 0.05
 
 ---
 
-#### Tool 1: Cyclomatic Complexity — `radon cc`
-
-**What it measures:** The number of independent execution paths through the code. Every `if`, `elif`, `for`, `while`, `except`, `and`, `or` adds a path.
-
-**Output:** A score and letter grade per function:
-| Grade | CC Score | Meaning |
-|---|---|---|
-| A | 1–5 | Simple, low risk |
-| B | 6–10 | Moderate complexity |
-| C | 11–15 | Complex, higher risk |
-| D | 16–20 | Too complex |
-| E | 21–30 | Unstable |
-| F | 31+ | Error-prone, untestable |
-
-**Why it matters for your research:** A function with CC of 25 that could be written with CC of 5 is a direct signal of over-engineering — unnecessary branching and edge-case handling that wasn't asked for.
-
----
-
-#### Tool 2: Raw Metrics — `radon raw`
-
-**What it measures:** Line-level counts for each file:
-| Metric | Meaning |
-|---|---|
-| **LOC** | Total lines (including blanks and comments) |
-| **LLOC** | Logical lines of code |
-| **SLOC** | Source lines (non-blank, non-comment) |
-| **Comments** | Number of comment lines |
-| **Multi** | Multi-line string lines |
-| **Blank** | Blank lines |
-
-**Why it matters:** High SLOC with low CC = lots of code that doesn't actually do much branching logic. This is the clearest indicator of over-engineering — the model generated verbose abstractions (extra classes, wrapper functions, excessive error handling) for something simple.
-
----
-
-#### Tool 3: Halstead Metrics — `radon hal`
-
-**What it measures:** Cognitive complexity based on the operators and operands in the code:
-| Metric | Formula / Meaning |
-|---|---|
-| **Vocabulary** | Distinct operators + distinct operands |
-| **Length** | Total operators + total operands |
-| **Volume** | Length × log2(Vocabulary) — "size" of the algorithm |
-| **Difficulty** | (distinct operators / 2) × (total operands / distinct operands) |
-| **Effort** | Difficulty × Volume — total mental effort to understand |
-| **Time** | Effort / 18 — estimated seconds to understand the code |
-| **Bugs** | Volume / 3000 — estimated number of delivered bugs |
-
-**Why it matters:** Two scripts can have the same CC but very different Halstead effort. If a model uses 50 unique operators where 15 would suffice, the *effort* to understand that code is measurably higher — even if it technically works. The "estimated bugs" metric is also useful: more complexity = more places for bugs.
-
----
-
-#### Tool 4: Maintainability Index — `radon mi`
-
-**What it measures:** A single composite score (0–100) combining Cyclomatic Complexity, Halstead Volume, and Lines of Code:
-| Grade | Score | Meaning |
-|---|---|---|
-| A | 20–100 | Very maintainable |
-| B | 10–19 | Moderately maintainable |
-| C | 0–9 | Difficult to maintain |
-
-**Why it matters:** This is your best single-number comparison metric across models. If GPT produces MI=75 and Claude produces MI=45 for the same task, that's a quantifiable difference in maintainability regardless of whether both solutions are functionally correct.
-
----
-
-#### Tool 5: Pylint Score — `pylint`
-
-**What it measures:** Code quality and PEP 8 conformance on a scale of 0.00 to 10.00. Checks for:
-- Convention violations (naming, spacing)
-- Refactoring opportunities (duplicated code, too many arguments)
-- Warnings (unused variables, unreachable code)
-- Errors (undefined variables, wrong types)
-
-Missing docstring warnings (`C0114`, `C0115`, `C0116`) are disabled since generated code rarely includes docstrings and these would dominate the results.
-
-**Why it matters:** Measures readability and adherence to Python conventions. A working script with a pylint score of 3.0 is harder to maintain than one scoring 8.5, even if both pass tests.
-
----
-
-#### Tool 6: Bandit — Security Scan
-
-**What it measures:** Python-specific security vulnerabilities:
-- Hard-coded passwords and secrets
-- Use of `eval()`, `exec()`, `pickle` (code injection risk)
-- Insecure `subprocess` usage (shell injection)
-- Weak cryptographic choices (MD5, SHA1 for hashing passwords)
-- SQL injection patterns
-- Path traversal vulnerabilities
-
-Each finding is classified by severity (**LOW** / **MEDIUM** / **HIGH**) and confidence level.
-
-**Why it matters:** Directly maps to your paper's security evaluation criterion. Models that generate code using `os.system()` or hard-coded keys produce functionally correct but insecure code.
-
----
-
 ## Evaluation Metrics Summary
 
 | Criterion (Paper §3.2) | Tool | Key Output |
@@ -352,14 +390,18 @@ Each finding is classified by severity (**LOW** / **MEDIUM** / **HIGH**) and con
 | Correctness | test_harness.py | Exit code (0 = pass), pass rate across runs |
 | Resilience | generate_code.py | Retry attempts, error correction rate (retry_log.json) |
 | Performance | test_harness.py | Runtime (seconds), Peak Memory (MB) — median of 3 |
-| Over-engineering | radon cc | Average cyclomatic complexity per function |
-| Over-engineering | radon raw | SLOC, LOC, function/class count |
-| Over-engineering | radon hal | Halstead effort, difficulty, est. bugs |
-| Over-engineering | radon mi | Maintainability Index (0–100) |
+| Requirement Coverage | score_requirements.py | RCS (0–1), 45 automated checks against formal requirements |
+| Structural Complexity | radon cc | Average cyclomatic complexity per function |
+| Structural Complexity | radon raw | SLOC, LOC, function/class count |
+| Structural Complexity | radon hal | Halstead effort, difficulty, est. bugs |
+| Structural Complexity | radon mi | Maintainability Index (0–100) |
+| **Over-engineering** | **score_requirements.py** | **Normalised metrics: SLOC/Coverage, CC/Coverage, Effort/Coverage** |
 | Readability | pylint | Score (0–10), issue counts by type |
 | Security | bandit | Findings by severity (LOW/MEDIUM/HIGH) |
 
-All metrics are reported as **mean ± std** across runs in `results/aggregated_results.json`.
+Raw complexity metrics (CC, SLOC, Halstead) measure **structural complexity** — how complex the code is. The **over-engineering** determination requires normalising these by **requirement coverage** — how much of that complexity is justified by prompt requirements. A model with high complexity and high coverage is thorough; a model with high complexity and low coverage is over-engineered.
+
+All metrics are reported as **mean ± std** across runs in `results/aggregated_results.json`. Requirement coverage is reported in `results/requirement_coverage.json` and normalised metrics in `results/normalised_results.json`.
 
 ## Prompt Design
 
@@ -398,7 +440,23 @@ All results below are aggregated across **5 independent generation runs** (mean 
 - **Gemini required the most error correction** — 10 total retries across 5 runs (2.5× more than GPT or Claude). This suggests Gemini's initial code generation is less robust, particularly for complex prompts, though it always recovers within the retry budget.
 - The retry mechanism itself is a useful research signal: models that need retries are generating code they cannot verify internally before outputting.
 
-### 2. Code Size (SLOC — Source Lines of Code)
+### 2. Requirement Coverage
+
+To distinguish structural complexity from over-engineering, 45 formal requirements were extracted from the 9 prompts and evaluated via fully automated AST and source pattern analysis. Each requirement traces back to a specific sentence in the prompt text. All checks are deterministic and reproducible — no manual or subjective scoring was used, eliminating evaluator bias.
+
+| Model | Avg Coverage | Failures (of 225 checks) | Failure Location |
+|-------|-------------|--------------------------|------------------|
+| Claude Opus 4.6 | **99.6%** | 1 (0.4%) | SS3-R5: multi-user timing pattern in 1 run |
+| GPT-5.4 | **99.6%** | 1 (0.4%) | DP2-R3: omitted `speed=1` default in 1 run |
+| Gemini 2.5 Pro | 97.4% | 5 (2.2%) | All in dynamic programming (iterations 2–3) |
+
+- **Claude and GPT are tied at 99.6% requirement coverage** — near-perfect fulfilment of all prompt specifications across all 5 runs. Both models consistently implement every function signature, parameter, return structure, error handling pattern, and demonstration scenario specified in the prompts.
+- **Gemini drops to 97.4%**, with all failures concentrated in the dynamic programming domain. In Run 1, Gemini's DP iteration 3 failed all 4 requirements: it did not preserve `time_windows`/`inspection_time` parameters from iteration 2, did not use a scalable algorithm, did not generate the requested 15-station test case, and did not report elapsed time. This means **Gemini's lower SLOC is partially explained by skipping requirements, not just writing more efficient code**.
+- The per-script breakdown reveals that all three models achieve 100% coverage on 7 of 9 prompts. Differences only emerge on the hardest prompts (DP iterations 2–3 and SS iteration 3), where requirement complexity tests whether models carry forward constraints from earlier iterations.
+
+### 3. Code Size (SLOC — Source Lines of Code)
+
+> **Note:** The raw SLOC figures below measure structural size. See the **Over-Engineering Verdict** section for SLOC normalised by requirement coverage, which separates justified verbosity from over-engineering.
 
 | Model | Total SLOC (mean) | Avg SLOC Std per Script |
 |-------|-------------------|-------------------------|
@@ -410,7 +468,7 @@ All results below are aggregated across **5 independent generation runs** (mean 
 - **Claude's output is the most consistent across runs** (lowest std of 11.5 per script), meaning its verbosity is systematic, not random. GPT shows the most variation (std 19.1), suggesting it sometimes generates compact solutions and sometimes more elaborate ones.
 - Gemini is the **most concise**, producing the least code overall.
 
-### 3. Cyclomatic Complexity
+### 4. Cyclomatic Complexity
 
 | Model | Avg CC per Script | Avg Std |
 |-------|-------------------|---------|
@@ -422,7 +480,7 @@ All results below are aggregated across **5 independent generation runs** (mean 
 - **GPT produces the simplest control flow** at 5.43 — well within the "simple" range (A grade). Combined with its moderate SLOC, this suggests GPT tends toward straightforward, linear code rather than deeply nested branching.
 - Claude's dynamic_programming iteration 3 showed the highest individual CC across all models (mean 22.27 ± 6.63), placing it in the "unstable" E range — more than double GPT's 9.35 for the same prompt.
 
-### 4. Code Quality (Pylint Score, out of 10)
+### 5. Code Quality (Pylint Score, out of 10)
 
 | Model | Avg Pylint Score |
 |-------|-----------------|
@@ -434,7 +492,7 @@ All results below are aggregated across **5 independent generation runs** (mean 
 - **Claude scores lowest in code quality** despite writing the most code. The additional code Claude generates introduces more style violations, naming convention issues, and refactoring opportunities flagged by pylint.
 - This creates an interesting tension: Claude writes more code (potential over-engineering) that is also less clean. A human developer would likely need to refactor Claude's output more than GPT's.
 
-### 5. Maintainability Index (0–100, higher = better)
+### 6. Maintainability Index (0–100, higher = better)
 
 | Model | Avg MI |
 |-------|--------|
@@ -447,7 +505,7 @@ All results below are aggregated across **5 independent generation runs** (mean 
 - **GPT has the lowest maintainability** (36.78) despite the highest pylint score. GPT tends to pack logic into fewer, denser functions. Each function is well-formatted (high pylint) but individually harder to maintain (lower MI).
 - This distinction is important for the over-engineering argument: Claude's code is easier to modify in isolation (high MI) but requires reading more total code. GPT's code is compact but denser to understand per function.
 
-### 6. Halstead Metrics (Cognitive Effort)
+### 7. Halstead Metrics (Cognitive Effort)
 
 | Model | Total Effort | Avg Effort per Script |
 |-------|-------------|----------------------|
@@ -459,7 +517,7 @@ All results below are aggregated across **5 independent generation runs** (mean 
 - **Gemini requires the least mental effort** (32,664 total) — 43% less than Claude. This aligns with its minimal code size and suggests Gemini produces the most straightforward implementations.
 - Claude's dynamic_programming iteration 3 alone averages 21,013 Halstead effort — more than Gemini's entire secure_storage domain combined.
 
-### 7. Security (Bandit Findings)
+### 8. Security (Bandit Findings)
 
 | Model | Total Findings (mean) |
 |-------|-----------------------|
@@ -472,7 +530,7 @@ All results below are aggregated across **5 independent generation runs** (mean 
 - Claude and GPT are close (14.8 vs 15.2). Claude's secure_storage iteration 2 is a notable outlier at 5.4 findings — the most in the secure_storage domain across all models.
 - The secure_storage domain produces the most security findings across all models, which is expected — encryption code inherently triggers Bandit rules around cryptographic operations (e.g., use of `os.urandom`, `hashlib`, `subprocess` for key derivation).
 
-### 8. Domain-Specific Observations
+### 9. Domain-Specific Observations
 
 **API Client domain:**
 - Claude's api_client iteration 2 shows the longest runtimes (mean 18.50s) — it tends to implement real HTTP requests with retry logic that actually executes against live endpoints, leading to variable runtimes. Gemini's iteration 2 is even more extreme at 20.87s mean.
@@ -490,17 +548,31 @@ All results below are aggregated across **5 independent generation runs** (mean 
 - Claude's secure_storage code is the most consistent (low SLOC std of 4.2 for iteration 1) — it has a reliable template for encryption/decryption that it applies each run.
 - Claude's secure_storage iteration 2 generates the most security findings (5.4 mean) — its additional abstractions (wrapper classes, key management utilities) introduce more flagged patterns.
 
-### 9. Over-Engineering Verdict
+### 10. Over-Engineering Verdict (Normalised by Requirement Coverage)
 
-Based on the aggregated data across 5 runs with uniform generation parameters:
+Raw complexity metrics alone cannot determine over-engineering — a model that writes more code may simply be implementing more of the prompt's requirements. To address this, all complexity metrics are **normalised by Requirement Coverage Score (RCS)**: complexity per unit of requirement fulfilment. This separates justified complexity (implementing what was asked) from genuine over-engineering (adding complexity beyond what was asked — known in software engineering literature as **"gold plating"**).
 
-**Claude Opus 4.6 is the most over-engineered.** It consistently produces 38% more code than Gemini, has the highest cyclomatic complexity (8.26 avg), and the highest Halstead effort (57,780 total — 77% more than Gemini). Its code is modular (high MI of 58.45) but at the cost of unnecessary abstraction — extra classes, wrapper functions, and defensive error handling that was not requested in the prompts. Claude's DP iteration 3 exemplifies this: CC of 22.27 with Halstead effort of 21,013 for a problem the other models solve with far less complexity.
+All 45 requirements were evaluated via fully automated AST and source pattern analysis, eliminating evaluator bias. The evaluation is deterministic and reproducible.
 
-**GPT-5.4 over-engineers differently.** It writes less code than Claude but packs it more densely (total Halstead effort of 47,285). GPT's approach is fewer but more complex functions, resulting in the lowest maintainability (36.78) despite the best code quality (pylint 9.37). This is "dense over-engineering" rather than "verbose over-engineering."
+**Normalised complexity metrics:**
 
-**Gemini 2.5 Pro is the most minimal.** It produces the least code (834 SLOC), lowest cognitive effort (32,664 Halstead), fewest security findings (11.2), and the most concise implementations. However, this comes at a reliability cost (10 retries vs 4 for the other models), suggesting Gemini sometimes cuts corners that require correction. Gemini demonstrates that minimalism and reliability exist in tension: its concise code is easier to understand but more likely to contain initial errors.
+| Model | Coverage | SLOC / Coverage | CC / Coverage | Halstead Effort / Coverage |
+|-------|----------|----------------|---------------|---------------------------|
+| Claude Opus 4.6 | 99.6% | **129.0** | **8.28** | **6,443** |
+| GPT-5.4 | 99.6% | 117.2 | 5.48 | 5,294 |
+| Gemini 2.5 Pro | 97.4% | 95.3 | 6.31 | 3,997 |
 
-### 10. Reproducibility Verification
+**Claude Opus 4.6 is the most over-engineered, even after normalisation.** Claude and GPT have identical requirement coverage (99.6%), so the complexity gap between them is pure over-engineering — Claude writes 10% more code per requirement than GPT with 51% more Halstead effort per requirement, for no additional functional benefit.
+
+Claude's modular style (high MI of 58.45) means the extra complexity takes the form of unnecessary abstractions: additional classes, wrapper functions, and defensive error handling beyond what the prompts specify. Claude's DP iteration 3 exemplifies this: CC of 22.27 with Halstead effort of 21,013 for a problem the other models solve with far less complexity, despite all three achieving the same functional outcome.
+
+**GPT-5.4 is the most balanced.** It achieves the same 99.6% coverage as Claude while writing 10% less code and requiring 18% less cognitive effort. GPT's approach is fewer but denser functions, resulting in the lowest maintainability (36.78) despite the best code quality (pylint 9.37). This is a trade-off rather than over-engineering: GPT's code is compact but individually harder to maintain per function.
+
+**Gemini 2.5 Pro is the most efficient but least thorough.** Gemini produces the least complexity per requirement (SLOC/Coverage of 95.3 vs Claude's 129.0), confirming it is genuinely concise rather than merely incomplete. However, its 97.4% coverage reveals that some of its efficiency comes at the cost of requirement fulfilment — it skips constraints on the hardest prompts (DP iterations 2–3), particularly failing to carry forward parameters from earlier iterations. Gemini also has the lowest initial reliability (10 retries vs 4), suggesting its minimalism and correctness exist in tension.
+
+**Key finding:** Normalising for requirement coverage reduces the SLOC gap between Claude and Gemini from 38% (raw) to 35% (normalised). The gap narrows only slightly because Claude and Gemini's coverage difference is small (2.2%). This confirms that the majority of Claude's additional complexity is genuine over-engineering rather than more thorough requirement fulfilment.
+
+### 11. Reproducibility Verification
 
 To validate that the above results are not artefacts of a single testing session, an independent verification batch of **5 runs** was conducted across separate sessions using `verify_run.py`. This produced a second complete dataset in `outputs_verify/` and `results_verify/`, which was compared against the original 5-run batch using Welch's t-test (two-sided, unequal variance) and Cohen's d (pooled standard deviation).
 

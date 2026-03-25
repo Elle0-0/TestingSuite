@@ -16,6 +16,8 @@ cd scripts
 python generate_code.py    # Step 1: Generate code across N runs (default 5)
 python test_harness.py     # Step 2: Execute + measure (3 perf runs per script)
 python analyze_results.py  # Step 3: Static analysis + aggregate across runs
+python score_requirements.py           # Step 4: Requirement coverage scoring
+python score_requirements.py --normalize  # Step 4 + normalised complexity metrics
 
 # Incremental verification (one run per invocation, separate directories)
 python verify_run.py               # Run one verification iteration
@@ -27,7 +29,7 @@ python verify_run.py --run-number N   # Force specific run number
 
 ## Architecture
 
-Three-stage pipeline, all in `scripts/`:
+Four-stage pipeline, all in `scripts/`:
 
 - **`generate_code.py`** — Calls OpenAI, Anthropic, and Google Generative AI APIs. Runs the full generation pipeline `NUM_RUNS` times (default 5) for statistical validity. Each prompt is sent to all 3 models; outputs saved to `outputs/run_{n}/<model>/`. After generation, each script is **executed immediately** — if it fails, the model receives the error and gets up to **3 retries** via multi-turn conversation. Only the final version is saved (failed attempts discarded). Retry data saved to `results/run_{n}/retry_log.json`. Accepts optional path/run parameters for use by `verify_run.py`.
 - **`test_harness.py`** — Iterates over all `outputs/run_*/` directories. Runs each script `PERF_RUNS` times (default 3), taking the **median** runtime and peak memory. Results → `results/run_{n}/test_results.txt` and `.json`. Accepts optional path/filter parameters.
@@ -38,6 +40,8 @@ Three-stage pipeline, all in `scripts/`:
   4. `radon mi` — Maintainability Index (composite 0–100 score)
   5. `pylint` — Code quality score (0–10) and issue breakdown
   6. `bandit` — Security vulnerability scan (severity: LOW/MEDIUM/HIGH)
+
+- **`score_requirements.py`** — Requirement coverage scoring. Checks 45 formal requirements (extracted from prompts) against generated solutions via AST analysis. Produces Requirement Coverage Score (RCS) per model per script, and normalised complexity metrics (SLOC/Coverage, CC/Coverage, Effort/Coverage) that distinguish justified complexity from over-engineering. Supports `--normalize`, `--generate-template` (for manual scoring), and `--with-manual`. All 45 checks are fully automated via AST and source pattern analysis — no manual scoring is required.
 
 - **`verify_run.py`** — Incremental verification orchestrator. Runs one pipeline iteration at a time into `outputs_verify/` and `results_verify/`, auto-detecting the next run number. After each run, re-aggregates all verify runs. Supports `--compare` to print a side-by-side table against original results and save `results_verify/comparison.json`.
 
@@ -50,7 +54,11 @@ outputs/run_{n}/<model>/*_solution.py   # Generated code per run
 results/run_{n}/retry_log.json          # Retry data per run
 results/run_{n}/test_results.json       # Runtime/memory per run
 results/run_{n}/analysis_results.json   # Static analysis per run
+results/run_{n}/requirement_scores.json # Requirement coverage per run
 results/aggregated_results.json         # Mean ± std across all runs
+results/requirement_coverage.json       # Coverage per model per script
+results/normalised_results.json         # Complexity ÷ coverage
+requirements/requirements.json          # 45 formal requirements definition
 
 # Verification (same structure, separate directories)
 outputs_verify/run_{n}/<model>/*_solution.py

@@ -1,0 +1,548 @@
+{
+  "metadata": {
+    "description": "Formal requirements extracted from each prompt for requirement coverage scoring",
+    "total_requirements": 45,
+    "prompts": 9,
+    "scoring_guide": {
+      "auto": "Checked programmatically via AST and source pattern analysis — fully automated, no manual input needed"
+    }
+  },
+  "prompts": {
+    "api_client_iteration_1": {
+      "solution_file": "api_client_iteration_1_solution.py",
+      "domain": "api_client",
+      "iteration": 1,
+      "requirements": [
+        {
+          "id": "AC1-R1",
+          "description": "fetch_all_stations function exists with urls parameter",
+          "source": "A function fetch_all_stations(urls: list[str]) -> list[dict]",
+          "test_type": "auto",
+          "check": {
+            "check": "compound_and",
+            "checks": [
+              {"check": "function_exists", "name": "fetch_all_stations"},
+              {"check": "function_params", "name": "fetch_all_stations", "params": ["urls"]}
+            ]
+          }
+        },
+        {
+          "id": "AC1-R2",
+          "description": "Returns a list of dicts (list[dict] return type)",
+          "source": "returns the collected readings",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains",
+            "pattern": "\\blist\\b|\\[\\]|append\\(|readings\\.append|results\\.append"
+          }
+        },
+        {
+          "id": "AC1-R3",
+          "description": "Uses an HTTP library to fetch data",
+          "source": "contact each one, retrieve the data",
+          "test_type": "auto",
+          "check": {
+            "check": "has_any_import",
+            "modules": ["requests", "urllib", "aiohttp", "httpx", "http.client"]
+          }
+        },
+        {
+          "id": "AC1-R4",
+          "description": "main() function exists",
+          "source": "A main() function that demonstrates the solution",
+          "test_type": "auto",
+          "check": {"check": "function_exists", "name": "main"}
+        }
+      ]
+    },
+    "api_client_iteration_2": {
+      "solution_file": "api_client_iteration_2_solution.py",
+      "domain": "api_client",
+      "iteration": 2,
+      "requirements": [
+        {
+          "id": "AC2-R1",
+          "description": "Implements retry logic for temporary failures",
+          "source": "Attempt a limited number of retries for temporary failures",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains_any",
+            "patterns": ["retry", "retries", "attempt", "max_retries", "tenacity", "backoff", "retry_count"]
+          }
+        },
+        {
+          "id": "AC2-R2",
+          "description": "Handles rate limiting / respects wait requirements",
+          "source": "Respect any waiting requirements imposed by the service",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains_any",
+            "patterns": ["rate.limit", "sleep\\(", "429", "Retry-After", "backoff", "wait"]
+          }
+        },
+        {
+          "id": "AC2-R3",
+          "description": "Continues processing after individual station failure",
+          "source": "failure from one station does not terminate the entire process",
+          "test_type": "auto",
+          "check": {"check": "has_try_except"}
+        },
+        {
+          "id": "AC2-R4",
+          "description": "Returns dict with 'readings' key",
+          "source": "returns a dictionary with keys 'readings'",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains_any",
+            "patterns": ["[\"']readings[\"']"]
+          }
+        },
+        {
+          "id": "AC2-R5",
+          "description": "Returns dict with 'errors' key containing url, error type, and message",
+          "source": "and 'errors' (list of dicts with url, error type, and message)",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains_any",
+            "patterns": ["[\"']errors[\"']"]
+          }
+        },
+        {
+          "id": "AC2-R6",
+          "description": "Handles timeout scenarios",
+          "source": "Sometimes time out",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains_any",
+            "patterns": ["timeout", "Timeout", "TimeoutError", "ConnectTimeout", "ReadTimeout"]
+          }
+        },
+        {
+          "id": "AC2-R7",
+          "description": "Handles malformed or incomplete JSON",
+          "source": "May return malformed or incomplete JSON",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains_any",
+            "patterns": ["JSONDecodeError", "json\\.loads", "ValueError.*json", "json.*ValueError", "malformed", "invalid.*json"]
+          }
+        },
+        {
+          "id": "AC2-R8",
+          "description": "main() demonstrates failure scenarios (not just success)",
+          "source": "demonstrates the solution with example URLs including some that simulate failures",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains_any",
+            "patterns": ["invalid", "fail", "bad.?url", "error.?url", "malformed", "timeout", "unreachable", "localhost:\\d{4,5}", "nonexistent", "does.?not.?exist", "example\\.invalid", "httpbin.*status"]
+          }
+        }
+      ]
+    },
+    "api_client_iteration_3": {
+      "solution_file": "api_client_iteration_3_solution.py",
+      "domain": "api_client",
+      "iteration": 3,
+      "requirements": [
+        {
+          "id": "AC3-R1",
+          "description": "Uses concurrency for parallel fetching",
+          "source": "fetching from multiple stations concurrently",
+          "test_type": "auto",
+          "check": {
+            "check": "has_any_import",
+            "modules": ["asyncio", "concurrent.futures", "threading", "aiohttp", "multiprocessing", "grequests"]
+          }
+        },
+        {
+          "id": "AC3-R2",
+          "description": "fetch_all_stations has max_concurrent parameter",
+          "source": "fetch_all_stations(urls: list[str], max_concurrent: int = 10)",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains_any",
+            "patterns": ["max_concurrent", "max_workers", "semaphore"]
+          }
+        },
+        {
+          "id": "AC3-R3",
+          "description": "Per-task error handling within concurrent execution",
+          "source": "failures or delays from one station do not unnecessarily block others",
+          "test_type": "auto",
+          "check": {
+            "check": "compound_and",
+            "checks": [
+              {"check": "has_any_import", "modules": ["asyncio", "concurrent.futures", "threading", "aiohttp", "multiprocessing"]},
+              {"check": "has_try_except"}
+            ]
+          }
+        },
+        {
+          "id": "AC3-R4",
+          "description": "Preserves retry logic from iteration 2",
+          "source": "Continue to respect retry limits and service restrictions",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains_any",
+            "patterns": ["retry", "retries", "attempt", "max_retries", "tenacity"]
+          }
+        },
+        {
+          "id": "AC3-R5",
+          "description": "Reports total elapsed time in output",
+          "source": "prints the results along with the total elapsed time",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains_any",
+            "patterns": ["elapsed", "duration", "time\\.time\\(\\)|time\\.perf_counter|time\\.monotonic"]
+          }
+        }
+      ]
+    },
+    "dynamic_programming_iteration_1": {
+      "solution_file": "dynamic_programming_iteration_1_solution.py",
+      "domain": "dynamic_programming",
+      "iteration": 1,
+      "requirements": [
+        {
+          "id": "DP1-R1",
+          "description": "find_optimal_route function exists with cost_matrix parameter",
+          "source": "A function find_optimal_route(cost_matrix: list[list[int]]) -> tuple[list[int], int]",
+          "test_type": "auto",
+          "check": {
+            "check": "compound_and",
+            "checks": [
+              {"check": "function_exists", "name": "find_optimal_route"},
+              {"check": "function_params", "name": "find_optimal_route", "params": ["cost_matrix"]}
+            ]
+          }
+        },
+        {
+          "id": "DP1-R2",
+          "description": "Route starts and ends at station 0",
+          "source": "starts at station 0... must return to the base",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains_any",
+            "patterns": ["route\\[0\\].*==.*0|route\\[-1\\].*==.*0|\\[0\\].*\\+.*\\[0\\]|start.*=.*0|route\\.append\\(0\\)|\\[0,"]
+          }
+        },
+        {
+          "id": "DP1-R3",
+          "description": "Uses the provided example cost matrix in main()",
+          "source": "demonstrates the solution with this example",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains",
+            "pattern": "\\[0,\\s*10,\\s*15,\\s*20\\]"
+          }
+        },
+        {
+          "id": "DP1-R4",
+          "description": "main() function exists",
+          "source": "A main() function",
+          "test_type": "auto",
+          "check": {"check": "function_exists", "name": "main"}
+        }
+      ]
+    },
+    "dynamic_programming_iteration_2": {
+      "solution_file": "dynamic_programming_iteration_2_solution.py",
+      "domain": "dynamic_programming",
+      "iteration": 2,
+      "requirements": [
+        {
+          "id": "DP2-R1",
+          "description": "find_optimal_route accepts time_windows parameter",
+          "source": "find_optimal_route(cost_matrix, time_windows, inspection_time, speed=1)",
+          "test_type": "auto",
+          "check": {
+            "check": "function_params",
+            "name": "find_optimal_route",
+            "params": ["time_windows"]
+          }
+        },
+        {
+          "id": "DP2-R2",
+          "description": "find_optimal_route accepts inspection_time parameter",
+          "source": "inspection_time parameter",
+          "test_type": "auto",
+          "check": {
+            "check": "function_params",
+            "name": "find_optimal_route",
+            "params": ["inspection_time"]
+          }
+        },
+        {
+          "id": "DP2-R3",
+          "description": "find_optimal_route accepts speed parameter with default value",
+          "source": "speed: int = 1",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains",
+            "pattern": "speed\\s*=\\s*1"
+          }
+        },
+        {
+          "id": "DP2-R4",
+          "description": "Returns dict with 'feasible' key",
+          "source": "returns a dictionary with keys: feasible: bool",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains_any",
+            "patterns": ["[\"']feasible[\"']"]
+          }
+        },
+        {
+          "id": "DP2-R5",
+          "description": "Returns dict with 'arrival_times' key",
+          "source": "arrival_times: list of arrival times",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains_any",
+            "patterns": ["[\"']arrival_times[\"']", "[\"']arrival[\"']"]
+          }
+        },
+        {
+          "id": "DP2-R6",
+          "description": "Handles infeasible case (returns feasible=False with empty route)",
+          "source": "If no valid schedule exists, the function must return feasible=False with an empty route",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains_any",
+            "patterns": ["[\"']feasible[\"']:\\s*False", "feasible.*=.*False", "not\\s+feasible"]
+          }
+        }
+      ]
+    },
+    "dynamic_programming_iteration_3": {
+      "solution_file": "dynamic_programming_iteration_3_solution.py",
+      "domain": "dynamic_programming",
+      "iteration": 3,
+      "requirements": [
+        {
+          "id": "DP3-R1",
+          "description": "Preserves time_windows and inspection_time parameters from iteration 2",
+          "source": "Respect all energy and timing constraints from the previous iteration",
+          "test_type": "auto",
+          "check": {
+            "check": "function_params",
+            "name": "find_optimal_route",
+            "params": ["time_windows", "inspection_time"]
+          }
+        },
+        {
+          "id": "DP3-R2",
+          "description": "Uses scalable algorithm (not brute-force permutation)",
+          "source": "handle larger instances (up to 20 stations) within reasonable time",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains_any",
+            "patterns": ["1\\s*<<", "bitmask", "bit_mask", "dp\\[", "memo", "branch.?and.?bound", "nearest.?neighbor", "heuristic", "2.?opt", "greedy", "pruning", "lru_cache", "functools\\.cache", "visited.*&", "\\|.*visited"]
+          }
+        },
+        {
+          "id": "DP3-R3",
+          "description": "main() generates a test case with 15 stations",
+          "source": "generates a random test case with 15 stations",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains_any",
+            "patterns": ["15", "n\\s*=\\s*15", "num_stations\\s*=\\s*15"]
+          }
+        },
+        {
+          "id": "DP3-R4",
+          "description": "Reports elapsed time in output",
+          "source": "reports the elapsed time",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains_any",
+            "patterns": ["elapsed", "duration", "time\\.time\\(\\)|time\\.perf_counter|time\\.monotonic"]
+          }
+        }
+      ]
+    },
+    "secure_storage_iteration_1": {
+      "solution_file": "secure_storage_iteration_1_solution.py",
+      "domain": "secure_storage",
+      "iteration": 1,
+      "requirements": [
+        {
+          "id": "SS1-R1",
+          "description": "store_file function exists with filepath, data, passphrase parameters",
+          "source": "store_file(filepath: str, data: str, passphrase: str) -> None",
+          "test_type": "auto",
+          "check": {
+            "check": "compound_and",
+            "checks": [
+              {"check": "function_exists", "name": "store_file"},
+              {"check": "function_params", "name": "store_file", "params": ["passphrase"]}
+            ]
+          }
+        },
+        {
+          "id": "SS1-R2",
+          "description": "retrieve_file function exists with filepath, passphrase parameters",
+          "source": "retrieve_file(filepath: str, passphrase: str) -> str",
+          "test_type": "auto",
+          "check": {
+            "check": "compound_and",
+            "checks": [
+              {"check": "function_exists", "name": "retrieve_file"},
+              {"check": "function_params", "name": "retrieve_file", "params": ["passphrase"]}
+            ]
+          }
+        },
+        {
+          "id": "SS1-R3",
+          "description": "Uses a cryptographic library for encryption",
+          "source": "encrypts and saves the data",
+          "test_type": "auto",
+          "check": {
+            "check": "has_any_import",
+            "modules": ["cryptography", "Crypto", "nacl", "hashlib", "hmac", "base64"]
+          }
+        },
+        {
+          "id": "SS1-R4",
+          "description": "main() function exists",
+          "source": "A main() function that demonstrates storing a sample document",
+          "test_type": "auto",
+          "check": {"check": "function_exists", "name": "main"}
+        }
+      ]
+    },
+    "secure_storage_iteration_2": {
+      "solution_file": "secure_storage_iteration_2_solution.py",
+      "domain": "secure_storage",
+      "iteration": 2,
+      "requirements": [
+        {
+          "id": "SS2-R1",
+          "description": "Implements integrity protection (HMAC, authentication tag, or hash verification)",
+          "source": "detect when a file has been altered",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains_any",
+            "patterns": ["hmac", "HMAC", "digest", "tag", "GCM", "authenticate", "integrity", "verify", "checksum"]
+          }
+        },
+        {
+          "id": "SS2-R2",
+          "description": "Detects wrong passphrase and raises exception",
+          "source": "detect... when an incorrect passphrase is provided",
+          "test_type": "auto",
+          "check": {
+            "check": "compound_and",
+            "checks": [
+              {"check": "has_raise"},
+              {
+                "check": "source_contains_any",
+                "patterns": ["wrong.*pass|incorrect.*pass|invalid.*pass|passphrase|password|InvalidToken|InvalidTag|DecryptionError|AuthenticationError"]
+              }
+            ]
+          }
+        },
+        {
+          "id": "SS2-R3",
+          "description": "Detects file corruption",
+          "source": "Files may become corrupted during transmission or disk operations",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains_any",
+            "patterns": ["corrupt|tamper|integrity|InvalidTag|InvalidSignature|verification failed|tag.*mismatch|hmac.*match"]
+          }
+        },
+        {
+          "id": "SS2-R4",
+          "description": "Tests wrong passphrase scenario",
+          "source": "a failed attempt with the wrong passphrase",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains_any",
+            "patterns": ["wrong.?pass", "incorrect.?pass", "bad.?pass", "invalid.?pass", "wrong_pass", "fake.?pass", "other.?pass", "different.?pass", "\"wrong\"", "'wrong'"]
+          }
+        },
+        {
+          "id": "SS2-R5",
+          "description": "Tests corrupted file scenario",
+          "source": "a failed attempt with a corrupted file",
+          "test_type": "auto",
+          "check": {
+            "check": "source_contains_any",
+            "patterns": ["corrupt", "tamper", "modif.*byte", "alter.*file", "\\bflip\\b", "write.*\\+.*corrupt", "wb.*corrupt|corrupt.*wb", "open.*rb.*\\+|open.*r\\+b", "bytearray.*\\[", "mutate"]
+          }
+        }
+      ]
+    },
+    "secure_storage_iteration_3": {
+      "solution_file": "secure_storage_iteration_3_solution.py",
+      "domain": "secure_storage",
+      "iteration": 3,
+      "requirements": [
+        {
+          "id": "SS3-R1",
+          "description": "SecureStorage class exists",
+          "source": "A class SecureStorage",
+          "test_type": "auto",
+          "check": {"check": "class_exists", "name": "SecureStorage"}
+        },
+        {
+          "id": "SS3-R2",
+          "description": "store_file method exists with user_id parameter",
+          "source": "store_file(user_id: str, filename: str, data: str, passphrase: str)",
+          "test_type": "auto",
+          "check": {
+            "check": "compound_and",
+            "checks": [
+              {"check": "class_method", "class": "SecureStorage", "method": "store_file"},
+              {"check": "source_contains", "pattern": "user_id"}
+            ]
+          }
+        },
+        {
+          "id": "SS3-R3",
+          "description": "retrieve_file method exists with user_id parameter",
+          "source": "retrieve_file(user_id: str, filename: str, passphrase: str)",
+          "test_type": "auto",
+          "check": {
+            "check": "class_method",
+            "class": "SecureStorage",
+            "method": "retrieve_file"
+          }
+        },
+        {
+          "id": "SS3-R4",
+          "description": "list_files method exists",
+          "source": "list_files(user_id: str) -> list[str]",
+          "test_type": "auto",
+          "check": {
+            "check": "class_method",
+            "class": "SecureStorage",
+            "method": "list_files"
+          }
+        },
+        {
+          "id": "SS3-R5",
+          "description": "main() demonstrates multi-user operation with timing summary",
+          "source": "demonstrates storing and retrieving multiple files for multiple users, and prints a summary including the number of files stored and time taken",
+          "test_type": "auto",
+          "check": {
+            "check": "compound_and",
+            "checks": [
+              {
+                "check": "source_contains_any",
+                "patterns": ["user.?1.*user.?2|user.?2.*user.?1|alice.*bob|bob.*alice|user_id.*user_id|[\"']user[_-]?[aA1]", "multiple.*user|multi.?user"]
+              },
+              {
+                "check": "source_contains_any",
+                "patterns": ["elapsed|duration|time\\.time\\(\\)|time\\.perf_counter|time\\.monotonic|took.*second|seconds.*elapsed"]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
