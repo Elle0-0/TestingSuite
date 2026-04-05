@@ -80,7 +80,7 @@ Each prompt specifies Python, includes concrete function signatures, and require
 ## Key Details
 
 - Requires API keys: `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GCP_PROJECT` (loaded from `.env` via `python-dotenv`)
-- Output directories (`outputs/`, `results/`) are created automatically but not committed to the repo
+- Output directories (`outputs/`, `results/`, `outputs_verify/`, `results_verify/`) are committed to the repo for reproducibility verification
 - `test_harness.py` uses `python3` to execute generated scripts — ensure this points to the correct interpreter
 - Models used: `gpt-5.4-2026-03-05` (OpenAI), `claude-opus-4-6` (Anthropic), `gemini-2.5-pro` (Google)
 - Pylint has missing-docstring warnings disabled (`C0114`, `C0115`, `C0116`) since generated code rarely includes docstrings

@@ -9,7 +9,7 @@ This project evaluates Python code generation across three LLMs — **GPT-5.4**,
 ```
 TestingSuite/
 ├── prompts/                       # 9 task prompts (3 domains × 3 iterations)
-├── outputs/                       # Generated code (created by generate_code.py)
+├── outputs/                       # Generated code (5 runs × 3 models × 9 prompts)
 │   ├── run_1/                     # Each generation run is independent
 │   │   ├── gpt/
 │   │   │   └── *_solution.py
@@ -29,7 +29,7 @@ TestingSuite/
 │   ├── aggregated_results.json    # Mean ± std across all runs
 │   ├── requirement_coverage.json  # Coverage per model per script
 │   └── normalised_results.json    # Complexity ÷ coverage
-├── outputs_verify/                   # Verification data (created by verify_run.py)
+├── outputs_verify/                   # Verification batch (5 runs, same structure)
 │   └── run_N/                        # One run per invocation
 ├── results_verify/
 │   ├── run_N/                        # Per-run verification results
