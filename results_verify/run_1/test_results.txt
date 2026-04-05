@@ -1,0 +1,1126 @@
+Model: claude
+==================================================
+  Script: api_client_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1132 seconds
+    Peak Memory (median of 3): 22.52 MB
+    Stdout: Weather Station Data Collection Client
+=============================================
+Fetching data from 3 station(s)...
+
+Note: Could not reach example endpoints (<urlopen error [Errno 8] nodename nor servname provided, or not known>).
+Demonstrating with sample data instead:
+
+  Station ID  : WS-001
+  Temperature : 22.5°C
+  Humidity    : 65.3%
+  Timestamp   : 2024-01-15T10:30:00Z
+----------------------------------------
+  Station ID  : WS-002
+  Temperature : 18.2°C
+  Humidity    : 72.1%
+  Timestamp   : 2024-01-15T10:30:05Z
+----------------------------------------
+  Station ID  : WS-003
+  Temperature : 25.8°C
+  Humidity    : 58.7%
+  Timestamp   : 2024-01-15T10:30:10Z
+----------------------------------------
+
+Sample raw JSON output:
+[
+  {
+    "station_id": "WS-001",
+    "temperature": 22.5,
+    "humidity": 65.3,
+    "timestamp": "2024-01-15T10:30:00Z"
+  },
+  {
+    "station_id": "WS-002",
+    "temperature": 18.2,
+    "humidity": 72.1,
+    "timestamp": "2024-01-15T10:30:05Z"
+  },
+  {
+    "station_id": "WS-003",
+    "temperature": 25.8,
+    "humidity": 58.7,
+    "timestamp": "2024-01-15T10:30:10Z"
+  }
+]
+
+  Script: api_client_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 12.0112 seconds
+    Peak Memory (median of 3): 38.88 MB
+    Stdout: ======================================================================
+Fetching data from all stations...
+======================================================================
+
+Successful readings: 3
+--------------------------------------------------
+  URL: https://jsonplaceholder.typicode.com/posts/1
+  Data: {'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', '...': '(1 more fields)'}
+
+  URL: https://jsonplaceholder.typicode.com/posts/2
+  Data: {'userId': 1, 'id': 2, 'title': 'qui est esse', '...': '(1 more fields)'}
+
+  URL: https://jsonplaceholder.typicode.com/users/1
+  Data: {'id': 1, 'name': 'Leanne Graham', 'username': 'Bret', '...': '(5 more fields)'}
+
+
+Errors encountered: 3
+--------------------------------------------------
+  URL: https://jsonplaceholder.typicode.com/posts/99999999
+  Error Type: client_error
+  Message: 404 Client Error: Not Found for url: https://jsonplaceholder.typicode.com/posts/99999999
+
+  URL: https://this-domain-does-not-exist-12345.com/api/station
+  Error Type: connection_error
+  Message: HTTPSConnectionPool(host='this-domain-does-not-exist-12345.com', port=443): Max retries exceeded with url: /api/station (Caused by NameResolutionError("HTTPSConnection(host='this-domain-does-not-exist
+
+  URL: https://httpbin.org/delay/30
+  Error Type: timeout
+  Message: HTTPSConnectionPool(host='httpbin.org', port=443): Read timed out. (read timeout=5.0)
+
+======================================================================
+Summary: 3/6 stations fetched successfully, 3 failures
+======================================================================
+
+  Script: api_client_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 12.2893 seconds
+    Peak Memory (median of 3): 49.16 MB
+    Stdout: Fetching data from 54 stations with max 10 concurrent requests...
+======================================================================
+
+Results Summary:
+  Total stations:     54
+  Successful:         51
+  Failed:             3
+  Total elapsed time: 11.85 seconds
+  Avg time/station:   0.220 seconds
+
+Sample successful readings:
+  https://httpbin.org/anything?station=0: {"args": {"station": "0"}, "data": "", "files": {}, "form": {}, "headers": {"Accept": "*/*", "Accept...
+  https://httpbin.org/anything?station=1: {"args": {"station": "1"}, "data": "", "files": {}, "form": {}, "headers": {"Accept": "*/*", "Accept...
+  https://httpbin.org/anything?station=2: {"args": {"station": "2"}, "data": "", "files": {}, "form": {}, "headers": {"Accept": "*/*", "Accept...
+  ... and 48 more
+
+Errors encountered:
+  https://httpbin.org/status/500: HTTP 500
+  https://httpbin.org/status/404: HTTP 404
+  https://nonexistent.invalid/api/station/999: Connection error: Cannot connect to host nonexistent.invalid:443 ssl:default [nodename nor servname provided, or not known]
+
+Done in 11.85s
+
+  Script: dynamic_programming_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0578 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Optimal route: [0, 2, 3, 1, 0]
+Total energy: 80
+
+  Script: dynamic_programming_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0574 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: === Drone Route Optimization with Time Windows ===
+Number of stations: 4
+Inspection time per station: 5
+Speed: 1
+
+Time windows:
+  Station 0 (base): N/A
+  Station 1: [5, 50]
+  Station 2: [10, 60]
+  Station 3: [30, 80]
+
+Feasible: False
+Route: []
+Arrival times: []
+Total energy: 0
+
+=== Infeasible Example ===
+Feasible: False
+Route: []
+Arrival times: []
+Total energy: 0
+
+  Script: dynamic_programming_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.7601 seconds
+    Peak Memory (median of 3): 127.14 MB
+    Stdout: Number of stations: 15
+Inspection time: 5.0
+Speed: 1.0
+
+Cost matrix (first 5x5):
+[0.0, 33.77, 6.13, 17.38, 15.04]
+[33.77, 0.0, 34.24, 29.52, 14.92]
+[6.13, 34.24, 0.0, 9.35, 43.14]
+[17.38, 29.52, 9.35, 0.0, 30.98]
+[15.04, 14.92, 43.14, 30.98, 0.0]
+...
+
+Time windows (first 10):
+  Station 0: [64.1, 130.83]
+  Station 1: [43.48, 161.54]
+  Station 2: [95.38, 276.76]
+  Station 3: [26.34, 151.43]
+  Station 4: [17.87, 204.76]
+  Station 5: [87.05, 181.82]
+  Station 6: [63.89, 205.24]
+  Station 7: [15.28, 179.66]
+  Station 8: [53.94, 220.73]
+  Station 9: [53.04, 103.12]
+...
+
+============================================================
+Result:
+  Feasible: False
+  Route: [3, 9, 10, 0, 8, 14, 1, 7, 12, 5, 13, 4, 11, 2]
+  Total cost: 148.80999999999997
+  Arrival times: [26.34, 53.04, 67.97, 79.31, 93.22, 105.34, 119.51, 129.8, 151.62, 171.93, 183.37, 200.72, 218.42, 253.26]
+  Number of stations visited: 14
+  Elapsed time: 0.7000 seconds
+============================================================
+
+  Script: secure_storage_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1134 seconds
+    Peak Memory (median of 3): 22.56 MB
+    Stdout: Storing document securely...
+Document encrypted and saved to 'secure_document.enc'.
+
+Raw file contents (first 80 bytes, hex): 554f77a16448de15a41273225168d94386fd3087ef7da53d2f299369d4bbfb0a7527027da5c16ffa787094d0cb4391750135c6ebf1355cb0e545049c6a6b70dea3731c93e5af44f74875d9cacb808349
+(File is not readable without the correct passphrase.)
+
+Retrieving document with correct passphrase...
+Retrieved document:
+CONFIDENTIAL REPORT
+====================
+Project Titan - Q4 Financial Summary
+Revenue: $14.2M | Expenses: $9.8M | Net: $4.4M
+Status: On track for annual targets.
+This document is classified and must not be shared externally.
+
+✓ Verification passed: retrieved document matches the original exactly.
+
+Attempting retrieval with wrong passphrase...
+✓ Correctly denied access: InvalidTag
+
+Cleaned up 'secure_document.enc'.
+
+  Script: secure_storage_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1635 seconds
+    Peak Memory (median of 3): 25.47 MB
+    Stdout: ============================================================
+Scenario 1: Successful storage and retrieval
+============================================================
+File stored successfully at: /var/folders/nb/fg4_h6k54dv4bjfsygp7r2mh0000gn/T/tmp6vpvlntw/secret_file.enc
+File retrieved successfully!
+Original:  This is highly confidential information that must be protected.
+Retrieved: This is highly confidential information that must be protected.
+Match: True
+
+============================================================
+Scenario 2: Failed attempt with wrong passphrase
+============================================================
+ACCESS DENIED - Wrong passphrase detected!
+Error: HMAC verification failed. The passphrase is incorrect or the file has been corrupted.
+
+============================================================
+Scenario 3: Failed attempt with corrupted file
+============================================================
+File stored successfully at: /var/folders/nb/fg4_h6k54dv4bjfsygp7r2mh0000gn/T/tmp6vpvlntw/corrupted_file.enc
+File has been corrupted (bytes modified).
+ACCESS DENIED - Passphrase/integrity issue detected!
+Error: HMAC verification failed. The passphrase is incorrect or the file has been corrupted.
+
+============================================================
+Verification: Original file still accessible
+============================================================
+Original file still accessible: This is highly confidential information that must be protected.
+Security of other files is maintained!
+
+  Script: secure_storage_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.6019 seconds
+    Peak Memory (median of 3): 19.11 MB
+    Stdout: ============================================================
+Secure Storage - Enterprise Scaling Demo
+============================================================
+
+Stored 150 files across 3 users
+Store time: 0.270s (555 files/sec)
+
+File counts per user:
+  alice: 50 files
+  bob: 50 files
+  carol: 50 files
+
+Retrieved and verified 150 files, 0 errors
+Retrieve time: 0.262s (573 files/sec)
+
+--- Tamper Detection Test ---
+  PASS: Tamper detected - Integrity check failed: data may have been tampered with or wrong passphrase
+
+--- Wrong Passphrase Test ---
+  PASS: Wrong passphrase detected - Integrity check failed: data may have been tampered with or wrong passphrase
+
+--- Missing File Test ---
+  PASS: Missing file detected - File 'nonexistent.txt' not found for user 'alice'
+
+============================================================
+Summary:
+  Users: 3
+  Total files stored: 150
+  Files verified: 150
+  Errors: 0
+  Total time (store + retrieve): 0.532s
+  Avg store time per file: 1.80ms
+  Avg retrieve time per file: 1.75ms
+============================================================
+
+
+Model: gemini
+==================================================
+  Script: api_client_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1099 seconds
+    Peak Memory (median of 3): 25.69 MB
+    Stdout: [{'humidity': 65.1,
+  'station_id': 'stn-alpha',
+  'temperature': 23.4,
+  'timestamp': '2023-10-27T10:00:00Z'},
+ {'humidity': 72.3,
+  'station_id': 'stn-beta',
+  'temperature': 19.8,
+  'timestamp': '2023-10-27T10:01:00Z'},
+ {'humidity': 59.8,
+  'station_id': 'stn-gamma',
+  'temperature': 25.0,
+  'timestamp': '2023-10-27T09:59:00Z'}]
+
+  Script: api_client_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 21.0006 seconds
+    Peak Memory (median of 3): 49.47 MB
+    Stdout: Fetching data from 7 stations...
+
+--- Successful Readings ---
+[
+  {
+    "@context": [
+      "https://geojson.org/geojson-ld/geojson-context.jsonld",
+      {
+        "@version": "1.1",
+        "wx": "https://api.weather.gov/ontology#",
+        "s": "https://schema.org/",
+        "geo": "http://www.opengis.net/ont/geosparql#",
+        "unit": "http://codes.wmo.int/common/unit/",
+        "@vocab": "https://api.weather.gov/ontology#",
+        "geometry": {
+          "@id": "s:GeoCoordinates",
+          "@type": "geo:wktLiteral"
+        },
+        "city": "s:addressLocality",
+        "state": "s:addressRegion",
+        "distance": {
+          "@id": "s:Distance",
+          "@type": "s:QuantitativeValue"
+        },
+        "bearing": {
+          "@type": "s:QuantitativeValue"
+        },
+        "value": {
+          "@id": "s:value"
+        },
+        "unitCode": {
+          "@id": "s:unitCode",
+          "@type": "@id"
+        },
+        "forecastOffice": {
+          "@type": "@id"
+        },
+        "forecastGridData": {
+          "@type": "@id"
+        },
+        "publicZone": {
+          "@type": "@id"
+        },
+        "county": {
+          "@type": "@id"
+        }
+      }
+    ],
+    "id": "https://api.weather.gov/stations/KNYC/observations/2026-03-23T18:24:00+00:00",
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98,
+        40.77
+      ]
+    },
+    "properties": {
+      "@id": "https://api.weather.gov/stations/KNYC/observations/2026-03-23T18:24:00+00:00",
+      "@type": "wx:ObservationStation",
+      "elevation": {
+        "unitCode": "wmoUnit:m",
+        "value": 27
+      },
+      "station": "https://api.weather.gov/stations/KNYC",
+      "stationId": "KNYC",
+      "stationName": "New York City, Central Park",
+      "timestamp": "2026-03-23T18:24:00+00:00",
+      "rawMessage": "KNYC 231824Z AUTO VRB05KT 10SM OVC010 04/02 A2991 RMK AO2 CIG 008V013 T00390022 $",
+      "textDescription": "Cloudy",
+      "icon": "https://api.weather.gov/icons/land/day/ovc?size=medium",
+      "presentWeather": [],
+      "temperature": {
+        "unitCode": "wmoUnit:degC",
+        "value": 3.9,
+        "qualityControl": "S"
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 2.2,
+        "qualityControl": "S"
+      },
+      "windDirection": {
+        "unitCode": "wmoUnit:degree_(angle)",
+        "value": null,
+        "qualityControl": "Z"
+      },
+      "windSpeed": {
+        "unitCode": "wmoUnit:km_h-1",
+        "value": 9.36,
+        "qualityControl": "S"
+      },
+      "windGust": {
+        "unitCode": "wmoUnit:km_h-1",
+        "value": null,
+        "qualityControl": "Z"
+      },
+      "barometricPressure": {
+        "unitCode": "wmoUnit:Pa",
+        "value": 101290,
+        "qualityControl": "S"
+      },
+      "seaLevelPressure": {
+        "unitCode": "wmoUnit:Pa",
+        "value": null,
+        "qualityControl": "Z"
+      },
+      "visibility": {
+        "unitCode": "wmoUnit:m",
+        "value": 16090,
+        "qualityControl": "C"
+      },
+      "maxTemperatureLast24Hours": {
+        "unitCode": "wmoUnit:degC",
+        "value": null
+      },
+      "minTemperatureLast24Hours": {
+        "unitCode": "wmoUnit:degC",
+        "value": null
+      },
+      "precipitationLastHour": {
+        "unitCode": "wmoUnit:mm",
+        "value": null,
+        "qualityControl": "Z"
+      },
+      "precipitationLast3Hours": {
+        "unitCode": "wmoUnit:mm",
+        "value": null,
+        "qualityControl": "Z"
+      },
+      "precipitationLast6Hours": {
+        "unitCode": "wmoUnit:mm",
+        "value": null,
+        "qualityControl": "Z"
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 88.67016884985,
+        "qualityControl": "S"
+      },
+      "windChill": {
+        "unitCode": "wmoUnit:degC",
+        "value": 1.5096282159555556,
+        "qualityControl": "S"
+      },
+      "heatIndex": {
+        "unitCode": "wmoUnit:degC",
+        "value": null,
+        "qualityControl": "S"
+      },
+      "cloudLayers": [
+        {
+          "base": {
+            "unitCode": "wmoUnit:m",
+            "value": 300
+          },
+          "amount": "OVC"
+        }
+      ]
+    }
+  },
+  {
+    "@context": {
+      "@version": "1.1"
+    },
+    "type": "FeatureCollection",
+    "features": []
+  },
+  {
+    "@context": [
+      "https://geojson.org/geojson-ld/geojson-context.jsonld",
+      {
+        "@version": "1.1",
+        "wx": "https://api.weather.gov/ontology#",
+        "s": "https://schema.org/",
+        "geo": "http://www.opengis.net/ont/geosparql#",
+        "unit": "http://codes.wmo.int/common/unit/",
+        "@vocab": "https://api.weather.gov/ontology#",
+        "geometry": {
+          "@id": "s:GeoCoordinates",
+          "@type": "geo:wktLiteral"
+        },
+        "city": "s:addressLocality",
+        "state": "s:addressRegion",
+        "distance": {
+          "@id": "s:Distance",
+          "@type": "s:QuantitativeValue"
+        },
+        "bearing": {
+          "@type": "s:QuantitativeValue"
+        },
+        "value": {
+          "@id": "s:value"
+        },
+        "unitCode": {
+          "@id": "s:unitCode",
+          "@type": "@id"
+        },
+        "forecastOffice": {
+          "@type": "@id"
+        },
+        "forecastGridData": {
+          "@type": "@id"
+        },
+        "publicZone": {
+          "@type": "@id"
+        },
+        "county": {
+          "@type": "@id"
+        }
+      }
+    ],
+    "id": "https://api.weather.gov/stations/KLAX/observations/2026-03-23T18:50:00+00:00",
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -118.4,
+        33.93
+      ]
+    },
+    "properties": {
+      "@id": "https://api.weather.gov/stations/KLAX/observations/2026-03-23T18:50:00+00:00",
+      "@type": "wx:ObservationStation",
+      "elevation": {
+        "unitCode": "wmoUnit:m",
+        "value": 32
+      },
+      "station": "https://api.weather.gov/stations/KLAX",
+      "stationId": "KLAX",
+      "stationName": "Los Angeles, Los Angeles International Airport",
+      "timestamp": "2026-03-23T18:50:00+00:00",
+      "rawMessage": "",
+      "textDescription": "Haze",
+      "icon": "https://api.weather.gov/icons/land/day/sct?size=medium",
+      "presentWeather": [
+        {
+          "intensity": null,
+          "modifier": null,
+          "weather": "haze",
+          "rawString": "HZ"
+        }
+      ],
+      "temperature": {
+        "unitCode": "wmoUnit:degC",
+        "value": 21,
+        "qualityControl": "V"
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 14,
+        "qualityControl": "V"
+      },
+      "windDirection": {
+        "unitCode": "wmoUnit:degree_(angle)",
+        "value": 280,
+        "qualityControl": "V"
+      },
+      "windSpeed": {
+        "unitCode": "wmoUnit:km_h-1",
+        "value": 7.416,
+        "qualityControl": "V"
+      },
+      "windGust": {
+        "unitCode": "wmoUnit:km_h-1",
+        "value": null,
+        "qualityControl": "Z"
+      },
+      "barometricPressure": {
+        "unitCode": "wmoUnit:Pa",
+        "value": 101422.34,
+        "qualityControl": "V"
+      },
+      "seaLevelPressure": {
+        "unitCode": "wmoUnit:Pa",
+        "value": null,
+        "qualityControl": "Z"
+      },
+      "visibility": {
+        "unitCode": "wmoUnit:m",
+        "value": 5632.7,
+        "qualityControl": "C"
+      },
+      "maxTemperatureLast24Hours": {
+        "unitCode": "wmoUnit:degC",
+        "value": null
+      },
+      "minTemperatureLast24Hours": {
+        "unitCode": "wmoUnit:degC",
+        "value": null
+      },
+      "precipitationLast3Hours": {
+        "unitCode": "wmoUnit:mm",
+        "value": null,
+        "qualityControl": "Z"
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 64.287246008636,
+        "qualityControl": "V"
+      },
+      "windChill": {
+        "unitCode": "wmoUnit:degC",
+        "value": null,
+        "qualityControl": "V"
+      },
+      "heatIndex": {
+        "unitCode": "wmoUnit:degC",
+        "value": null,
+        "qualityControl": "V"
+      },
+      "cloudLayers": [
+        {
+          "base": {
+            "unitCode": "wmoUnit:m",
+            "value": 335.28
+          },
+          "amount": "FEW"
+        },
+        {
+          "base": {
+            "unitCode": "wmoUnit:m",
+            "value": 457.2
+          },
+          "amount": "SCT"
+        }
+      ]
+    }
+  }
+]
+
+--- Error Reports ---
+[
+  {
+    "url": "https://httpbin.org/status/503",
+    "error_type": "Client Response Error",
+    "message": "HTTP 503: SERVICE UNAVAILABLE"
+  },
+  {
+    "url": "https://httpbin.org/delay/10",
+    "error_type": "Connection/Timeout Error",
+    "message": "TimeoutError"
+  },
+  {
+    "url": "https://httpbin.org/html",
+    "error_type": "JSON Decode Error",
+    "message": "Could not decode JSON from response. Details: Expecting value: line 1 column 1 (char 0)"
+  },
+  {
+    "url": "https://httpbin.org/status/429",
+    "error_type": "Max Retries Exceeded",
+    "message": "Failed to fetch after 3 attempts."
+  }
+]
+
+  Script: api_client_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 16.6513 seconds
+    Peak Memory (median of 3): 51.50 MB
+    Stdout: Fetching data from 20 stations concurrently...
+
+--- Fetching Complete ---
+
+Collected Readings:
+{'https://httpbin.org/delay/2': {'args': {},
+                                 'data': '',
+                                 'files': {},
+                                 'form': {},
+                                 'headers': {'Accept': '*/*',
+                                             'Accept-Encoding': 'gzip, '
+                                                                'deflate, zstd',
+                                             'Host': 'httpbin.org',
+                                             'User-Agent': 'python-requests/2.32.5',
+                                             'X-Amzn-Trace-Id': 'Root=1-69c18fef-7ffa003733f8fc4e1addd4d7'},
+                                 'origin': '87.198.212.130',
+                                 'url': 'https://httpbin.org/delay/2'},
+ 'https://httpbin.org/delay/3': {'args': {},
+                                 'data': '',
+                                 'files': {},
+                                 'form': {},
+                                 'headers': {'Accept': '*/*',
+                                             'Accept-Encoding': 'gzip, '
+                                                                'deflate, zstd',
+                                             'Host': 'httpbin.org',
+                                             'User-Agent': 'python-requests/2.32.5',
+                                             'X-Amzn-Trace-Id': 'Root=1-69c18fef-580f66d022018ef6660ab481'},
+                                 'origin': '87.198.212.130',
+                                 'url': 'https://httpbin.org/delay/3'},
+ 'https://httpbin.org/get?station=alpha': {'args': {'station': 'alpha'},
+                                           'headers': {'Accept': '*/*',
+                                                       'Accept-Encoding': 'gzip, '
+                                                                          'deflate, '
+                                                                          'zstd',
+                                                       'Host': 'httpbin.org',
+                                                       'User-Agent': 'python-requests/2.32.5',
+                                                       'X-Amzn-Trace-Id': 'Root=1-69c18fef-2544d8903bb58d7132bfcdcb'},
+                                           'origin': '87.198.212.130',
+                                           'url': 'https://httpbin.org/get?station=alpha'},
+ 'https://httpbin.org/get?station=beta': {'args': {'station': 'beta'},
+                                          'headers': {'Accept': '*/*',
+                                                      'Accept-Encoding': 'gzip, '
+                                                                         'deflate, '
+                                                                         'zstd',
+                                                      'Host': 'httpbin.org',
+                                                      'User-Agent': 'python-requests/2.32.5',
+                                                      'X-Amzn-Trace-Id': 'Root=1-69c18fef-048390557f7ae5560a007723'},
+                                          'origin': '87.198.212.130',
+                                          'url': 'https://httpbin.org/get?station=beta'},
+ 'https://httpbin.org/get?station=delta': {'args': {'station': 'delta'},
+                                           'headers': {'Accept': '*/*',
+                                                       'Accept-Encoding': 'gzip, '
+                                                                          'deflate, '
+                                                                          'zstd',
+                                                       'Host': 'httpbin.org',
+                                                       'User-Agent': 'python-requests/2.32.5',
+                                                       'X-Amzn-Trace-Id': 'Root=1-69c18fef-7f32cc1f450b064f1f5a41d9'},
+                                           'origin': '87.198.212.130',
+                                           'url': 'https://httpbin.org/get?station=delta'},
+ 'https://httpbin.org/get?station=epsilon': {'args': {'station': 'epsilon'},
+                                             'headers': {'Accept': '*/*',
+                                                         'Accept-Encoding': 'gzip, '
+                                                                            'deflate, '
+                                                                            'zstd',
+                                                         'Host': 'httpbin.org',
+                                                         'User-Agent': 'python-requests/2.32.5',
+                                                         'X-Amzn-Trace-Id': 'Root=1-69c18ff0-2f86bafe1ab08c9b7edf688a'},
+                                             'origin': '87.198.212.130',
+                                             'url': 'https://httpbin.org/get?station=epsilon'},
+ 'https://httpbin.org/get?station=eta': {'args': {'station': 'eta'},
+                                         'headers': {'Accept': '*/*',
+                                                     'Accept-Encoding': 'gzip, '
+                                                                        'deflate, '
+                                                                        'zstd',
+                                                     'Host': 'httpbin.org',
+                                                     'User-Agent': 'python-requests/2.32.5',
+                                                     'X-Amzn-Trace-Id': 'Root=1-69c18ff0-3540a44642cf4dbb133419e0'},
+                                         'origin': '87.198.212.130',
+                                         'url': 'https://httpbin.org/get?station=eta'},
+ 'https://httpbin.org/get?station=gamma': {'args': {'station': 'gamma'},
+                                           'headers': {'Accept': '*/*',
+                                                       'Accept-Encoding': 'gzip, '
+                                                                          'deflate, '
+                                                                          'zstd',
+                                                       'Host': 'httpbin.org',
+                                                       'User-Agent': 'python-requests/2.32.5',
+                                                       'X-Amzn-Trace-Id': 'Root=1-69c18fef-2a338361779cfa717bb4d4c3'},
+                                           'origin': '87.198.212.130',
+                                           'url': 'https://httpbin.org/get?station=gamma'},
+ 'https://httpbin.org/get?station=theta': {'args': {'station': 'theta'},
+                                           'headers': {'Accept': '*/*',
+                                                       'Accept-Encoding': 'gzip, '
+                                                                          'deflate, '
+                                                                          'zstd',
+                                                       'Host': 'httpbin.org',
+                                                       'User-Agent': 'python-requests/2.32.5',
+                                                       'X-Amzn-Trace-Id': 'Root=1-69c18ff0-1e2926f10db6a9c04d060322'},
+                                           'origin': '87.198.212.130',
+                                           'url': 'https://httpbin.org/get?station=theta'},
+ 'https://httpbin.org/get?station=zeta': {'args': {'station': 'zeta'},
+                                          'headers': {'Accept': '*/*',
+                                                      'Accept-Encoding': 'gzip, '
+                                                                         'deflate, '
+                                                                         'zstd',
+                                                      'Host': 'httpbin.org',
+                                                      'User-Agent': 'python-requests/2.32.5',
+                                                      'X-Amzn-Trace-Id': 'Root=1-69c18ff0-4e4177a423c7535027635ff8'},
+                                          'origin': '87.198.212.130',
+                                          'url': 'https://httpbin.org/get?station=zeta'},
+ 'https://httpbin.org/json': {'slideshow': {'author': 'Yours Truly',
+                                            'date': 'date of publication',
+                                            'slides': [{'title': 'Wake up to '
+                                                                 'WonderWidgets!',
+                                                        'type': 'all'},
+                                                       {'items': ['Why '
+                                                                  '<em>WonderWidgets</em> '
+                                                                  'are great',
+                                                                  'Who '
+                                                                  '<em>buys</em> '
+                                                                  'WonderWidgets'],
+                                                        'title': 'Overview',
+                                                        'type': 'all'}],
+                                            'title': 'Sample Slide Show'}}}
+
+Reported Errors:
+{'http://this-is-not-a-real-domain.org/data': 'Failed to fetch from '
+                                              'http://this-is-not-a-real-domain.org/data '
+                                              'after 3 attempts. Last error: '
+                                              'Request failed: ConnectionError '
+                                              'on attempt 3',
+ 'https://httpbin.org/delay/6': 'Failed to fetch from '
+                                'https://httpbin.org/delay/6 after 3 attempts. '
+                                'Last error: Request failed: ReadTimeout on '
+                                'attempt 3',
+ 'https://httpbin.org/status/403': 'Access forbidden. Service restriction at '
+                                   'https://httpbin.org/status/403.',
+ 'https://httpbin.org/status/404': 'Failed to fetch from '
+                                   'https://httpbin.org/status/404 after 3 '
+                                   'attempts. Last error: HTTP Error: 404 on '
+                                   'attempt 3',
+ 'https://httpbin.org/status/418': 'Failed to fetch from '
+                                   'https://httpbin.org/status/418 after 3 '
+                                   'attempts. Last error: HTTP Error: 418 on '
+                                   'attempt 3',
+ 'https://httpbin.org/status/500': 'Failed to fetch from '
+                                   'https://httpbin.org/status/500 after 3 '
+                                   'attempts. Last error: HTTP Error: 500 on '
+                                   'attempt 3',
+ 'https://httpbin.org/status/502': 'Failed to fetch from '
+                                   'https://httpbin.org/status/502 after 3 '
+                                   'attempts. Last error: HTTP Error: 502 on '
+                                   'attempt 3',
+ 'https://httpbin.org/status/503': 'Failed to fetch from '
+                                   'https://httpbin.org/status/503 after 3 '
+                                   'attempts. Last error: HTTP Error: 503 on '
+                                   'attempt 3',
+ 'https://invalid.url.that.does.not.exist': 'Failed to fetch from '
+                                            'https://invalid.url.that.does.not.exist '
+                                            'after 3 attempts. Last error: '
+                                            'Request failed: ConnectionError '
+                                            'on attempt 3'}
+
+Total execution time: 16.50 seconds.
+
+  Script: dynamic_programming_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0583 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: [0, 1, 3, 2, 0]
+80
+
+  Script: dynamic_programming_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0565 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Feasible: True
+Route: [0, 1, 2, 3, 0]
+Arrival Times: [0, 30.0, 70.0, 92.0, 137.0]
+Total Energy: 97
+
+--- Example with no feasible solution ---
+Feasible: False
+Route: []
+Arrival Times: []
+Total Energy: -1
+
+  Script: dynamic_programming_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.2783 seconds
+    Peak Memory (median of 3): 169.08 MB
+    Stdout: Generated a random test case with 15 stations.
+
+--- Optimal Route Found ---
+No feasible solution found.
+
+Elapsed time: 0.1898 seconds
+
+  Script: secure_storage_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.3286 seconds
+    Peak Memory (median of 3): 25.20 MB
+    Stdout: File 'confidential_document.bin' stored successfully.
+
+Retrieving with CORRECT passphrase...
+Retrieved data: This is a highly confidential document. The launch codes are 000-000-007.
+Verification successful: Retrieved data matches original data.
+
+Attempting to retrieve with INCORRECT passphrase...
+Successfully caught expected error: Invalid passphrase or corrupted file
+
+Cleaned up file 'confidential_document.bin'.
+
+  Script: secure_storage_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.4432 seconds
+    Peak Memory (median of 3): 25.38 MB
+    Stdout: --- Secure Storage: Second Iteration Demonstration ---
+
+[1] Testing successful storage and retrieval...
+File 'secret_document.dat' stored successfully.
+File retrieved successfully.
+   Original data:    'This is the secure content of the file.'
+   Retrieved data:   'This is the secure content of the file.'
+   SUCCESS: Data matches.
+
+[2] Testing retrieval with WRONG passphrase...
+   SUCCESS: Caught expected error: Decryption failed. File may be corrupted or passphrase is wrong.
+
+[3] Testing retrieval of a CORRUPTED file...
+Created 'corrupted_secret_document.dat' by tampering with 'secret_document.dat'.
+   SUCCESS: Caught expected error: Decryption failed. File may be corrupted or passphrase is wrong.
+
+--- Cleaning up created files ---
+Removed 'secret_document.dat'.
+Removed 'corrupted_secret_document.dat'.
+
+  Script: secure_storage_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0576 seconds
+    Peak Memory (median of 3): 0.03 MB
+
+
+Model: gpt
+==================================================
+  Script: api_client_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1684 seconds
+    Peak Memory (median of 3): 28.86 MB
+    Stdout: Demo request failed: HTTP Error 404: Not Found
+
+  Script: api_client_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.4915 seconds
+    Peak Memory (median of 3): 29.77 MB
+    Stdout: Readings:
+[]
+Errors:
+[
+  {
+    "url": "https://example.com/stations/alpha",
+    "type": "HTTPError",
+    "message": "HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://example.com/stations/temporary-500",
+    "type": "HTTPError",
+    "message": "HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://example.com/stations/rate-limited",
+    "type": "HTTPError",
+    "message": "HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://example.com/stations/malformed-json",
+    "type": "HTTPError",
+    "message": "HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://example.com/stations/timeout",
+    "type": "HTTPError",
+    "message": "HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://example.com/stations/incomplete",
+    "type": "HTTPError",
+    "message": "HTTP Error 404: Not Found"
+  }
+]
+
+  Script: api_client_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 4.0971 seconds
+    Peak Memory (median of 3): 24.33 MB
+    Stdout: Readings:
+https://api.example.com/stations/station-1 {'station': 'station-1', 'url': 'https://api.example.com/stations/station-1', 'temperature_c': -9.2, 'humidity_pct': 43, 'status': 'ok'}
+https://api.example.com/stations/station-10 {'station': 'station-10', 'url': 'https://api.example.com/stations/station-10', 'temperature_c': 30.9, 'humidity_pct': 45, 'status': 'ok'}
+https://api.example.com/stations/station-11 {'station': 'station-11', 'url': 'https://api.example.com/stations/station-11', 'temperature_c': -8.3, 'humidity_pct': 82, 'status': 'ok'}
+https://api.example.com/stations/station-12 {'station': 'station-12', 'url': 'https://api.example.com/stations/station-12', 'temperature_c': 14.2, 'humidity_pct': 67, 'status': 'ok'}
+https://api.example.com/stations/station-14 {'station': 'station-14', 'url': 'https://api.example.com/stations/station-14', 'temperature_c': 9.1, 'humidity_pct': 54, 'status': 'ok'}
+https://api.example.com/stations/station-15 {'station': 'station-15', 'url': 'https://api.example.com/stations/station-15', 'temperature_c': 4.0, 'humidity_pct': 93, 'status': 'ok'}
+https://api.example.com/stations/station-16 {'station': 'station-16', 'url': 'https://api.example.com/stations/station-16', 'temperature_c': 9.5, 'humidity_pct': 45, 'status': 'ok'}
+https://api.example.com/stations/station-18 {'station': 'station-18', 'url': 'https://api.example.com/stations/station-18', 'temperature_c': 2.7, 'humidity_pct': 82, 'status': 'ok'}
+https://api.example.com/stations/station-19 {'station': 'station-19', 'url': 'https://api.example.com/stations/station-19', 'temperature_c': 24.8, 'humidity_pct': 22, 'status': 'ok'}
+https://api.example.com/stations/station-2 {'station': 'station-2', 'url': 'https://api.example.com/stations/station-2', 'temperature_c': 31.9, 'humidity_pct': 92, 'status': 'ok'}
+https://api.example.com/stations/station-20 {'station': 'station-20', 'url': 'https://api.example.com/stations/station-20', 'temperature_c': 1.1, 'humidity_pct': 23, 'status': 'ok'}
+https://api.example.com/stations/station-21 {'station': 'station-21', 'url': 'https://api.example.com/stations/station-21', 'temperature_c': 7.7, 'humidity_pct': 41, 'status': 'ok'}
+https://api.example.com/stations/station-22 {'station': 'station-22', 'url': 'https://api.example.com/stations/station-22', 'temperature_c': 26.5, 'humidity_pct': 74, 'status': 'ok'}
+https://api.example.com/stations/station-23 {'station': 'station-23', 'url': 'https://api.example.com/stations/station-23', 'temperature_c': 20.8, 'humidity_pct': 94, 'status': 'ok'}
+https://api.example.com/stations/station-24 {'station': 'station-24', 'url': 'https://api.example.com/stations/station-24', 'temperature_c': 22.8, 'humidity_pct': 76, 'status': 'ok'}
+https://api.example.com/stations/station-25 {'station': 'station-25', 'url': 'https://api.example.com/stations/station-25', 'temperature_c': 18.5, 'humidity_pct': 37, 'status': 'ok'}
+https://api.example.com/stations/station-27 {'station': 'station-27', 'url': 'https://api.example.com/stations/station-27', 'temperature_c': -8.5, 'humidity_pct': 58, 'status': 'ok'}
+https://api.example.com/stations/station-28 {'station': 'station-28', 'url': 'https://api.example.com/stations/station-28', 'temperature_c': 9.2, 'humidity_pct': 38, 'status': 'ok'}
+https://api.example.com/stations/station-29 {'station': 'station-29', 'url': 'https://api.example.com/stations/station-29', 'temperature_c': 32.7, 'humidity_pct': 70, 'status': 'ok'}
+https://api.example.com/stations/station-3 {'station': 'station-3', 'url': 'https://api.example.com/stations/station-3', 'temperature_c': 23.1, 'humidity_pct': 85, 'status': 'ok'}
+https://api.example.com/stations/station-30 {'station': 'station-30', 'url': 'https://api.example.com/stations/station-30', 'temperature_c': 10.2, 'humidity_pct': 44, 'status': 'ok'}
+https://api.example.com/stations/station-31 {'station': 'station-31', 'url': 'https://api.example.com/stations/station-31', 'temperature_c': 11.9, 'humidity_pct': 51, 'status': 'ok'}
+https://api.example.com/stations/station-32 {'station': 'station-32', 'url': 'https://api.example.com/stations/station-32', 'temperature_c': 28.4, 'humidity_pct': 91, 'status': 'ok'}
+https://api.example.com/stations/station-33 {'station': 'station-33', 'url': 'https://api.example.com/stations/station-33', 'temperature_c': 9.4, 'humidity_pct': 29, 'status': 'ok'}
+https://api.example.com/stations/station-35 {'station': 'station-35', 'url': 'https://api.example.com/stations/station-35', 'temperature_c': 2.9, 'humidity_pct': 93, 'status': 'ok'}
+https://api.example.com/stations/station-36 {'station': 'station-36', 'url': 'https://api.example.com/stations/station-36', 'temperature_c': 3.7, 'humidity_pct': 29, 'status': 'ok'}
+https://api.example.com/stations/station-37 {'station': 'station-37', 'url': 'https://api.example.com/stations/station-37', 'temperature_c': 26.4, 'humidity_pct': 68, 'status': 'ok'}
+https://api.example.com/stations/station-38 {'station': 'station-38', 'url': 'https://api.example.com/stations/station-38', 'temperature_c': 34.1, 'humidity_pct': 48, 'status': 'ok'}
+https://api.example.com/stations/station-4 {'station': 'station-4', 'url': 'https://api.example.com/stations/station-4', 'temperature_c': 10.5, 'humidity_pct': 55, 'status': 'ok'}
+https://api.example.com/stations/station-40 {'station': 'station-40', 'url': 'https://api.example.com/stations/station-40', 'temperature_c': 17.8, 'humidity_pct': 30, 'status': 'ok'}
+https://api.example.com/stations/station-41 {'station': 'station-41', 'url': 'https://api.example.com/stations/station-41', 'temperature_c': 11.2, 'humidity_pct': 91, 'status': 'ok'}
+https://api.example.com/stations/station-42 {'station': 'station-42', 'url': 'https://api.example.com/stations/station-42', 'temperature_c': 7.9, 'humidity_pct': 89, 'status': 'ok'}
+https://api.example.com/stations/station-43 {'station': 'station-43', 'url': 'https://api.example.com/stations/station-43', 'temperature_c': 18.2, 'humidity_pct': 41, 'status': 'ok'}
+https://api.example.com/stations/station-44 {'station': 'station-44', 'url': 'https://api.example.com/stations/station-44', 'temperature_c': 4.6, 'humidity_pct': 62, 'status': 'ok'}
+https://api.example.com/stations/station-45 {'station': 'station-45', 'url': 'https://api.example.com/stations/station-45', 'temperature_c': 10.3, 'humidity_pct': 74, 'status': 'ok'}
+https://api.example.com/stations/station-46 {'station': 'station-46', 'url': 'https://api.example.com/stations/station-46', 'temperature_c': 33.7, 'humidity_pct': 68, 'status': 'ok'}
+https://api.example.com/stations/station-47 {'station': 'station-47', 'url': 'https://api.example.com/stations/station-47', 'temperature_c': 23.9, 'humidity_pct': 37, 'status': 'ok'}
+https://api.example.com/stations/station-48 {'station': 'station-48', 'url': 'https://api.example.com/stations/station-48', 'temperature_c': 2.7, 'humidity_pct': 33, 'status': 'ok'}
+https://api.example.com/stations/station-49 {'station': 'station-49', 'url': 'https://api.example.com/stations/station-49', 'temperature_c': -5.1, 'humidity_pct': 21, 'status': 'ok'}
+https://api.example.com/stations/station-5 {'station': 'station-5', 'url': 'https://api.example.com/stations/station-5', 'temperature_c': -7.0, 'humidity_pct': 86, 'status': 'ok'}
+https://api.example.com/stations/station-50 {'station': 'station-50', 'url': 'https://api.example.com/stations/station-50', 'temperature_c': 33.8, 'humidity_pct': 42, 'status': 'ok'}
+https://api.example.com/stations/station-53 {'station': 'station-53', 'url': 'https://api.example.com/stations/station-53', 'temperature_c': 37.8, 'humidity_pct': 30, 'status': 'ok'}
+https://api.example.com/stations/station-54 {'station': 'station-54', 'url': 'https://api.example.com/stations/station-54', 'temperature_c': 18.1, 'humidity_pct': 78, 'status': 'ok'}
+https://api.example.com/stations/station-55 {'station': 'station-55', 'url': 'https://api.example.com/stations/station-55', 'temperature_c': 2.8, 'humidity_pct': 27, 'status': 'ok'}
+https://api.example.com/stations/station-56 {'station': 'station-56', 'url': 'https://api.example.com/stations/station-56', 'temperature_c': 20.9, 'humidity_pct': 47, 'status': 'ok'}
+https://api.example.com/stations/station-57 {'station': 'station-57', 'url': 'https://api.example.com/stations/station-57', 'temperature_c': 3.9, 'humidity_pct': 95, 'status': 'ok'}
+https://api.example.com/stations/station-58 {'station': 'station-58', 'url': 'https://api.example.com/stations/station-58', 'temperature_c': 20.6, 'humidity_pct': 34, 'status': 'ok'}
+https://api.example.com/stations/station-59 {'station': 'station-59', 'url': 'https://api.example.com/stations/station-59', 'temperature_c': 32.7, 'humidity_pct': 32, 'status': 'ok'}
+https://api.example.com/stations/station-6 {'station': 'station-6', 'url': 'https://api.example.com/stations/station-6', 'temperature_c': 2.6, 'humidity_pct': 33, 'status': 'ok'}
+https://api.example.com/stations/station-60 {'station': 'station-60', 'url': 'https://api.example.com/stations/station-60', 'temperature_c': -2.7, 'humidity_pct': 35, 'status': 'ok'}
+https://api.example.com/stations/station-61 {'station': 'station-61', 'url': 'https://api.example.com/stations/station-61', 'temperature_c': 24.8, 'humidity_pct': 42, 'status': 'ok'}
+https://api.example.com/stations/station-62 {'station': 'station-62', 'url': 'https://api.example.com/stations/station-62', 'temperature_c': 32.9, 'humidity_pct': 39, 'status': 'ok'}
+https://api.example.com/stations/station-63 {'station': 'station-63', 'url': 'https://api.example.com/stations/station-63', 'temperature_c': 3.5, 'humidity_pct': 37, 'status': 'ok'}
+https://api.example.com/stations/station-64 {'station': 'station-64', 'url': 'https://api.example.com/stations/station-64', 'temperature_c': -3.0, 'humidity_pct': 93, 'status': 'ok'}
+https://api.example.com/stations/station-66 {'station': 'station-66', 'url': 'https://api.example.com/stations/station-66', 'temperature_c': 32.1, 'humidity_pct': 55, 'status': 'ok'}
+https://api.example.com/stations/station-67 {'station': 'station-67', 'url': 'https://api.example.com/stations/station-67', 'temperature_c': 16.2, 'humidity_pct': 88, 'status': 'ok'}
+https://api.example.com/stations/station-69 {'station': 'station-69', 'url': 'https://api.example.com/stations/station-69', 'temperature_c': 26.3, 'humidity_pct': 92, 'status': 'ok'}
+https://api.example.com/stations/station-7 {'station': 'station-7', 'url': 'https://api.example.com/stations/station-7', 'temperature_c': 19.1, 'humidity_pct': 55, 'status': 'ok'}
+https://api.example.com/stations/station-70 {'station': 'station-70', 'url': 'https://api.example.com/stations/station-70', 'temperature_c': -0.7, 'humidity_pct': 39, 'status': 'ok'}
+https://api.example.com/stations/station-71 {'station': 'station-71', 'url': 'https://api.example.com/stations/station-71', 'temperature_c': 29.8, 'humidity_pct': 88, 'status': 'ok'}
+https://api.example.com/stations/station-72 {'station': 'station-72', 'url': 'https://api.example.com/stations/station-72', 'temperature_c': 26.2, 'humidity_pct': 69, 'status': 'ok'}
+https://api.example.com/stations/station-73 {'station': 'station-73', 'url': 'https://api.example.com/stations/station-73', 'temperature_c': 36.9, 'humidity_pct': 81, 'status': 'ok'}
+https://api.example.com/stations/station-74 {'station': 'station-74', 'url': 'https://api.example.com/stations/station-74', 'temperature_c': 24.4, 'humidity_pct': 36, 'status': 'ok'}
+https://api.example.com/stations/station-75 {'station': 'station-75', 'url': 'https://api.example.com/stations/station-75', 'temperature_c': 0.4, 'humidity_pct': 33, 'status': 'ok'}
+https://api.example.com/stations/station-76 {'station': 'station-76', 'url': 'https://api.example.com/stations/station-76', 'temperature_c': 30.8, 'humidity_pct': 95, 'status': 'ok'}
+https://api.example.com/stations/station-77 {'station': 'station-77', 'url': 'https://api.example.com/stations/station-77', 'temperature_c': -0.4, 'humidity_pct': 53, 'status': 'ok'}
+https://api.example.com/stations/station-79 {'station': 'station-79', 'url': 'https://api.example.com/stations/station-79', 'temperature_c': 37.5, 'humidity_pct': 70, 'status': 'ok'}
+https://api.example.com/stations/station-8 {'station': 'station-8', 'url': 'https://api.example.com/stations/station-8', 'temperature_c': 12.2, 'humidity_pct': 81, 'status': 'ok'}
+https://api.example.com/stations/station-80 {'station': 'station-80', 'url': 'https://api.example.com/stations/station-80', 'temperature_c': -3.7, 'humidity_pct': 81, 'status': 'ok'}
+https://api.example.com/stations/station-9 {'station': 'station-9', 'url': 'https://api.example.com/stations/station-9', 'temperature_c': 30.6, 'humidity_pct': 72, 'status': 'ok'}
+
+Errors:
+https://api.example.com/stations/missing-13 {'type': 'FileNotFoundError', 'message': '404 Not Found', 'attempts': '1'}
+https://api.example.com/stations/missing-26 {'type': 'FileNotFoundError', 'message': '404 Not Found', 'attempts': '1'}
+https://api.example.com/stations/missing-39 {'type': 'FileNotFoundError', 'message': '404 Not Found', 'attempts': '1'}
+https://api.example.com/stations/missing-52 {'type': 'FileNotFoundError', 'message': '404 Not Found', 'attempts': '1'}
+https://api.example.com/stations/missing-65 {'type': 'FileNotFoundError', 'message': '404 Not Found', 'attempts': '1'}
+https://api.example.com/stations/missing-78 {'type': 'FileNotFoundError', 'message': '404 Not Found', 'attempts': '1'}
+https://api.example.com/stations/restricted-17 {'type': 'PermissionError', 'message': '403 Forbidden', 'attempts': '1'}
+https://api.example.com/stations/restricted-34 {'type': 'PermissionError', 'message': '403 Forbidden', 'attempts': '1'}
+https://api.example.com/stations/restricted-51 {'type': 'PermissionError', 'message': '403 Forbidden', 'attempts': '1'}
+https://api.example.com/stations/restricted-68 {'type': 'PermissionError', 'message': '403 Forbidden', 'attempts': '1'}
+
+Total stations: 80
+Successful: 70
+Failed: 10
+Elapsed time: 3.157s
+
+  Script: dynamic_programming_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0585 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Optimal route: [2, 3, 1, 0, 0]
+Total energy: 80
+
+  Script: dynamic_programming_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0538 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Feasible: True
+Route: [0, 1, 3, 2, 0]
+Arrival times: [0, 4.0, 9.0, 15.0, 25.0]
+Total energy: 19
+
+  Script: dynamic_programming_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1131 seconds
+    Peak Memory (median of 3): 27.73 MB
+    Stdout: Inspection time: 5
+Time windows:
+Station 0: (802, 868)
+Station 1: (429, 495)
+Station 2: (742, 816)
+Station 3: (1053, 1087)
+Station 4: (823, 896)
+Station 5: (610, 646)
+Station 6: (699, 750)
+Station 7: (981, 1030)
+Station 8: (213, 293)
+Station 9: (915, 943)
+Station 10: (140, 208)
+Station 11: (6, 37)
+Station 12: (538, 623)
+Station 13: (341, 412)
+Station 14: (74, 158)
+
+Result:
+{'route': [11, 14, 10, 8, 13, 1, 12, 5, 6, 2, 0, 4, 9, 7, 3], 'arrival_times': [0.0, 79.0, 145.0, 217.0, 341.0, 436.0, 539.0, 616.0, 707.0, 752.0, 807.0, 826.0, 916.0, 991.0, 1057.0], 'start_times': [6, 79.0, 145.0, 217.0, 341.0, 436.0, 539.0, 616.0, 707.0, 752.0, 807.0, 826.0, 916.0, 991.0, 1057.0], 'finish_times': [11, 84.0, 150.0, 222.0, 346.0, 441.0, 544.0, 621.0, 712.0, 757.0, 812.0, 831.0, 921.0, 996.0, 1062.0], 'total_travel_cost': 981, 'total_travel_time': 981.0, 'feasible': True}
+
+Elapsed time: 0.047875 seconds
+
+  Script: secure_storage_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1128 seconds
+    Peak Memory (median of 3): 18.23 MB
+    Stdout: Confidential corporate document: Q4 security roadmap.
+
+  Script: secure_storage_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.2229 seconds
+    Peak Memory (median of 3): 19.25 MB
+    Stdout: 1. Successful storage and retrieval
+Success: Confidential message: launch at dawn.
+
+2. Failed retrieval with wrong passphrase
+Access denied: Wrong passphrase or file has been tampered with
+
+3. Failed retrieval with corrupted file
+Integrity check failed: Wrong passphrase or file has been tampered with
+
+  Script: secure_storage_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 1.0353 seconds
+    Peak Memory (median of 3): 42.75 MB
+    Stdout: user=alice files=['ideas.json', 'notes.txt', 'report.md']
+user=bob files=['design.txt', 'todo.txt']
+user=carol files=['large_document.txt', 'summary.txt']
+stored_files=7
+retrieved_verified=7
+time_taken_seconds=0.946313
+
+

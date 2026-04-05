@@ -1,9 +1,5 @@
 .env
 venv/
-outputs/
-outputs_verify/
-results/
-results_verify/
 __pycache__/
 *.pyc
 
@@ -15,3 +11,4 @@ scripts/demo_*
 scripts/*.dat
 scripts/*.ssf
 scripts/*.bin
+.DS_Store

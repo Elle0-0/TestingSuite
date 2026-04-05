@@ -1,0 +1,1169 @@
+{
+  "claude": {
+    "api_client_iteration_1_solution.py": {
+      "prompt": "api_client_iteration_1",
+      "coverage": {
+        "total_requirements": 4,
+        "auto_pass": 4,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 4,
+        "passed": 4.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "AC1-R1": {
+          "status": "pass",
+          "description": "fetch_all_stations function exists with urls parameter",
+          "auto": true
+        },
+        "AC1-R2": {
+          "status": "pass",
+          "description": "Returns a list of dicts (list[dict] return type)",
+          "auto": true
+        },
+        "AC1-R3": {
+          "status": "pass",
+          "description": "Uses an HTTP library to fetch data",
+          "auto": true
+        },
+        "AC1-R4": {
+          "status": "pass",
+          "description": "main() function exists",
+          "auto": true
+        }
+      }
+    },
+    "api_client_iteration_2_solution.py": {
+      "prompt": "api_client_iteration_2",
+      "coverage": {
+        "total_requirements": 8,
+        "auto_pass": 8,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 8,
+        "passed": 8.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "AC2-R1": {
+          "status": "pass",
+          "description": "Implements retry logic for temporary failures",
+          "auto": true
+        },
+        "AC2-R2": {
+          "status": "pass",
+          "description": "Handles rate limiting / respects wait requirements",
+          "auto": true
+        },
+        "AC2-R3": {
+          "status": "pass",
+          "description": "Continues processing after individual station failure",
+          "auto": true
+        },
+        "AC2-R4": {
+          "status": "pass",
+          "description": "Returns dict with 'readings' key",
+          "auto": true
+        },
+        "AC2-R5": {
+          "status": "pass",
+          "description": "Returns dict with 'errors' key containing url, error type, and message",
+          "auto": true
+        },
+        "AC2-R6": {
+          "status": "pass",
+          "description": "Handles timeout scenarios",
+          "auto": true
+        },
+        "AC2-R7": {
+          "status": "pass",
+          "description": "Handles malformed or incomplete JSON",
+          "auto": true
+        },
+        "AC2-R8": {
+          "status": "pass",
+          "description": "main() demonstrates failure scenarios (not just success)",
+          "auto": true
+        }
+      }
+    },
+    "api_client_iteration_3_solution.py": {
+      "prompt": "api_client_iteration_3",
+      "coverage": {
+        "total_requirements": 5,
+        "auto_pass": 5,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 5,
+        "passed": 5.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "AC3-R1": {
+          "status": "pass",
+          "description": "Uses concurrency for parallel fetching",
+          "auto": true
+        },
+        "AC3-R2": {
+          "status": "pass",
+          "description": "fetch_all_stations has max_concurrent parameter",
+          "auto": true
+        },
+        "AC3-R3": {
+          "status": "pass",
+          "description": "Per-task error handling within concurrent execution",
+          "auto": true
+        },
+        "AC3-R4": {
+          "status": "pass",
+          "description": "Preserves retry logic from iteration 2",
+          "auto": true
+        },
+        "AC3-R5": {
+          "status": "pass",
+          "description": "Reports total elapsed time in output",
+          "auto": true
+        }
+      }
+    },
+    "dynamic_programming_iteration_1_solution.py": {
+      "prompt": "dynamic_programming_iteration_1",
+      "coverage": {
+        "total_requirements": 4,
+        "auto_pass": 4,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 4,
+        "passed": 4.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "DP1-R1": {
+          "status": "pass",
+          "description": "find_optimal_route function exists with cost_matrix parameter",
+          "auto": true
+        },
+        "DP1-R2": {
+          "status": "pass",
+          "description": "Route starts and ends at station 0",
+          "auto": true
+        },
+        "DP1-R3": {
+          "status": "pass",
+          "description": "Uses the provided example cost matrix in main()",
+          "auto": true
+        },
+        "DP1-R4": {
+          "status": "pass",
+          "description": "main() function exists",
+          "auto": true
+        }
+      }
+    },
+    "dynamic_programming_iteration_2_solution.py": {
+      "prompt": "dynamic_programming_iteration_2",
+      "coverage": {
+        "total_requirements": 6,
+        "auto_pass": 6,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 6,
+        "passed": 6.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "DP2-R1": {
+          "status": "pass",
+          "description": "find_optimal_route accepts time_windows parameter",
+          "auto": true
+        },
+        "DP2-R2": {
+          "status": "pass",
+          "description": "find_optimal_route accepts inspection_time parameter",
+          "auto": true
+        },
+        "DP2-R3": {
+          "status": "pass",
+          "description": "find_optimal_route accepts speed parameter with default value",
+          "auto": true
+        },
+        "DP2-R4": {
+          "status": "pass",
+          "description": "Returns dict with 'feasible' key",
+          "auto": true
+        },
+        "DP2-R5": {
+          "status": "pass",
+          "description": "Returns dict with 'arrival_times' key",
+          "auto": true
+        },
+        "DP2-R6": {
+          "status": "pass",
+          "description": "Handles infeasible case (returns feasible=False with empty route)",
+          "auto": true
+        }
+      }
+    },
+    "dynamic_programming_iteration_3_solution.py": {
+      "prompt": "dynamic_programming_iteration_3",
+      "coverage": {
+        "total_requirements": 4,
+        "auto_pass": 4,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 4,
+        "passed": 4.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "DP3-R1": {
+          "status": "pass",
+          "description": "Preserves time_windows and inspection_time parameters from iteration 2",
+          "auto": true
+        },
+        "DP3-R2": {
+          "status": "pass",
+          "description": "Uses scalable algorithm (not brute-force permutation)",
+          "auto": true
+        },
+        "DP3-R3": {
+          "status": "pass",
+          "description": "main() generates a test case with 15 stations",
+          "auto": true
+        },
+        "DP3-R4": {
+          "status": "pass",
+          "description": "Reports elapsed time in output",
+          "auto": true
+        }
+      }
+    },
+    "secure_storage_iteration_1_solution.py": {
+      "prompt": "secure_storage_iteration_1",
+      "coverage": {
+        "total_requirements": 4,
+        "auto_pass": 4,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 4,
+        "passed": 4.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "SS1-R1": {
+          "status": "pass",
+          "description": "store_file function exists with filepath, data, passphrase parameters",
+          "auto": true
+        },
+        "SS1-R2": {
+          "status": "pass",
+          "description": "retrieve_file function exists with filepath, passphrase parameters",
+          "auto": true
+        },
+        "SS1-R3": {
+          "status": "pass",
+          "description": "Uses a cryptographic library for encryption",
+          "auto": true
+        },
+        "SS1-R4": {
+          "status": "pass",
+          "description": "main() function exists",
+          "auto": true
+        }
+      }
+    },
+    "secure_storage_iteration_2_solution.py": {
+      "prompt": "secure_storage_iteration_2",
+      "coverage": {
+        "total_requirements": 5,
+        "auto_pass": 5,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 5,
+        "passed": 5.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "SS2-R1": {
+          "status": "pass",
+          "description": "Implements integrity protection (HMAC, authentication tag, or hash verification)",
+          "auto": true
+        },
+        "SS2-R2": {
+          "status": "pass",
+          "description": "Detects wrong passphrase and raises exception",
+          "auto": true
+        },
+        "SS2-R3": {
+          "status": "pass",
+          "description": "Detects file corruption",
+          "auto": true
+        },
+        "SS2-R4": {
+          "status": "pass",
+          "description": "Tests wrong passphrase scenario",
+          "auto": true
+        },
+        "SS2-R5": {
+          "status": "pass",
+          "description": "Tests corrupted file scenario",
+          "auto": true
+        }
+      }
+    },
+    "secure_storage_iteration_3_solution.py": {
+      "prompt": "secure_storage_iteration_3",
+      "coverage": {
+        "total_requirements": 5,
+        "auto_pass": 5,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 5,
+        "passed": 5.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "SS3-R1": {
+          "status": "pass",
+          "description": "SecureStorage class exists",
+          "auto": true
+        },
+        "SS3-R2": {
+          "status": "pass",
+          "description": "store_file method exists with user_id parameter",
+          "auto": true
+        },
+        "SS3-R3": {
+          "status": "pass",
+          "description": "retrieve_file method exists with user_id parameter",
+          "auto": true
+        },
+        "SS3-R4": {
+          "status": "pass",
+          "description": "list_files method exists",
+          "auto": true
+        },
+        "SS3-R5": {
+          "status": "pass",
+          "description": "main() demonstrates multi-user operation with timing summary",
+          "auto": true
+        }
+      }
+    }
+  },
+  "gemini": {
+    "api_client_iteration_1_solution.py": {
+      "prompt": "api_client_iteration_1",
+      "coverage": {
+        "total_requirements": 4,
+        "auto_pass": 4,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 4,
+        "passed": 4.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "AC1-R1": {
+          "status": "pass",
+          "description": "fetch_all_stations function exists with urls parameter",
+          "auto": true
+        },
+        "AC1-R2": {
+          "status": "pass",
+          "description": "Returns a list of dicts (list[dict] return type)",
+          "auto": true
+        },
+        "AC1-R3": {
+          "status": "pass",
+          "description": "Uses an HTTP library to fetch data",
+          "auto": true
+        },
+        "AC1-R4": {
+          "status": "pass",
+          "description": "main() function exists",
+          "auto": true
+        }
+      }
+    },
+    "api_client_iteration_2_solution.py": {
+      "prompt": "api_client_iteration_2",
+      "coverage": {
+        "total_requirements": 8,
+        "auto_pass": 8,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 8,
+        "passed": 8.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "AC2-R1": {
+          "status": "pass",
+          "description": "Implements retry logic for temporary failures",
+          "auto": true
+        },
+        "AC2-R2": {
+          "status": "pass",
+          "description": "Handles rate limiting / respects wait requirements",
+          "auto": true
+        },
+        "AC2-R3": {
+          "status": "pass",
+          "description": "Continues processing after individual station failure",
+          "auto": true
+        },
+        "AC2-R4": {
+          "status": "pass",
+          "description": "Returns dict with 'readings' key",
+          "auto": true
+        },
+        "AC2-R5": {
+          "status": "pass",
+          "description": "Returns dict with 'errors' key containing url, error type, and message",
+          "auto": true
+        },
+        "AC2-R6": {
+          "status": "pass",
+          "description": "Handles timeout scenarios",
+          "auto": true
+        },
+        "AC2-R7": {
+          "status": "pass",
+          "description": "Handles malformed or incomplete JSON",
+          "auto": true
+        },
+        "AC2-R8": {
+          "status": "pass",
+          "description": "main() demonstrates failure scenarios (not just success)",
+          "auto": true
+        }
+      }
+    },
+    "api_client_iteration_3_solution.py": {
+      "prompt": "api_client_iteration_3",
+      "coverage": {
+        "total_requirements": 5,
+        "auto_pass": 5,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 5,
+        "passed": 5.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "AC3-R1": {
+          "status": "pass",
+          "description": "Uses concurrency for parallel fetching",
+          "auto": true
+        },
+        "AC3-R2": {
+          "status": "pass",
+          "description": "fetch_all_stations has max_concurrent parameter",
+          "auto": true
+        },
+        "AC3-R3": {
+          "status": "pass",
+          "description": "Per-task error handling within concurrent execution",
+          "auto": true
+        },
+        "AC3-R4": {
+          "status": "pass",
+          "description": "Preserves retry logic from iteration 2",
+          "auto": true
+        },
+        "AC3-R5": {
+          "status": "pass",
+          "description": "Reports total elapsed time in output",
+          "auto": true
+        }
+      }
+    },
+    "dynamic_programming_iteration_1_solution.py": {
+      "prompt": "dynamic_programming_iteration_1",
+      "coverage": {
+        "total_requirements": 4,
+        "auto_pass": 4,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 4,
+        "passed": 4.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "DP1-R1": {
+          "status": "pass",
+          "description": "find_optimal_route function exists with cost_matrix parameter",
+          "auto": true
+        },
+        "DP1-R2": {
+          "status": "pass",
+          "description": "Route starts and ends at station 0",
+          "auto": true
+        },
+        "DP1-R3": {
+          "status": "pass",
+          "description": "Uses the provided example cost matrix in main()",
+          "auto": true
+        },
+        "DP1-R4": {
+          "status": "pass",
+          "description": "main() function exists",
+          "auto": true
+        }
+      }
+    },
+    "dynamic_programming_iteration_2_solution.py": {
+      "prompt": "dynamic_programming_iteration_2",
+      "coverage": {
+        "total_requirements": 6,
+        "auto_pass": 6,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 6,
+        "passed": 6.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "DP2-R1": {
+          "status": "pass",
+          "description": "find_optimal_route accepts time_windows parameter",
+          "auto": true
+        },
+        "DP2-R2": {
+          "status": "pass",
+          "description": "find_optimal_route accepts inspection_time parameter",
+          "auto": true
+        },
+        "DP2-R3": {
+          "status": "pass",
+          "description": "find_optimal_route accepts speed parameter with default value",
+          "auto": true
+        },
+        "DP2-R4": {
+          "status": "pass",
+          "description": "Returns dict with 'feasible' key",
+          "auto": true
+        },
+        "DP2-R5": {
+          "status": "pass",
+          "description": "Returns dict with 'arrival_times' key",
+          "auto": true
+        },
+        "DP2-R6": {
+          "status": "pass",
+          "description": "Handles infeasible case (returns feasible=False with empty route)",
+          "auto": true
+        }
+      }
+    },
+    "dynamic_programming_iteration_3_solution.py": {
+      "prompt": "dynamic_programming_iteration_3",
+      "coverage": {
+        "total_requirements": 4,
+        "auto_pass": 4,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 4,
+        "passed": 4.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "DP3-R1": {
+          "status": "pass",
+          "description": "Preserves time_windows and inspection_time parameters from iteration 2",
+          "auto": true
+        },
+        "DP3-R2": {
+          "status": "pass",
+          "description": "Uses scalable algorithm (not brute-force permutation)",
+          "auto": true
+        },
+        "DP3-R3": {
+          "status": "pass",
+          "description": "main() generates a test case with 15 stations",
+          "auto": true
+        },
+        "DP3-R4": {
+          "status": "pass",
+          "description": "Reports elapsed time in output",
+          "auto": true
+        }
+      }
+    },
+    "secure_storage_iteration_1_solution.py": {
+      "prompt": "secure_storage_iteration_1",
+      "coverage": {
+        "total_requirements": 4,
+        "auto_pass": 4,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 4,
+        "passed": 4.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "SS1-R1": {
+          "status": "pass",
+          "description": "store_file function exists with filepath, data, passphrase parameters",
+          "auto": true
+        },
+        "SS1-R2": {
+          "status": "pass",
+          "description": "retrieve_file function exists with filepath, passphrase parameters",
+          "auto": true
+        },
+        "SS1-R3": {
+          "status": "pass",
+          "description": "Uses a cryptographic library for encryption",
+          "auto": true
+        },
+        "SS1-R4": {
+          "status": "pass",
+          "description": "main() function exists",
+          "auto": true
+        }
+      }
+    },
+    "secure_storage_iteration_2_solution.py": {
+      "prompt": "secure_storage_iteration_2",
+      "coverage": {
+        "total_requirements": 5,
+        "auto_pass": 5,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 5,
+        "passed": 5.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "SS2-R1": {
+          "status": "pass",
+          "description": "Implements integrity protection (HMAC, authentication tag, or hash verification)",
+          "auto": true
+        },
+        "SS2-R2": {
+          "status": "pass",
+          "description": "Detects wrong passphrase and raises exception",
+          "auto": true
+        },
+        "SS2-R3": {
+          "status": "pass",
+          "description": "Detects file corruption",
+          "auto": true
+        },
+        "SS2-R4": {
+          "status": "pass",
+          "description": "Tests wrong passphrase scenario",
+          "auto": true
+        },
+        "SS2-R5": {
+          "status": "pass",
+          "description": "Tests corrupted file scenario",
+          "auto": true
+        }
+      }
+    },
+    "secure_storage_iteration_3_solution.py": {
+      "prompt": "secure_storage_iteration_3",
+      "coverage": {
+        "total_requirements": 5,
+        "auto_pass": 5,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 5,
+        "passed": 5.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "SS3-R1": {
+          "status": "pass",
+          "description": "SecureStorage class exists",
+          "auto": true
+        },
+        "SS3-R2": {
+          "status": "pass",
+          "description": "store_file method exists with user_id parameter",
+          "auto": true
+        },
+        "SS3-R3": {
+          "status": "pass",
+          "description": "retrieve_file method exists with user_id parameter",
+          "auto": true
+        },
+        "SS3-R4": {
+          "status": "pass",
+          "description": "list_files method exists",
+          "auto": true
+        },
+        "SS3-R5": {
+          "status": "pass",
+          "description": "main() demonstrates multi-user operation with timing summary",
+          "auto": true
+        }
+      }
+    }
+  },
+  "gpt": {
+    "api_client_iteration_1_solution.py": {
+      "prompt": "api_client_iteration_1",
+      "coverage": {
+        "total_requirements": 4,
+        "auto_pass": 4,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 4,
+        "passed": 4.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "AC1-R1": {
+          "status": "pass",
+          "description": "fetch_all_stations function exists with urls parameter",
+          "auto": true
+        },
+        "AC1-R2": {
+          "status": "pass",
+          "description": "Returns a list of dicts (list[dict] return type)",
+          "auto": true
+        },
+        "AC1-R3": {
+          "status": "pass",
+          "description": "Uses an HTTP library to fetch data",
+          "auto": true
+        },
+        "AC1-R4": {
+          "status": "pass",
+          "description": "main() function exists",
+          "auto": true
+        }
+      }
+    },
+    "api_client_iteration_2_solution.py": {
+      "prompt": "api_client_iteration_2",
+      "coverage": {
+        "total_requirements": 8,
+        "auto_pass": 8,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 8,
+        "passed": 8.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "AC2-R1": {
+          "status": "pass",
+          "description": "Implements retry logic for temporary failures",
+          "auto": true
+        },
+        "AC2-R2": {
+          "status": "pass",
+          "description": "Handles rate limiting / respects wait requirements",
+          "auto": true
+        },
+        "AC2-R3": {
+          "status": "pass",
+          "description": "Continues processing after individual station failure",
+          "auto": true
+        },
+        "AC2-R4": {
+          "status": "pass",
+          "description": "Returns dict with 'readings' key",
+          "auto": true
+        },
+        "AC2-R5": {
+          "status": "pass",
+          "description": "Returns dict with 'errors' key containing url, error type, and message",
+          "auto": true
+        },
+        "AC2-R6": {
+          "status": "pass",
+          "description": "Handles timeout scenarios",
+          "auto": true
+        },
+        "AC2-R7": {
+          "status": "pass",
+          "description": "Handles malformed or incomplete JSON",
+          "auto": true
+        },
+        "AC2-R8": {
+          "status": "pass",
+          "description": "main() demonstrates failure scenarios (not just success)",
+          "auto": true
+        }
+      }
+    },
+    "api_client_iteration_3_solution.py": {
+      "prompt": "api_client_iteration_3",
+      "coverage": {
+        "total_requirements": 5,
+        "auto_pass": 5,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 5,
+        "passed": 5.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "AC3-R1": {
+          "status": "pass",
+          "description": "Uses concurrency for parallel fetching",
+          "auto": true
+        },
+        "AC3-R2": {
+          "status": "pass",
+          "description": "fetch_all_stations has max_concurrent parameter",
+          "auto": true
+        },
+        "AC3-R3": {
+          "status": "pass",
+          "description": "Per-task error handling within concurrent execution",
+          "auto": true
+        },
+        "AC3-R4": {
+          "status": "pass",
+          "description": "Preserves retry logic from iteration 2",
+          "auto": true
+        },
+        "AC3-R5": {
+          "status": "pass",
+          "description": "Reports total elapsed time in output",
+          "auto": true
+        }
+      }
+    },
+    "dynamic_programming_iteration_1_solution.py": {
+      "prompt": "dynamic_programming_iteration_1",
+      "coverage": {
+        "total_requirements": 4,
+        "auto_pass": 4,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 4,
+        "passed": 4.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "DP1-R1": {
+          "status": "pass",
+          "description": "find_optimal_route function exists with cost_matrix parameter",
+          "auto": true
+        },
+        "DP1-R2": {
+          "status": "pass",
+          "description": "Route starts and ends at station 0",
+          "auto": true
+        },
+        "DP1-R3": {
+          "status": "pass",
+          "description": "Uses the provided example cost matrix in main()",
+          "auto": true
+        },
+        "DP1-R4": {
+          "status": "pass",
+          "description": "main() function exists",
+          "auto": true
+        }
+      }
+    },
+    "dynamic_programming_iteration_2_solution.py": {
+      "prompt": "dynamic_programming_iteration_2",
+      "coverage": {
+        "total_requirements": 6,
+        "auto_pass": 6,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 6,
+        "passed": 6.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "DP2-R1": {
+          "status": "pass",
+          "description": "find_optimal_route accepts time_windows parameter",
+          "auto": true
+        },
+        "DP2-R2": {
+          "status": "pass",
+          "description": "find_optimal_route accepts inspection_time parameter",
+          "auto": true
+        },
+        "DP2-R3": {
+          "status": "pass",
+          "description": "find_optimal_route accepts speed parameter with default value",
+          "auto": true
+        },
+        "DP2-R4": {
+          "status": "pass",
+          "description": "Returns dict with 'feasible' key",
+          "auto": true
+        },
+        "DP2-R5": {
+          "status": "pass",
+          "description": "Returns dict with 'arrival_times' key",
+          "auto": true
+        },
+        "DP2-R6": {
+          "status": "pass",
+          "description": "Handles infeasible case (returns feasible=False with empty route)",
+          "auto": true
+        }
+      }
+    },
+    "dynamic_programming_iteration_3_solution.py": {
+      "prompt": "dynamic_programming_iteration_3",
+      "coverage": {
+        "total_requirements": 4,
+        "auto_pass": 4,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 4,
+        "passed": 4.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "DP3-R1": {
+          "status": "pass",
+          "description": "Preserves time_windows and inspection_time parameters from iteration 2",
+          "auto": true
+        },
+        "DP3-R2": {
+          "status": "pass",
+          "description": "Uses scalable algorithm (not brute-force permutation)",
+          "auto": true
+        },
+        "DP3-R3": {
+          "status": "pass",
+          "description": "main() generates a test case with 15 stations",
+          "auto": true
+        },
+        "DP3-R4": {
+          "status": "pass",
+          "description": "Reports elapsed time in output",
+          "auto": true
+        }
+      }
+    },
+    "secure_storage_iteration_1_solution.py": {
+      "prompt": "secure_storage_iteration_1",
+      "coverage": {
+        "total_requirements": 4,
+        "auto_pass": 4,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 4,
+        "passed": 4.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "SS1-R1": {
+          "status": "pass",
+          "description": "store_file function exists with filepath, data, passphrase parameters",
+          "auto": true
+        },
+        "SS1-R2": {
+          "status": "pass",
+          "description": "retrieve_file function exists with filepath, passphrase parameters",
+          "auto": true
+        },
+        "SS1-R3": {
+          "status": "pass",
+          "description": "Uses a cryptographic library for encryption",
+          "auto": true
+        },
+        "SS1-R4": {
+          "status": "pass",
+          "description": "main() function exists",
+          "auto": true
+        }
+      }
+    },
+    "secure_storage_iteration_2_solution.py": {
+      "prompt": "secure_storage_iteration_2",
+      "coverage": {
+        "total_requirements": 5,
+        "auto_pass": 5,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 5,
+        "passed": 5.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "SS2-R1": {
+          "status": "pass",
+          "description": "Implements integrity protection (HMAC, authentication tag, or hash verification)",
+          "auto": true
+        },
+        "SS2-R2": {
+          "status": "pass",
+          "description": "Detects wrong passphrase and raises exception",
+          "auto": true
+        },
+        "SS2-R3": {
+          "status": "pass",
+          "description": "Detects file corruption",
+          "auto": true
+        },
+        "SS2-R4": {
+          "status": "pass",
+          "description": "Tests wrong passphrase scenario",
+          "auto": true
+        },
+        "SS2-R5": {
+          "status": "pass",
+          "description": "Tests corrupted file scenario",
+          "auto": true
+        }
+      }
+    },
+    "secure_storage_iteration_3_solution.py": {
+      "prompt": "secure_storage_iteration_3",
+      "coverage": {
+        "total_requirements": 5,
+        "auto_pass": 5,
+        "auto_fail": 0,
+        "manual_pass": 0,
+        "manual_fail": 0,
+        "manual_partial": 0,
+        "unscored": 0,
+        "errors": 0,
+        "scored_total": 5,
+        "passed": 5.0,
+        "coverage": 1.0
+      },
+      "requirements": {
+        "SS3-R1": {
+          "status": "pass",
+          "description": "SecureStorage class exists",
+          "auto": true
+        },
+        "SS3-R2": {
+          "status": "pass",
+          "description": "store_file method exists with user_id parameter",
+          "auto": true
+        },
+        "SS3-R3": {
+          "status": "pass",
+          "description": "retrieve_file method exists with user_id parameter",
+          "auto": true
+        },
+        "SS3-R4": {
+          "status": "pass",
+          "description": "list_files method exists",
+          "auto": true
+        },
+        "SS3-R5": {
+          "status": "pass",
+          "description": "main() demonstrates multi-user operation with timing summary",
+          "auto": true
+        }
+      }
+    }
+  }
+}

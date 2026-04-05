@@ -1,0 +1,742 @@
+Model: claude
+==================================================
+  Script: api_client_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.3294 seconds
+    Peak Memory (median of 3): 29.12 MB
+    Stdout: ============================================================
+Weather Station Data Collection Client
+============================================================
+
+--- Mock station readings (expected format) ---
+
+  Station: WS-001
+    Temperature: 22.5°C
+    Humidity:    65.3%
+    Timestamp:   2024-01-15T10:30:00Z
+
+  Station: WS-002
+    Temperature: 18.2°C
+    Humidity:    72.1%
+    Timestamp:   2024-01-15T10:30:05Z
+
+  Station: WS-003
+    Temperature: 25.8°C
+    Humidity:    55.0%
+    Timestamp:   2024-01-15T10:30:10Z
+
+--- Attempting live fetch from example URLs ---
+
+Successfully fetched 3 readings:
+
+  {
+    "userId": 1,
+    "id": 1,
+    "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+    "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+
+  {
+    "userId": 1,
+    "id": 2,
+    "title": "qui est esse",
+    "body": "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla"
+}
+
+  {
+    "userId": 1,
+    "id": 3,
+    "title": "ea molestias quasi exercitationem repellat qui ipsa sit aut",
+    "body": "et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut"
+}
+
+============================================================
+Total readings collected: 3
+============================================================
+
+  Script: api_client_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 9.6471 seconds
+    Peak Memory (median of 3): 38.70 MB
+    Stdout: Fetching data from stations...
+Total stations to query: 7
+------------------------------------------------------------
+
+Successful readings: 2
+============================================================
+
+  URL: https://httpbin.org/json
+  Data: {
+  "slideshow": {
+    "author": "Yours Truly",
+    "date": "date of publication",
+    "slides": [
+      {
+        "title": "Wake up to WonderWidgets!",
+        "type": "all"
+      },
+      {
+        ...
+
+  URL: https://httpbin.org/delay/1
+  Data: {
+  "args": {},
+  "data": "",
+  "files": {},
+  "form": {},
+  "headers": {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip, deflate, zstd",
+    "Host": "httpbin.org",
+    "User-Agent": "python-reques...
+
+Errors encountered: 5
+============================================================
+
+  URL: https://httpbin.org/status/404
+  Error Type: not_found
+  Message: 404 Client Error: NOT FOUND for url: https://httpbin.org/status/404
+
+  URL: https://httpbin.org/status/500
+  Error Type: server_error
+  Message: 500 Server Error: INTERNAL SERVER ERROR for url: https://httpbin.org/status/500
+
+  URL: https://httpbin.org/status/429
+  Error Type: rate_limited
+  Message: Rate limited (429) after 2 attempts
+
+  URL: https://this-station-does-not-exist-12345.example.com/data
+  Error Type: connection_error
+  Message: HTTPSConnectionPool(host='this-station-does-not-exist-12345.example.com', port=443): Max retries exceeded with url: /data (Caused by NameResolutionErr...
+
+  URL: https://httpbin.org/html
+  Error Type: malformed_json
+  Message: Expecting value: line 1 column 1 (char 0)
+
+------------------------------------------------------------
+Summary: 2/7 successful, 5/7 failed
+
+  Script: api_client_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 20.1309 seconds
+    Peak Memory (median of 3): 49.14 MB
+    Stdout: Fetching data from 50 stations...
+Max concurrent requests: 10
+------------------------------------------------------------
+
+Results Summary:
+  Total stations: 50
+  Successful: 22
+  Failed: 28
+  Total elapsed time: 19.87 seconds
+
+Sample successful readings (first 3):
+  https://httpbin.org/json?station=0:
+    {
+  "slideshow": {
+    "author": "Yours Truly",
+    "date": "date of publication",
+    "slides": [
+      {
+        "title": "Wake up to WonderWidgets!",
+        "type": "all"
+      },
+      {
+        ...
+  https://httpbin.org/delay/1?station=1:
+    {
+  "args": {
+    "station": "1"
+  },
+  "data": "",
+  "files": {},
+  "form": {},
+  "headers": {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip, deflate, zstd",
+    "Host": "httpbin.org",
+    "User-...
+  https://httpbin.org/get?station=3:
+    {
+  "args": {
+    "station": "3"
+  },
+  "headers": {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip, deflate, zstd",
+    "Host": "httpbin.org",
+    "User-Agent": "Python/3.14 aiohttp/3.13.3",
+    "...
+
+Sample errors (first 5):
+  https://httpbin.org/status/200?station=2: Failed after 3 retries: 200, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url='https://httpbin.org/status/200?station=2'
+  https://httpbin.org/status/500?station=4: Failed after 3 retries: Server error 500 at https://httpbin.org/status/500?station=4
+  https://httpbin.org/status/404?station=5: HTTP 404: 
+  https://httpbin.org/status/429?station=6: Failed after 3 retries: Rate limited (429) at https://httpbin.org/status/429?station=6
+  https://httpbin.org/status/200?station=9: Failed after 3 retries: 200, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url='https://httpbin.org/status/200?station=9'
+
+Average time per station: 0.397 seconds
+(With concurrent fetching, this is much faster than sequential which would take ~50+ seconds)
+
+  Script: dynamic_programming_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0566 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Optimal route: [0, 2, 3, 1, 0]
+Total energy: 80
+
+  Script: dynamic_programming_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0564 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: === Drone Route Optimization with Time Windows ===
+Number of stations: 4
+Inspection time per station: 5
+Speed: 1
+Time windows: [(5, 50), (10, 60), (15, 80)]
+
+Feasible: False
+No feasible route found!
+
+=== Infeasible Example ===
+Feasible: False
+No feasible route exists with these tight time windows.
+
+  Script: dynamic_programming_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.2164 seconds
+    Peak Memory (median of 3): 48.69 MB
+    Stdout: Number of stations: 15
+Inspection time: 2.0
+Speed: 1.0
+Time windows (first 5): [(0, 500), (21.74, 212.48), (47.69, 322.86), (13.17, 213.29), (8.93, 291.46)]...
+
+Feasible: True
+Route: [0, 10, 9, 14, 8, 13, 5, 12, 7, 1, 11, 4, 6, 3, 2, 0]
+Cost: 145.87
+Arrival times: ['0.00', '16.21', '28.14', '47.35', '56.47', '67.56', '76.00', '93.31', '112.13', '119.42', '133.42', '148.12', '164.55', '173.61', '184.96', '193.09']
+Number of stops: 16
+
+Elapsed time: 0.1531 seconds
+All stations visited: YES
+
+  Script: secure_storage_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1114 seconds
+    Peak Memory (median of 3): 23.36 MB
+    Stdout: === Secure Storage Demo ===
+
+Storing document to 'secret_document.enc'...
+Document stored successfully.
+
+Raw file size: 257 bytes
+Raw file preview (hex): 21d5e784a923c3ef738060a25357940fc956c0a1e0a2cde8ecc8aeb806d71b0e8bbef6c68771536b6e453fe29766f5f6...
+(File contents are encrypted and unreadable without passphrase)
+
+Retrieving document with correct passphrase...
+Document retrieved successfully!
+
+--- Retrieved Document ---
+CONFIDENTIAL REPORT
+====================
+Project: Phoenix
+Status: Active
+Budget: $2,450,000
+Lead: Dr. Sarah Chen
+
+This document contains sensitive corporate information.
+Unauthorized access is strictly prohibited.
+--- End of Document ---
+
+✓ Verification PASSED: Retrieved document matches original exactly.
+
+Attempting retrieval with wrong passphrase...
+✓ Correctly rejected wrong passphrase: InvalidTag
+
+Cleaned up 'secret_document.enc'.
+
+  Script: secure_storage_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.2714 seconds
+    Peak Memory (median of 3): 25.61 MB
+    Stdout: ============================================================
+Test 1: Successful storage and retrieval
+============================================================
+Storing data: 'This is a top-secret document containing sensitive information.'
+File saved to: /var/folders/nb/fg4_h6k54dv4bjfsygp7r2mh0000gn/T/secure_storage_mawjurx7/secret_document.enc
+Retrieved data: 'This is a top-secret document containing sensitive information.'
+SUCCESS: Data matches perfectly.
+
+============================================================
+Test 2: Retrieval with wrong passphrase
+============================================================
+Attempting retrieval with wrong passphrase: 'this-is-the-wrong-passphrase'
+CAUGHT WrongPassphraseError: Authentication failed. The passphrase may be incorrect or the file may be corrupted.
+SUCCESS: Wrong passphrase was properly detected.
+
+============================================================
+Test 3: Retrieval of corrupted file
+============================================================
+File saved to: /var/folders/nb/fg4_h6k54dv4bjfsygp7r2mh0000gn/T/secure_storage_mawjurx7/corrupted_document.enc
+Corrupting file by flipping bits in the ciphertext...
+CAUGHT WrongPassphraseError: Authentication failed. The passphrase may be incorrect or the file may be corrupted.
+SUCCESS: Integrity failure detected.
+
+============================================================
+Test 4: Verify other files remain secure and accessible
+============================================================
+Re-verifying original file after failed attempts on other files...
+Retrieved: 'This is a top-secret document containing sensitive information.'
+SUCCESS: Other files remain uncompromised.
+
+============================================================
+Test 5: Multiple files with different passphrases
+============================================================
+Cross-access correctly denied: Authentication failed. The passphrase may be incorrect or the file may be corrupted.
+SUCCESS: File isolation maintained. Each file independently secured.
+
+============================================================
+All tests passed successfully!
+============================================================
+
+  Script: secure_storage_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.7534 seconds
+    Peak Memory (median of 3): 26.03 MB
+    Stdout: ============================================================
+Secure Storage - Enterprise Scale Demo
+============================================================
+
+Stored 150 files across 3 users
+Store time: 0.540s (278.0 files/sec)
+
+File counts per user:
+  alice: 50 files
+  bob: 50 files
+  charlie: 50 files
+
+Verified 30 files successfully
+Retrieve time: 0.106s (281.7 files/sec)
+
+Security checks:
+  Wrong passphrase correctly rejected: Integrity check failed: data may have been tampered with or wrong passphrase
+  Missing file correctly rejected: File 'nonexistent.txt' not found for user 'alice'
+  Tampering correctly detected: Integrity check failed: data may have been tampered with or wrong passphrase
+
+============================================================
+Summary: 150 files, 3 users
+Total time: 0.646s
+All security and correctness checks passed.
+============================================================
+
+
+Model: gemini
+==================================================
+  Script: api_client_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1116 seconds
+    Peak Memory (median of 3): 23.45 MB
+    Stdout: [{'humidity': 45.2,
+  'station_id': 'alpha-001',
+  'temperature': 23.5,
+  'timestamp': '2023-10-27T10:00:00Z'},
+ {'humidity': 44.8,
+  'station_id': 'beta-002',
+  'temperature': 24.1,
+  'timestamp': '2023-10-27T10:00:05Z'},
+ {'humidity': 46.1,
+  'station_id': 'gamma-003',
+  'temperature': 22.9,
+  'timestamp': '2023-10-27T09:59:58Z'}]
+
+  Script: api_client_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 46.9112 seconds
+    Peak Memory (median of 3): 40.84 MB
+    Stdout: Fetching station data...
+
+--- Successful Readings ---
+[{'slideshow': {'author': 'Yours Truly',
+                'date': 'date of publication',
+                'slides': [{'title': 'Wake up to WonderWidgets!',
+                            'type': 'all'},
+                           {'items': ['Why <em>WonderWidgets</em> are great',
+                                      'Who <em>buys</em> WonderWidgets'],
+                            'title': 'Overview',
+                            'type': 'all'}],
+                'title': 'Sample Slide Show'}}]
+
+--- Error Reports ---
+[{'error_type': 'HTTPError',
+  'message': '503 Server Error: SERVICE UNAVAILABLE for url: '
+             'https://httpbin.org/status/503',
+  'url': 'https://httpbin.org/status/503'},
+ {'error_type': 'ReadTimeout',
+  'message': "HTTPSConnectionPool(host='httpbin.org', port=443): Read timed "
+             'out. (read timeout=5)',
+  'url': 'https://httpbin.org/delay/10'},
+ {'error_type': 'JSONDecodeError',
+  'message': 'Expecting value: line 1 column 1 (char 0)',
+  'url': 'https://httpbin.org/html'},
+ {'error_type': 'HTTPError',
+  'message': '404 Client Error: NOT FOUND for url: '
+             'https://httpbin.org/status/404',
+  'url': 'https://httpbin.org/status/404'},
+ {'error_type': 'ConnectionError',
+  'message': "HTTPConnectionPool(host='non-existent-domain.xyz', port=80): Max "
+             'retries exceeded with url: / (Caused by '
+             'NameResolutionError("HTTPConnection(host=\'non-existent-domain.xyz\', '
+             "port=80): Failed to resolve 'non-existent-domain.xyz' ([Errno 8] "
+             'nodename nor servname provided, or not known)"))',
+  'url': 'http://non-existent-domain.xyz'},
+ {'error_type': 'HTTPError',
+  'message': 'Rate limit exceeded. Waiting for 1s.',
+  'url': 'https://httpbin.org/status/429'}]
+
+  Script: api_client_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 9.2561 seconds
+    Peak Memory (median of 3): 46.75 MB
+    Stdout: Fetching data from 53 stations concurrently...
+
+--- Summary ---
+Total stations processed: 53
+Successful readings: 0
+Failed attempts: 51
+Total elapsed time: 9.05 seconds
+
+--- Successful Readings (first 5) ---
+
+--- Errors ---
+http://localhost:8000/station_001.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_002.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_003.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_004.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_005.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_006.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_007.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_008.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_009.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_010.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_011.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_012.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_013.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_014.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_015.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_016.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_017.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_018.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_019.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_020.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_021.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_022.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_023.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_024.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_025.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_026.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_027.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_028.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_029.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_030.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_031.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_032.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_033.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_034.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_035.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_036.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_037.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_038.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_039.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_040.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_041.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_042.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_043.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_044.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_045.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_046.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_047.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_048.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_049.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_050.json: Failed after 3 attempts: ClientResponseError
+http://localhost:8000/station_999.json: Failed after 3 attempts: ClientResponseError
+
+  Script: dynamic_programming_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0567 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Optimal route: [0, 2, 3, 1, 0]
+Total energy: 80
+
+  Script: dynamic_programming_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0565 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: feasible: True
+route: [0, 1, 2, 3, 0]
+arrival_times: [0.0, 10.0, 50.0, 85.0, 110.0]
+total_energy: 95
+
+  Script: dynamic_programming_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1658 seconds
+    Peak Memory (median of 3): 88.23 MB
+    Stdout: Generating a random test case with 15 stations...
+Solving for optimal route...
+
+==================== RESULTS ====================
+Optimal Path Found: [0, 0, 1, 2, 3, 4, 6, 5, 7, 9, 8, 10, 11, 12, 13, 14, 0]
+Total Cost (Energy): 3503.02
+
+Solution found in: 0.1106 seconds
+=================================================
+
+  Script: secure_storage_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.2762 seconds
+    Peak Memory (median of 3): 25.05 MB
+    Stdout: Storing file securely...
+File 'confidential_document.bin' saved.
+
+Retrieving file with correct passphrase...
+Decryption successful.
+Original Data:
+---
+Project Chimera: Q3 Financial Projections. Revenue forecast: $15M.
+---
+Verification successful: Retrieved data matches original data.
+
+Cleaned up file 'confidential_document.bin'.
+
+  Script: secure_storage_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1616 seconds
+    Peak Memory (median of 3): 25.56 MB
+    Stdout: --- 1. DEMONSTRATING SUCCESSFUL STORAGE AND RETRIEVAL ---
+File 'secure_data.bin' stored successfully.
+File 'secure_data.bin' retrieved successfully.
+Original data:  'The crow flies at midnight.'
+Retrieved data: 'The crow flies at midnight.'
+Data integrity confirmed.
+
+--- 2. DEMONSTRATING FAILED RETRIEVAL (WRONG PASSPHRASE) ---
+Attempting to retrieve 'secure_data.bin' with a bad passphrase...
+Success: Caught expected error for wrong passphrase.
+System correctly identified an invalid passphrase or corrupted data.
+
+--- 3. DEMONSTRATING FAILED RETRIEVAL (CORRUPTED FILE) ---
+File 'corrupt_data.bin' stored successfully for corruption test.
+Manually corrupted 'corrupt_data.bin'.
+Attempting to retrieve corrupted file 'corrupt_data.bin'...
+Success: Caught expected error for corrupted file.
+System correctly identified an invalid passphrase or corrupted data.
+
+--- CLEANUP ---
+Removed 'secure_data.bin'.
+Removed 'corrupt_data.bin'.
+
+  Script: secure_storage_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 1.3578 seconds
+    Peak Memory (median of 3): 27.05 MB
+    Stdout: --- Summary ---
+Total files stored: 5
+Time taken to store: 0.6823 seconds
+
+
+Model: gpt
+==================================================
+  Script: api_client_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1636 seconds
+    Peak Memory (median of 3): 28.81 MB
+    Stdout: Demo request failed: HTTP Error 404: Not Found
+
+  Script: api_client_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.2154 seconds
+    Peak Memory (median of 3): 23.73 MB
+    Stdout: Readings:
+[
+  {
+    "station": "ok-1",
+    "reading": 21.4
+  },
+  {
+    "station": "rate-limited",
+    "reading": 22.1
+  },
+  {
+    "station": "ok-2",
+    "reading": 19.8
+  }
+]
+Errors:
+[
+  {
+    "url": "https://example.com/station/server-error",
+    "type": "server_error",
+    "message": "HTTP 503 after retries"
+  },
+  {
+    "url": "https://example.com/station/timeout",
+    "type": "timeout",
+    "message": "Request timed out after retries"
+  },
+  {
+    "url": "https://example.com/station/malformed-json",
+    "type": "malformed_json",
+    "message": "Expecting value: line 1 column 1 (char 0)"
+  },
+  {
+    "url": "https://example.com/station/incomplete-json",
+    "type": "incomplete_data",
+    "message": "Expected keys: station, reading"
+  }
+]
+
+  Script: api_client_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 22.6319 seconds
+    Peak Memory (median of 3): 16.02 MB
+    Stdout: Readings:
+{'station': 'down-station-055', 'url': 'https://api.example.com/down-station-055', 'temperature_c': 13.0, 'humidity_pct': 67.1, 'status': 'ok'}
+{'station': 'flaky-station-070', 'url': 'https://api.example.com/flaky-station-070', 'temperature_c': 32.2, 'humidity_pct': 90.8, 'status': 'ok'}
+{'station': 'station-001', 'url': 'https://api.example.com/station-001', 'temperature_c': 5.3, 'humidity_pct': 39.8, 'status': 'ok'}
+{'station': 'station-002', 'url': 'https://api.example.com/station-002', 'temperature_c': 34.8, 'humidity_pct': 26.3, 'status': 'ok'}
+{'station': 'station-003', 'url': 'https://api.example.com/station-003', 'temperature_c': 19.6, 'humidity_pct': 92.6, 'status': 'ok'}
+{'station': 'station-004', 'url': 'https://api.example.com/station-004', 'temperature_c': 20.7, 'humidity_pct': 52.3, 'status': 'ok'}
+{'station': 'station-009', 'url': 'https://api.example.com/station-009', 'temperature_c': -0.8, 'humidity_pct': 35.4, 'status': 'ok'}
+{'station': 'station-010', 'url': 'https://api.example.com/station-010', 'temperature_c': 2.6, 'humidity_pct': 81.0, 'status': 'ok'}
+{'station': 'station-012', 'url': 'https://api.example.com/station-012', 'temperature_c': -8.9, 'humidity_pct': 44.1, 'status': 'ok'}
+{'station': 'station-018', 'url': 'https://api.example.com/station-018', 'temperature_c': 28.6, 'humidity_pct': 57.4, 'status': 'ok'}
+{'station': 'station-023', 'url': 'https://api.example.com/station-023', 'temperature_c': 18.5, 'humidity_pct': 18.5, 'status': 'ok'}
+{'station': 'station-024', 'url': 'https://api.example.com/station-024', 'temperature_c': 19.6, 'humidity_pct': 68.4, 'status': 'ok'}
+{'station': 'station-025', 'url': 'https://api.example.com/station-025', 'temperature_c': 14.9, 'humidity_pct': 27.6, 'status': 'ok'}
+{'station': 'station-031', 'url': 'https://api.example.com/station-031', 'temperature_c': 5.3, 'humidity_pct': 36.7, 'status': 'ok'}
+{'station': 'station-032', 'url': 'https://api.example.com/station-032', 'temperature_c': 18.3, 'humidity_pct': 27.1, 'status': 'ok'}
+{'station': 'station-038', 'url': 'https://api.example.com/station-038', 'temperature_c': 18.0, 'humidity_pct': 18.0, 'status': 'ok'}
+{'station': 'station-040', 'url': 'https://api.example.com/station-040', 'temperature_c': -6.7, 'humidity_pct': 91.8, 'status': 'ok'}
+{'station': 'station-041', 'url': 'https://api.example.com/station-041', 'temperature_c': 5.0, 'humidity_pct': 36.9, 'status': 'ok'}
+{'station': 'station-045', 'url': 'https://api.example.com/station-045', 'temperature_c': 24.8, 'humidity_pct': 79.0, 'status': 'ok'}
+{'station': 'station-046', 'url': 'https://api.example.com/station-046', 'temperature_c': -3.3, 'humidity_pct': 56.9, 'status': 'ok'}
+{'station': 'station-047', 'url': 'https://api.example.com/station-047', 'temperature_c': 5.6, 'humidity_pct': 44.1, 'status': 'ok'}
+{'station': 'station-048', 'url': 'https://api.example.com/station-048', 'temperature_c': 10.8, 'humidity_pct': 73.5, 'status': 'ok'}
+{'station': 'station-050', 'url': 'https://api.example.com/station-050', 'temperature_c': 20.1, 'humidity_pct': 84.8, 'status': 'ok'}
+{'station': 'station-053', 'url': 'https://api.example.com/station-053', 'temperature_c': -7.7, 'humidity_pct': 91.4, 'status': 'ok'}
+{'station': 'station-054', 'url': 'https://api.example.com/station-054', 'temperature_c': 34.9, 'humidity_pct': 22.1, 'status': 'ok'}
+{'station': 'station-057', 'url': 'https://api.example.com/station-057', 'temperature_c': 18.7, 'humidity_pct': 87.4, 'status': 'ok'}
+{'station': 'station-058', 'url': 'https://api.example.com/station-058', 'temperature_c': -1.9, 'humidity_pct': 79.0, 'status': 'ok'}
+{'station': 'station-059', 'url': 'https://api.example.com/station-059', 'temperature_c': 18.4, 'humidity_pct': 52.0, 'status': 'ok'}
+{'station': 'station-061', 'url': 'https://api.example.com/station-061', 'temperature_c': 32.2, 'humidity_pct': 33.4, 'status': 'ok'}
+{'station': 'station-064', 'url': 'https://api.example.com/station-064', 'temperature_c': 6.1, 'humidity_pct': 85.7, 'status': 'ok'}
+{'station': 'station-069', 'url': 'https://api.example.com/station-069', 'temperature_c': 22.2, 'humidity_pct': 16.0, 'status': 'ok'}
+{'station': 'station-071', 'url': 'https://api.example.com/station-071', 'temperature_c': 14.1, 'humidity_pct': 36.4, 'status': 'ok'}
+{'station': 'station-072', 'url': 'https://api.example.com/station-072', 'temperature_c': 35.3, 'humidity_pct': 44.4, 'status': 'ok'}
+{'station': 'station-075', 'url': 'https://api.example.com/station-075', 'temperature_c': 9.7, 'humidity_pct': 67.5, 'status': 'ok'}
+{'station': 'station-079', 'url': 'https://api.example.com/station-079', 'temperature_c': 35.3, 'humidity_pct': 68.5, 'status': 'ok'}
+
+Errors:
+{'url': 'https://api.example.com/down-station-011', 'error': 'station unavailable', 'attempts': 3}
+{'url': 'https://api.example.com/down-station-022', 'error': 'station unavailable', 'attempts': 3}
+{'url': 'https://api.example.com/down-station-033', 'error': 'station unavailable', 'attempts': 3}
+{'url': 'https://api.example.com/down-station-044', 'error': 'station unavailable', 'attempts': 3}
+{'url': 'https://api.example.com/down-station-066', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/down-station-077', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/flaky-station-007', 'error': 'temporary network failure', 'attempts': 3}
+{'url': 'https://api.example.com/flaky-station-014', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/flaky-station-021', 'error': 'temporary network failure', 'attempts': 3}
+{'url': 'https://api.example.com/flaky-station-028', 'error': 'temporary network failure', 'attempts': 3}
+{'url': 'https://api.example.com/flaky-station-035', 'error': 'temporary network failure', 'attempts': 3}
+{'url': 'https://api.example.com/flaky-station-042', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/flaky-station-049', 'error': 'temporary network failure', 'attempts': 3}
+{'url': 'https://api.example.com/flaky-station-056', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/flaky-station-063', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/forbidden-station-000', 'error': 'service restriction: access denied', 'attempts': 3}
+{'url': 'https://api.example.com/forbidden-station-017', 'error': 'service restriction: access denied', 'attempts': 3}
+{'url': 'https://api.example.com/forbidden-station-034', 'error': 'service restriction: access denied', 'attempts': 3}
+{'url': 'https://api.example.com/forbidden-station-051', 'error': 'service restriction: access denied', 'attempts': 3}
+{'url': 'https://api.example.com/forbidden-station-068', 'error': 'service restriction: access denied', 'attempts': 3}
+{'url': 'https://api.example.com/invalid-station-013', 'error': 'invalid station url', 'attempts': 3}
+{'url': 'https://api.example.com/invalid-station-026', 'error': 'invalid station url', 'attempts': 3}
+{'url': 'https://api.example.com/invalid-station-039', 'error': 'invalid station url', 'attempts': 3}
+{'url': 'https://api.example.com/invalid-station-052', 'error': 'invalid station url', 'attempts': 3}
+{'url': 'https://api.example.com/invalid-station-065', 'error': 'invalid station url', 'attempts': 3}
+{'url': 'https://api.example.com/invalid-station-078', 'error': 'invalid station url', 'attempts': 3}
+{'url': 'https://api.example.com/station-005', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/station-006', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/station-008', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/station-015', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/station-016', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/station-019', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/station-020', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/station-027', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/station-029', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/station-030', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/station-036', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/station-037', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/station-043', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/station-060', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/station-062', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/station-067', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/station-073', 'error': 'request timed out after 1.5s', 'attempts': 3}
+{'url': 'https://api.example.com/station-074', 'error': 'transient upstream error', 'attempts': 3}
+{'url': 'https://api.example.com/station-076', 'error': 'request timed out after 1.5s', 'attempts': 3}
+
+Total stations: 80
+Successful readings: 35
+Errors: 45
+Elapsed time: 22.557s
+
+  Script: dynamic_programming_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0569 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Optimal route: [2, 3, 1, 0, 0]
+Total energy: 80
+
+  Script: dynamic_programming_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0566 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Feasible: True
+Route: [0, 1, 3, 2, 0]
+Arrival times: [0, 4.0, 9.0, 16.0, 24.0]
+Total energy: 17
+
+  Script: dynamic_programming_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1086 seconds
+    Peak Memory (median of 3): 23.91 MB
+    Stdout: Time windows: [(723.42, 760.34), (553.31, 587.14), (332.62, 371.07), (179.02, 205.11), (408.1, 440.87), (260.88, 287.25), (527.54, 560.48), (638.39, 687.06), (595.82, 659.2), (441.65, 496.94), (324.23, 372.43), (689.69, 750.25), (777.36, 810.3), (99.51, 129.08), (2.045718362149235, 27.045718362149234)]
+Result: {'route': [14, 13, 3, 5, 2, 10, 4, 9, 6, 1, 8, 7, 11, 0, 12], 'arrival_times': [2.045718362149235, 99.51, 181.46, 262.75, 332.62, 341.88, 420.96, 461.78, 544.4, 571.37, 610.38, 655.55, 707.3, 741.9399999999999, 788.4499999999999], 'total_cost': 740.53, 'feasible': True}
+Elapsed time: 0.038309 seconds
+
+  Script: secure_storage_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1114 seconds
+    Peak Memory (median of 3): 18.52 MB
+    Stdout: Confidential corporate document: Q3 strategy and financial projections.
+
+  Script: secure_storage_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1662 seconds
+    Peak Memory (median of 3): 19.30 MB
+    Stdout: Stored file successfully.
+Successful retrieval: Confidential project notes: launch at 09:00.
+Wrong passphrase detected: Incorrect passphrase or file has been corrupted
+Corrupted file detected: Incorrect passphrase or file has been corrupted
+
+  Script: secure_storage_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.6010 seconds
+    Peak Memory (median of 3): 22.06 MB
+    Stdout: SecureStorage demonstration complete
+Users: 3
+Files stored: 8
+Files retrieved and verified: 8
+Time taken: 0.5243 seconds
+alice: 3 files -> ['archive.log', 'notes.txt', 'report.md']
+bob: 3 files -> ['design.txt', 'large.txt', 'todo.txt']
+carol: 2 files -> ['personal.txt', 'plans.csv']
+
+

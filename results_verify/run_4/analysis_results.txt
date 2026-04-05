@@ -1,0 +1,499 @@
+Model: claude
+============================================================
+
+  Script: api_client_iteration_1_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 2.0
+    [CC] Total Functions: 3
+         function main: 3 (A)
+         function fetch_all_stations: 2 (A)
+         function fetch_station: 1 (A)
+    [RAW] LOC: 123  SLOC: 81  Comments: 16  Blanks: 21
+    [HAL] Volume: 66.42  Difficulty: 2.0  Effort: 132.83
+    [HAL] Est. Time: 7.38s  Est. Bugs: 0.0221
+    [MI]  Score: 72.28
+    [PL]  Score: 8.947368421052632/10  Issues: 6
+          convention: 5
+          warning: 1
+    [SEC] Total Findings: 1
+          MEDIUM: 1
+
+  Script: api_client_iteration_2_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 9.5
+    [CC] Total Functions: 4
+         function fetch_station_with_retries: 17 (C)
+         function classify_error: 12 (C)
+         function main: 6 (B)
+         function fetch_all_stations: 3 (A)
+    [RAW] LOC: 234  SLOC: 172  Comments: 20  Blanks: 30
+    [HAL] Volume: 517.97  Difficulty: 9.75  Effort: 5050.2
+    [HAL] Est. Time: 280.57s  Est. Bugs: 0.1727
+    [MI]  Score: 53.34
+    [PL]  Score: 7.0078740157480315/10  Issues: 38
+          convention: 25
+          warning: 2
+          refactor: 11
+    [SEC] Total Findings: 0
+
+  Script: api_client_iteration_3_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 7.75
+    [CC] Total Functions: 4
+         function fetch_with_retry: 12 (C)
+         function main: 10 (B)
+         function _fetch_all_stations_async: 5 (A)
+         function fetch_all_stations: 4 (A)
+    [RAW] LOC: 190  SLOC: 140  Comments: 9  Blanks: 32
+    [HAL] Volume: 472.09  Difficulty: 8.79  Effort: 4148.63
+    [HAL] Est. Time: 230.48s  Est. Bugs: 0.1574
+    [MI]  Score: 49.54
+    [PL]  Score: 7.304347826086957/10  Issues: 31
+          convention: 25
+          warning: 4
+          refactor: 2
+    [SEC] Total Findings: 0
+
+  Script: dynamic_programming_iteration_2_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 12.5
+    [CC] Total Functions: 2
+         function find_optimal_route: 24 (D)
+         function main: 1 (A)
+    [RAW] LOC: 207  SLOC: 142  Comments: 28  Blanks: 47
+    [HAL] Volume: 854.2  Difficulty: 12.77  Effort: 10909.73
+    [HAL] Est. Time: 606.1s  Est. Bugs: 0.2847
+    [MI]  Score: 54.84
+    [PL]  Score: 5.283018867924528/10  Issues: 50
+          convention: 46
+          refactor: 3
+          warning: 1
+    [SEC] Total Findings: 0
+
+  Script: dynamic_programming_iteration_3_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 17.75
+    [CC] Total Functions: 4
+         function find_optimal_route: 38 (E)
+         function _reconstruct: 18 (C)
+         function main: 11 (C)
+         function _pareto_filter: 4 (A)
+    [RAW] LOC: 377  SLOC: 233  Comments: 55  Blanks: 78
+    [HAL] Volume: 1842.76  Difficulty: 11.9  Effort: 21920.79
+    [HAL] Est. Time: 1217.82s  Est. Bugs: 0.6143
+    [MI]  Score: 42.46
+    [PL]  Score: 5.73394495412844/10  Issues: 93
+          convention: 75
+          refactor: 9
+          warning: 9
+    [SEC] Total Findings: 6
+          LOW: 6
+
+  Script: secure_storage_iteration_1_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 1.5
+    [CC] Total Functions: 4
+         function main: 3 (A)
+         function _derive_key: 1 (A)
+         function store_file: 1 (A)
+         function retrieve_file: 1 (A)
+    [RAW] LOC: 103  SLOC: 69  Comments: 7  Blanks: 24
+    [HAL] Volume: 13.93  Difficulty: 0.5  Effort: 6.97
+    [HAL] Est. Time: 0.39s  Est. Bugs: 0.0046
+    [MI]  Score: 69.98
+    [PL]  Score: 7.192982456140351/10  Issues: 16
+          convention: 15
+          warning: 1
+    [SEC] Total Findings: 3
+          LOW: 3
+
+  Script: secure_storage_iteration_2_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 3.43
+    [CC] Total Functions: 7
+         function main: 14 (C)
+         function retrieve_file: 5 (A)
+         function _derive_key: 1 (A)
+         function store_file: 1 (A)
+         class IntegrityError: 1 (A)
+         class WrongPassphraseError: 1 (A)
+         class CorruptedFileError: 1 (A)
+    [RAW] LOC: 240  SLOC: 154  Comments: 25  Blanks: 40
+    [HAL] Volume: 382.57  Difficulty: 5.91  Effort: 2262.47
+    [HAL] Est. Time: 125.69s  Est. Bugs: 0.1275
+    [MI]  Score: 58.11
+    [PL]  Score: 7.076923076923077/10  Issues: 38
+          convention: 24
+          warning: 13
+          refactor: 1
+    [SEC] Total Findings: 3
+          LOW: 3
+
+  Script: secure_storage_iteration_3_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 3.5
+    [CC] Total Functions: 8
+         function main: 14 (C)
+         method retrieve_file: 4 (A)
+         class SecureStorage: 3 (A)
+         method _get_master_key: 2 (A)
+         method list_files: 2 (A)
+         method __init__: 1 (A)
+         method _derive_file_key: 1 (A)
+         method store_file: 1 (A)
+    [RAW] LOC: 268  SLOC: 166  Comments: 28  Blanks: 49
+    [HAL] Volume: 755.16  Difficulty: 7.19  Effort: 5426.18
+    [HAL] Est. Time: 301.45s  Est. Bugs: 0.2517
+    [MI]  Score: 54.25
+    [PL]  Score: 9.463087248322148/10  Issues: 8
+          convention: 2
+          refactor: 3
+          warning: 3
+    [SEC] Total Findings: 2
+          LOW: 2
+
+
+Model: gemini
+============================================================
+
+  Script: api_client_iteration_1_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 2.0
+    [CC] Total Functions: 5
+         class MockHTTPRequestHandler: 3 (A)
+         function fetch_all_stations: 2 (A)
+         function main: 2 (A)
+         method do_GET: 2 (A)
+         method log_message: 1 (A)
+    [RAW] LOC: 96  SLOC: 58  Comments: 9  Blanks: 20
+    [HAL] Volume: 15.51  Difficulty: 1.0  Effort: 15.51
+    [HAL] Est. Time: 0.86s  Est. Bugs: 0.0052
+    [MI]  Score: 82.19
+    [PL]  Score: 8.157894736842106/10  Issues: 7
+          convention: 5
+          warning: 2
+    [SEC] Total Findings: 1
+          MEDIUM: 1
+
+  Script: api_client_iteration_2_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 6.33
+    [CC] Total Functions: 3
+         function _fetch_with_retries: 10 (B)
+         function main: 5 (A)
+         function fetch_all_stations: 4 (A)
+    [RAW] LOC: 115  SLOC: 96  Comments: 0  Blanks: 19
+    [HAL] Volume: 189.99  Difficulty: 4.94  Effort: 938.77
+    [HAL] Est. Time: 52.15s  Est. Bugs: 0.0633
+    [MI]  Score: 40.47
+    [PL]  Score: 8.873239436619718/10  Issues: 8
+          convention: 8
+    [SEC] Total Findings: 0
+
+  Script: api_client_iteration_3_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 3.5
+    [CC] Total Functions: 4
+         function fetch_station_data: 7 (B)
+         function fetch_all_stations: 4 (A)
+         function main: 2 (A)
+         class ServiceException: 1 (A)
+    [RAW] LOC: 74  SLOC: 56  Comments: 5  Blanks: 17
+    [HAL] Volume: 105.42  Difficulty: 2.5  Effort: 263.54
+    [HAL] Est. Time: 14.64s  Est. Bugs: 0.0351
+    [MI]  Score: 63.58
+    [PL]  Score: 6.808510638297872/10  Issues: 15
+          convention: 12
+          warning: 2
+          refactor: 1
+    [SEC] Total Findings: 0
+
+  Script: dynamic_programming_iteration_1_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 10.5
+    [CC] Total Functions: 2
+         function find_optimal_route: 20 (C)
+         function main: 1 (A)
+    [RAW] LOC: 75  SLOC: 60  Comments: 0  Blanks: 15
+    [HAL] Volume: 624.34  Difficulty: 10.39  Effort: 6487.08
+    [HAL] Est. Time: 360.39s  Est. Bugs: 0.2081
+    [MI]  Score: 39.47
+    [PL]  Score: 8.518518518518519/10  Issues: 8
+          convention: 3
+          warning: 2
+          refactor: 3
+    [SEC] Total Findings: 0
+
+  Script: dynamic_programming_iteration_2_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 16.0
+    [CC] Total Functions: 2
+         function find_optimal_route: 28 (D)
+         function main: 4 (A)
+    [RAW] LOC: 199  SLOC: 154  Comments: 7  Blanks: 38
+    [HAL] Volume: 959.42  Difficulty: 12.1  Effort: 11610.64
+    [HAL] Est. Time: 645.04s  Est. Bugs: 0.3198
+    [MI]  Score: 41.81
+    [PL]  Score: 7.88135593220339/10  Issues: 25
+          convention: 21
+          refactor: 4
+    [SEC] Total Findings: 0
+
+  Script: dynamic_programming_iteration_3_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 15.5
+    [CC] Total Functions: 2
+         function find_optimal_route: 23 (D)
+         function main: 8 (B)
+    [RAW] LOC: 132  SLOC: 95  Comments: 0  Blanks: 37
+    [HAL] Volume: 1021.78  Difficulty: 12.81  Effort: 13090.58
+    [HAL] Est. Time: 727.25s  Est. Bugs: 0.3406
+    [MI]  Score: 31.04
+    [PL]  Score: 7.127659574468085/10  Issues: 27
+          convention: 19
+          warning: 1
+          refactor: 7
+    [SEC] Total Findings: 4
+          LOW: 4
+
+  Script: secure_storage_iteration_1_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 2.25
+    [CC] Total Functions: 4
+         function main: 6 (B)
+         function _derive_key: 1 (A)
+         function store_file: 1 (A)
+         function retrieve_file: 1 (A)
+    [RAW] LOC: 102  SLOC: 70  Comments: 1  Blanks: 16
+    [HAL] Volume: 88.81  Difficulty: 2.4  Effort: 213.15
+    [HAL] Est. Time: 11.84s  Est. Bugs: 0.0296
+    [MI]  Score: 69.38
+    [PL]  Score: 8.4375/10  Issues: 10
+          convention: 8
+          warning: 2
+    [SEC] Total Findings: 3
+          LOW: 3
+
+  Script: secure_storage_iteration_2_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 5.0
+    [CC] Total Functions: 4
+         function main: 10 (B)
+         function retrieve_file: 8 (B)
+         function store_file: 1 (A)
+         class IntegrityCheckFailed: 1 (A)
+    [RAW] LOC: 186  SLOC: 125  Comments: 27  Blanks: 28
+    [HAL] Volume: 293.02  Difficulty: 4.11  Effort: 1205.56
+    [HAL] Est. Time: 66.98s  Est. Bugs: 0.0977
+    [MI]  Score: 60.88
+    [PL]  Score: 8.303571428571429/10  Issues: 19
+          convention: 11
+          warning: 5
+          refactor: 3
+    [SEC] Total Findings: 3
+          LOW: 3
+
+  Script: secure_storage_iteration_3_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 3.89
+    [CC] Total Functions: 9
+         function main: 13 (C)
+         method _sanitize_filename: 5 (A)
+         method list_files: 5 (A)
+         method retrieve_file: 4 (A)
+         class SecureStorage: 3 (A)
+         method store_file: 2 (A)
+         method __init__: 1 (A)
+         method _get_user_path: 1 (A)
+         method _derive_key: 1 (A)
+    [RAW] LOC: 192  SLOC: 156  Comments: 5  Blanks: 31
+    [HAL] Volume: 472.46  Difficulty: 5.64  Effort: 2663.89
+    [HAL] Est. Time: 147.99s  Est. Bugs: 0.1575
+    [MI]  Score: 40.09
+    [PL]  Score: 8.642857142857142/10  Issues: 19
+          convention: 9
+          refactor: 3
+          warning: 7
+    [SEC] Total Findings: 3
+          LOW: 3
+
+
+Model: gpt
+============================================================
+
+  Script: api_client_iteration_1_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 2.0
+    [CC] Total Functions: 2
+         function fetch_all_stations: 2 (A)
+         function main: 2 (A)
+    [RAW] LOC: 30  SLOC: 23  Comments: 0  Blanks: 7
+    [HAL] Volume: 4.75  Difficulty: 0.5  Effort: 2.38
+    [HAL] Est. Time: 0.13s  Est. Bugs: 0.0016
+    [MI]  Score: 66.34
+    [PL]  Score: 7.368421052631579/10  Issues: 5
+          convention: 1
+          warning: 4
+    [SEC] Total Findings: 1
+          MEDIUM: 1
+
+  Script: api_client_iteration_2_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 6.8
+    [CC] Total Functions: 5
+         function fetch_station: 23 (D)
+         function parse_retry_after: 5 (A)
+         function fetch_all_stations: 3 (A)
+         function should_retry_http: 2 (A)
+         function main: 1 (A)
+    [RAW] LOC: 165  SLOC: 140  Comments: 0  Blanks: 25
+    [HAL] Volume: 458.46  Difficulty: 10.64  Effort: 4876.3
+    [HAL] Est. Time: 270.91s  Est. Bugs: 0.1528
+    [MI]  Score: 33.29
+    [PL]  Score: 8.863636363636363/10  Issues: 10
+          convention: 5
+          warning: 3
+          refactor: 2
+    [SEC] Total Findings: 1
+          MEDIUM: 1
+
+  Script: api_client_iteration_3_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 3.11
+    [CC] Total Functions: 9
+         function simulated_fetch: 9 (B)
+         function fetch_station_with_retries: 8 (B)
+         function main: 3 (A)
+         function _fetch_all_stations_async: 2 (A)
+         function build_example_urls: 2 (A)
+         function fetch_all_stations: 1 (A)
+         class TemporaryStationError: 1 (A)
+         class PermanentStationError: 1 (A)
+         class RateLimitError: 1 (A)
+    [RAW] LOC: 139  SLOC: 103  Comments: 0  Blanks: 36
+    [HAL] Volume: 448.88  Difficulty: 5.91  Effort: 2652.48
+    [HAL] Est. Time: 147.36s  Est. Bugs: 0.1496
+    [MI]  Score: 35.07
+    [PL]  Score: 9.78494623655914/10  Issues: 2
+          convention: 1
+          warning: 1
+    [SEC] Total Findings: 5
+          LOW: 5
+
+  Script: dynamic_programming_iteration_1_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 7.5
+    [CC] Total Functions: 2
+         function find_optimal_route: 14 (C)
+         function main: 1 (A)
+    [RAW] LOC: 78  SLOC: 62  Comments: 0  Blanks: 16
+    [HAL] Volume: 518.65  Difficulty: 9.12  Effort: 4728.83
+    [HAL] Est. Time: 262.71s  Est. Bugs: 0.1729
+    [MI]  Score: 40.34
+    [PL]  Score: 9.12280701754386/10  Issues: 5
+          convention: 3
+          refactor: 2
+    [SEC] Total Findings: 0
+
+  Script: dynamic_programming_iteration_2_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 7.0
+    [CC] Total Functions: 2
+         function find_optimal_route: 13 (C)
+         function main: 1 (A)
+    [RAW] LOC: 152  SLOC: 120  Comments: 0  Blanks: 32
+    [HAL] Volume: 843.2  Difficulty: 11.82  Effort: 9966.89
+    [HAL] Est. Time: 553.72s  Est. Bugs: 0.2811
+    [MI]  Score: 35.77
+    [PL]  Score: 8.81578947368421/10  Issues: 5
+          convention: 2
+          refactor: 2
+          error: 1
+    [SEC] Total Findings: 0
+
+  Script: dynamic_programming_iteration_3_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 7.67
+    [CC] Total Functions: 3
+         function find_optimal_route: 13 (C)
+         function _generate_random_test_case: 9 (B)
+         function main: 1 (A)
+    [RAW] LOC: 181  SLOC: 148  Comments: 0  Blanks: 33
+    [HAL] Volume: 991.58  Difficulty: 10.63  Effort: 10542.08
+    [HAL] Est. Time: 585.67s  Est. Bugs: 0.3305
+    [MI]  Score: 30.09
+    [PL]  Score: 9.508196721311476/10  Issues: 6
+          convention: 1
+          refactor: 4
+          warning: 1
+    [SEC] Total Findings: 4
+          LOW: 4
+
+  Script: secure_storage_iteration_1_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 1.4
+    [CC] Total Functions: 5
+         function _xor_bytes: 2 (A)
+         function retrieve_file: 2 (A)
+         function _derive_key: 1 (A)
+         function store_file: 1 (A)
+         function main: 1 (A)
+    [RAW] LOC: 42  SLOC: 35  Comments: 0  Blanks: 7
+    [HAL] Volume: 43.02  Difficulty: 2.0  Effort: 86.04
+    [HAL] Est. Time: 4.78s  Est. Bugs: 0.0143
+    [MI]  Score: 53.81
+    [PL]  Score: 9.428571428571429/10  Issues: 2
+          convention: 2
+    [SEC] Total Findings: 1
+          LOW: 1
+
+  Script: secure_storage_iteration_2_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 2.9
+    [CC] Total Functions: 10
+         function retrieve_file: 14 (C)
+         function main: 7 (B)
+         function _b64e: 1 (A)
+         function _b64d: 1 (A)
+         function _derive_key: 1 (A)
+         function _aad_from_header: 1 (A)
+         function store_file: 1 (A)
+         class SecureStorageError: 1 (A)
+         class AuthenticationError: 1 (A)
+         class CorruptedFileError: 1 (A)
+    [RAW] LOC: 170  SLOC: 130  Comments: 0  Blanks: 40
+    [HAL] Volume: 222.31  Difficulty: 4.0  Effort: 889.23
+    [HAL] Est. Time: 49.4s  Est. Bugs: 0.0741
+    [MI]  Score: 35.74
+    [PL]  Score: 9.732142857142858/10  Issues: 3
+          convention: 1
+          warning: 2
+    [SEC] Total Findings: 2
+          LOW: 2
+
+  Script: secure_storage_iteration_3_solution.py
+  --------------------------------------------------------
+    [CC] Average Complexity: 2.55
+    [CC] Total Functions: 11
+         function main: 7 (B)
+         method list_files: 6 (B)
+         class SecureStorage: 3 (A)
+         method _xor_stream: 3 (A)
+         method retrieve_file: 3 (A)
+         method __init__: 1 (A)
+         method _safe_name: 1 (A)
+         method _user_dir: 1 (A)
+         method _file_path: 1 (A)
+         method _derive_keys: 1 (A)
+         method store_file: 1 (A)
+    [RAW] LOC: 200  SLOC: 169  Comments: 0  Blanks: 31
+    [HAL] Volume: 626.33  Difficulty: 4.1  Effort: 2570.1
+    [HAL] Est. Time: 142.78s  Est. Bugs: 0.2088
+    [MI]  Score: 31.97
+    [PL]  Score: 9.63963963963964/10  Issues: 4
+          convention: 2
+          refactor: 2
+    [SEC] Total Findings: 3
+          LOW: 3
+
+

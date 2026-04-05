@@ -1,0 +1,1736 @@
+{
+  "claude": {
+    "api_client_iteration_1_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 0.2882,
+        "std": 0.0992,
+        "n": 5
+      },
+      "memory": {
+        "mean": 28.198,
+        "std": 2.2527,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 2.466,
+        "std": 0.1862,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 63.6,
+        "std": 6.6933,
+        "n": 5
+      },
+      "loc": {
+        "mean": 91.0,
+        "std": 5.4772,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 25.458,
+        "std": 16.5205,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 44.946,
+        "std": 39.9559,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.0085,
+        "std": 0.0055,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 76.204,
+        "std": 6.2385,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 9.1075,
+        "std": 0.6734,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      }
+    },
+    "api_client_iteration_2_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.4,
+        "std": 0.5477,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 18.4959,
+        "std": 21.2975,
+        "n": 5
+      },
+      "memory": {
+        "mean": 38.992,
+        "std": 1.1922,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 9.334,
+        "std": 0.9495,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 159.6,
+        "std": 13.0499,
+        "n": 5
+      },
+      "loc": {
+        "mean": 214.8,
+        "std": 15.8808,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 489.114,
+        "std": 156.3184,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 4068.134,
+        "std": 2158.7308,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.163,
+        "std": 0.0521,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 52.512,
+        "std": 2.0968,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 6.8337,
+        "std": 0.5127,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 5
+      }
+    },
+    "api_client_iteration_3_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 16.8473,
+        "std": 10.0261,
+        "n": 5
+      },
+      "memory": {
+        "mean": 49.364,
+        "std": 0.5154,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 7.84,
+        "std": 1.3386,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 160.4,
+        "std": 3.2094,
+        "n": 5
+      },
+      "loc": {
+        "mean": 215.8,
+        "std": 5.1186,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 638.576,
+        "std": 125.555,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 6563.2,
+        "std": 1962.3898,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.2128,
+        "std": 0.0419,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 49.634,
+        "std": 1.3941,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 8.3345,
+        "std": 0.9866,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 5
+      }
+    },
+    "dynamic_programming_iteration_1_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 0.0563,
+        "std": 0.0008,
+        "n": 5
+      },
+      "memory": {
+        "mean": 0.03,
+        "std": 0.0,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 8.0,
+        "std": 0.5,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 55.6,
+        "std": 2.51,
+        "n": 5
+      },
+      "loc": {
+        "mean": 82.4,
+        "std": 4.6152,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 522.762,
+        "std": 107.1553,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 6169.948,
+        "std": 1509.7358,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.1743,
+        "std": 0.0357,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 65.612,
+        "std": 1.9709,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 6.6077,
+        "std": 0.1953,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 5
+      }
+    },
+    "dynamic_programming_iteration_2_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 0.0554,
+        "std": 0.0015,
+        "n": 5
+      },
+      "memory": {
+        "mean": 0.03,
+        "std": 0.0,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 16.5,
+        "std": 3.4821,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 164.2,
+        "std": 19.0447,
+        "n": 5
+      },
+      "loc": {
+        "mean": 244.2,
+        "std": 29.0121,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 999.816,
+        "std": 164.7434,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 12602.59,
+        "std": 1449.077,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.3333,
+        "std": 0.0549,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 53.302,
+        "std": 2.4906,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 5.291,
+        "std": 0.3082,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 5
+      }
+    },
+    "dynamic_programming_iteration_3_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.2,
+        "std": 0.4472,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 0.3226,
+        "std": 0.1807,
+        "n": 5
+      },
+      "memory": {
+        "mean": 54.964,
+        "std": 18.7229,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 22.266,
+        "std": 6.6264,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 179.4,
+        "std": 19.4242,
+        "n": 5
+      },
+      "loc": {
+        "mean": 280.0,
+        "std": 47.974,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 1512.176,
+        "std": 295.9288,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 21013.152,
+        "std": 4556.2443,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.5041,
+        "std": 0.0986,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 46.832,
+        "std": 0.8947,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 6.229,
+        "std": 0.604,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 3.4,
+        "std": 0.8944,
+        "n": 5
+      }
+    },
+    "secure_storage_iteration_1_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 0.1118,
+        "std": 0.0036,
+        "n": 5
+      },
+      "memory": {
+        "mean": 22.916,
+        "std": 0.4018,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 1.5,
+        "std": 0.0,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 69.2,
+        "std": 4.2071,
+        "n": 5
+      },
+      "loc": {
+        "mean": 105.6,
+        "std": 5.0299,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 18.344,
+        "std": 9.87,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 15.176,
+        "std": 18.3492,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.0061,
+        "std": 0.0033,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 71.43,
+        "std": 2.9359,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 8.0359,
+        "std": 1.4554,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 2.2,
+        "std": 0.8367,
+        "n": 5
+      }
+    },
+    "secure_storage_iteration_2_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 0.195,
+        "std": 0.0501,
+        "n": 5
+      },
+      "memory": {
+        "mean": 25.382,
+        "std": 0.1455,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 2.972,
+        "std": 0.1171,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 144.8,
+        "std": 10.663,
+        "n": 5
+      },
+      "loc": {
+        "mean": 246.0,
+        "std": 21.0,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 409.558,
+        "std": 41.5206,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 2409.776,
+        "std": 409.4786,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.1365,
+        "std": 0.0139,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 58.982,
+        "std": 1.5677,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 6.3267,
+        "std": 0.0928,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 5.4,
+        "std": 0.8944,
+        "n": 5
+      }
+    },
+    "secure_storage_iteration_3_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.2,
+        "std": 0.4472,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 2.719,
+        "std": 1.4964,
+        "n": 5
+      },
+      "memory": {
+        "mean": 21.878,
+        "std": 4.296,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 3.47,
+        "std": 0.495,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 157.6,
+        "std": 24.6333,
+        "n": 5
+      },
+      "loc": {
+        "mean": 235.6,
+        "std": 42.8287,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 688.206,
+        "std": 148.628,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 4893.282,
+        "std": 1357.1201,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.2294,
+        "std": 0.0495,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 51.574,
+        "std": 3.6963,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 8.8287,
+        "std": 0.8983,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 2.8,
+        "std": 1.3038,
+        "n": 5
+      }
+    }
+  },
+  "gemini": {
+    "api_client_iteration_1_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.6,
+        "std": 0.8944,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 0.4837,
+        "std": 0.3421,
+        "n": 5
+      },
+      "memory": {
+        "mean": 29.8,
+        "std": 6.2566,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 1.78,
+        "std": 0.4087,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 56.8,
+        "std": 12.6372,
+        "n": 5
+      },
+      "loc": {
+        "mean": 72.6,
+        "std": 21.8701,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 9.054,
+        "std": 5.8935,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 7.632,
+        "std": 7.1916,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.003,
+        "std": 0.002,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 68.502,
+        "std": 9.6691,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 7.6337,
+        "std": 0.8148,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      }
+    },
+    "api_client_iteration_2_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 20.8655,
+        "std": 16.7872,
+        "n": 5
+      },
+      "memory": {
+        "mean": 39.354,
+        "std": 4.2056,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 6.016,
+        "std": 1.6279,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 103.2,
+        "std": 34.9814,
+        "n": 5
+      },
+      "loc": {
+        "mean": 141.2,
+        "std": 43.5569,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 168.902,
+        "std": 87.4068,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 864.9,
+        "std": 717.4973,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.0563,
+        "std": 0.0291,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 65.628,
+        "std": 7.7624,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 8.5431,
+        "std": 0.4058,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 5
+      }
+    },
+    "api_client_iteration_3_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.2,
+        "std": 0.4472,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 18.5713,
+        "std": 18.521,
+        "n": 5
+      },
+      "memory": {
+        "mean": 89.252,
+        "std": 84.6272,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 5.05,
+        "std": 0.7694,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 97.4,
+        "std": 17.126,
+        "n": 5
+      },
+      "loc": {
+        "mean": 137.6,
+        "std": 21.0547,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 210.778,
+        "std": 129.2722,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 1192.136,
+        "std": 1140.3095,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.0703,
+        "std": 0.0431,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 63.24,
+        "std": 5.1828,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 8.923,
+        "std": 0.5661,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 5
+      }
+    },
+    "dynamic_programming_iteration_1_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.4,
+        "std": 0.8944,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 0.0564,
+        "std": 0.0007,
+        "n": 5
+      },
+      "memory": {
+        "mean": 0.03,
+        "std": 0.0,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 6.0,
+        "std": 3.7749,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 54.6,
+        "std": 8.5615,
+        "n": 5
+      },
+      "loc": {
+        "mean": 71.0,
+        "std": 12.4097,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 451.88,
+        "std": 169.1739,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 4745.47,
+        "std": 2255.3206,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.1506,
+        "std": 0.0564,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 45.308,
+        "std": 4.7236,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 8.1778,
+        "std": 0.6061,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 5
+      }
+    },
+    "dynamic_programming_iteration_2_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 0.0571,
+        "std": 0.0025,
+        "n": 5
+      },
+      "memory": {
+        "mean": 0.03,
+        "std": 0.0,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 13.6,
+        "std": 1.4318,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 124.0,
+        "std": 10.0499,
+        "n": 5
+      },
+      "loc": {
+        "mean": 161.8,
+        "std": 14.1492,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 958.47,
+        "std": 123.7929,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 13165.702,
+        "std": 2615.4444,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.3195,
+        "std": 0.0413,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 39.328,
+        "std": 5.7136,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 7.6935,
+        "std": 0.4374,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 5
+      }
+    },
+    "dynamic_programming_iteration_3_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.4,
+        "std": 0.5477,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 0.1356,
+        "std": 0.0511,
+        "n": 5
+      },
+      "memory": {
+        "mean": 46.446,
+        "std": 37.9834,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 12.0,
+        "std": 6.7731,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 79.8,
+        "std": 44.8576,
+        "n": 5
+      },
+      "loc": {
+        "mean": 115.0,
+        "std": 64.8228,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 902.174,
+        "std": 505.8857,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 11435.428,
+        "std": 6524.3917,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.3007,
+        "std": 0.1686,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 58.058,
+        "std": 25.7253,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 8.4059,
+        "std": 0.91,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 2.8,
+        "std": 1.6432,
+        "n": 5
+      }
+    },
+    "secure_storage_iteration_1_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 0.3216,
+        "std": 0.0264,
+        "n": 5
+      },
+      "memory": {
+        "mean": 25.132,
+        "std": 0.1076,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 2.35,
+        "std": 0.1822,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 72.4,
+        "std": 4.5607,
+        "n": 5
+      },
+      "loc": {
+        "mean": 93.6,
+        "std": 14.4326,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 37.278,
+        "std": 23.3784,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 55.216,
+        "std": 46.5793,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.0124,
+        "std": 0.0078,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 60.01,
+        "std": 10.4595,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 8.9871,
+        "std": 0.131,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 2.0,
+        "std": 0.7071,
+        "n": 5
+      }
+    },
+    "secure_storage_iteration_2_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 0.2825,
+        "std": 0.1653,
+        "n": 5
+      },
+      "memory": {
+        "mean": 25.58,
+        "std": 0.388,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 3.57,
+        "std": 0.431,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 98.0,
+        "std": 7.5829,
+        "n": 5
+      },
+      "loc": {
+        "mean": 130.4,
+        "std": 15.437,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 101.608,
+        "std": 51.3813,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 363.05,
+        "std": 265.6253,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.0339,
+        "std": 0.0171,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 56.292,
+        "std": 8.1241,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 8.443,
+        "std": 0.4869,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 2.8,
+        "std": 0.4472,
+        "n": 5
+      }
+    },
+    "secure_storage_iteration_3_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.4,
+        "std": 0.5477,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 1.008,
+        "std": 0.4297,
+        "n": 5
+      },
+      "memory": {
+        "mean": 29.872,
+        "std": 5.7829,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 2.924,
+        "std": 0.4961,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 147.6,
+        "std": 22.634,
+        "n": 5
+      },
+      "loc": {
+        "mean": 196.8,
+        "std": 29.7271,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 209.628,
+        "std": 86.9548,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 834.896,
+        "std": 503.5391,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.0699,
+        "std": 0.029,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 43.724,
+        "std": 10.5228,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 8.753,
+        "std": 0.2189,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 2.6,
+        "std": 1.6733,
+        "n": 5
+      }
+    }
+  },
+  "gpt": {
+    "api_client_iteration_1_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.6,
+        "std": 0.5477,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 0.1329,
+        "std": 0.0487,
+        "n": 5
+      },
+      "memory": {
+        "mean": 21.796,
+        "std": 12.4127,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 2.4,
+        "std": 0.5477,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 35.8,
+        "std": 14.5327,
+        "n": 5
+      },
+      "loc": {
+        "mean": 43.8,
+        "std": 15.8019,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 25.444,
+        "std": 29.4831,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 48.92,
+        "std": 73.3178,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.0085,
+        "std": 0.0098,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 61.42,
+        "std": 5.8947,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 8.8416,
+        "std": 0.8262,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      }
+    },
+    "api_client_iteration_2_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 3.078,
+        "std": 2.4871,
+        "n": 5
+      },
+      "memory": {
+        "mean": 24.764,
+        "std": 2.7049,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 5.344,
+        "std": 1.8831,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 164.2,
+        "std": 36.5472,
+        "n": 5
+      },
+      "loc": {
+        "mean": 201.0,
+        "std": 36.4074,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 561.296,
+        "std": 211.8854,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 6108.14,
+        "std": 3802.0162,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.1871,
+        "std": 0.0706,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 29.612,
+        "std": 2.5714,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 9.2272,
+        "std": 0.1264,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      }
+    },
+    "api_client_iteration_3_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 18.4439,
+        "std": 10.9922,
+        "n": 5
+      },
+      "memory": {
+        "mean": 22.058,
+        "std": 3.7992,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 4.438,
+        "std": 1.4996,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 127.2,
+        "std": 52.0644,
+        "n": 5
+      },
+      "loc": {
+        "mean": 160.4,
+        "std": 52.2236,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 651.926,
+        "std": 275.7678,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 6220.052,
+        "std": 4064.223,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.2173,
+        "std": 0.0919,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 31.49,
+        "std": 6.3346,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 9.6661,
+        "std": 0.0498,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 1.4,
+        "std": 1.5166,
+        "n": 5
+      }
+    },
+    "dynamic_programming_iteration_1_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 0.0566,
+        "std": 0.0002,
+        "n": 5
+      },
+      "memory": {
+        "mean": 0.03,
+        "std": 0.0,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 6.8,
+        "std": 1.5652,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 58.8,
+        "std": 7.1554,
+        "n": 5
+      },
+      "loc": {
+        "mean": 73.6,
+        "std": 10.9681,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 487.152,
+        "std": 68.3886,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 4353.24,
+        "std": 978.8894,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.1624,
+        "std": 0.0228,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 41.438,
+        "std": 2.4286,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 9.1482,
+        "std": 0.0569,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 5
+      }
+    },
+    "dynamic_programming_iteration_2_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.2,
+        "std": 0.4472,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 0.0575,
+        "std": 0.0023,
+        "n": 5
+      },
+      "memory": {
+        "mean": 0.03,
+        "std": 0.0,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 13.1,
+        "std": 1.0247,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 122.6,
+        "std": 5.6391,
+        "n": 5
+      },
+      "loc": {
+        "mean": 147.2,
+        "std": 6.14,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 828.598,
+        "std": 75.0764,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 10480.864,
+        "std": 1079.409,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.2762,
+        "std": 0.025,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 32.33,
+        "std": 0.3807,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 9.2684,
+        "std": 0.1224,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 5
+      }
+    },
+    "dynamic_programming_iteration_3_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 0.2084,
+        "std": 0.0913,
+        "n": 5
+      },
+      "memory": {
+        "mean": 41.086,
+        "std": 15.2077,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 9.35,
+        "std": 2.4345,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 149.0,
+        "std": 12.2678,
+        "n": 5
+      },
+      "loc": {
+        "mean": 176.2,
+        "std": 13.8275,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 1119.926,
+        "std": 139.8457,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 13969.306,
+        "std": 3149.1058,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.3733,
+        "std": 0.0466,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 28.728,
+        "std": 1.3935,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 9.3178,
+        "std": 0.3215,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 5.6,
+        "std": 0.8944,
+        "n": 5
+      }
+    },
+    "secure_storage_iteration_1_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 0.1126,
+        "std": 0.0024,
+        "n": 5
+      },
+      "memory": {
+        "mean": 19.194,
+        "std": 2.076,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 1.59,
+        "std": 0.343,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 66.0,
+        "std": 4.4159,
+        "n": 5
+      },
+      "loc": {
+        "mean": 82.8,
+        "std": 9.3648,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 328.622,
+        "std": 190.4726,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 1372.88,
+        "std": 859.4719,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.1096,
+        "std": 0.0635,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 44.338,
+        "std": 8.0396,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 9.5674,
+        "std": 0.2558,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      }
+    },
+    "secure_storage_iteration_2_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 0.1744,
+        "std": 0.0212,
+        "n": 5
+      },
+      "memory": {
+        "mean": 18.982,
+        "std": 0.4438,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 2.896,
+        "std": 0.571,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 147.4,
+        "std": 23.1366,
+        "n": 5
+      },
+      "loc": {
+        "mean": 188.0,
+        "std": 28.4693,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 396.314,
+        "std": 138.6078,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 1720.988,
+        "std": 758.9392,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.1321,
+        "std": 0.0462,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 32.85,
+        "std": 3.0368,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 9.6833,
+        "std": 0.1103,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 3.2,
+        "std": 1.0954,
+        "n": 5
+      }
+    },
+    "secure_storage_iteration_3_solution.py": {
+      "runs": 5,
+      "pass_rate": 1.0,
+      "retries": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      },
+      "runtime": {
+        "mean": 0.483,
+        "std": 0.1417,
+        "n": 5
+      },
+      "memory": {
+        "mean": 24.296,
+        "std": 2.5399,
+        "n": 5
+      },
+      "cyclomatic_complexity": {
+        "mean": 2.986,
+        "std": 0.7657,
+        "n": 5
+      },
+      "sloc": {
+        "mean": 179.2,
+        "std": 16.0219,
+        "n": 5
+      },
+      "loc": {
+        "mean": 213.8,
+        "std": 16.3768,
+        "n": 5
+      },
+      "halstead_volume": {
+        "mean": 540.332,
+        "std": 99.8004,
+        "n": 5
+      },
+      "halstead_effort": {
+        "mean": 3010.65,
+        "std": 651.0264,
+        "n": 5
+      },
+      "halstead_bugs": {
+        "mean": 0.1801,
+        "std": 0.0332,
+        "n": 5
+      },
+      "maintainability_index": {
+        "mean": 28.848,
+        "std": 2.3909,
+        "n": 5
+      },
+      "pylint_score": {
+        "mean": 9.5906,
+        "std": 0.1095,
+        "n": 5
+      },
+      "bandit_findings": {
+        "mean": 2.0,
+        "std": 1.8708,
+        "n": 5
+      }
+    }
+  }
+}

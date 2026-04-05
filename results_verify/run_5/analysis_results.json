@@ -1,0 +1,2015 @@
+{
+  "claude": {
+    "api_client_iteration_1_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 4,
+            "rank": "A"
+          },
+          {
+            "name": "fetch_all_stations",
+            "type": "function",
+            "complexity": 2,
+            "rank": "A"
+          },
+          {
+            "name": "fetch_station",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 2.33,
+        "total_functions": 3
+      },
+      "raw_metrics": {
+        "loc": 94,
+        "lloc": 49,
+        "sloc": 68,
+        "comments": 4,
+        "multi": 3,
+        "blank": 17
+      },
+      "halstead": {
+        "vocabulary": 8,
+        "length": 12,
+        "volume": 36.0,
+        "difficulty": 1.33,
+        "effort": 48.0,
+        "time": 2.67,
+        "bugs": 0.012
+      },
+      "maintainability_index": {
+        "maintainability_index": 69.46
+      },
+      "pylint": {
+        "score": 9.11111111111111,
+        "issue_counts": {
+          "convention": 1,
+          "warning": 3
+        },
+        "total_issues": 4
+      },
+      "bandit": {
+        "total_issues": 1,
+        "by_severity": {
+          "LOW": 0,
+          "MEDIUM": 1,
+          "HIGH": 0
+        },
+        "confidence_high": 1
+      }
+    },
+    "api_client_iteration_2_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "fetch_station_data",
+            "type": "function",
+            "complexity": 20,
+            "rank": "C"
+          },
+          {
+            "name": "fetch_all_stations",
+            "type": "function",
+            "complexity": 8,
+            "rank": "B"
+          },
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 5,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 11.0,
+        "total_functions": 3
+      },
+      "raw_metrics": {
+        "loc": 193,
+        "lloc": 114,
+        "sloc": 146,
+        "comments": 15,
+        "multi": 11,
+        "blank": 27
+      },
+      "halstead": {
+        "vocabulary": 52,
+        "length": 127,
+        "volume": 723.96,
+        "difficulty": 11.27,
+        "effort": 8157.75,
+        "time": 453.21,
+        "bugs": 0.2413
+      },
+      "maintainability_index": {
+        "maintainability_index": 53.23
+      },
+      "pylint": {
+        "score": 7.474747474747474,
+        "issue_counts": {
+          "convention": 20,
+          "refactor": 4,
+          "warning": 1
+        },
+        "total_issues": 25
+      },
+      "bandit": {
+        "total_issues": 0,
+        "by_severity": {
+          "LOW": 0,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 0
+      }
+    },
+    "api_client_iteration_3_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "fetch_single_station",
+            "type": "function",
+            "complexity": 16,
+            "rank": "C"
+          },
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 7,
+            "rank": "B"
+          },
+          {
+            "name": "_fetch_all_stations_async",
+            "type": "function",
+            "complexity": 6,
+            "rank": "B"
+          },
+          {
+            "name": "fetch_all_stations",
+            "type": "function",
+            "complexity": 4,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 8.25,
+        "total_functions": 4
+      },
+      "raw_metrics": {
+        "loc": 213,
+        "lloc": 131,
+        "sloc": 152,
+        "comments": 16,
+        "multi": 16,
+        "blank": 30
+      },
+      "halstead": {
+        "vocabulary": 53,
+        "length": 111,
+        "volume": 635.8,
+        "difficulty": 10.83,
+        "effort": 6885.24,
+        "time": 382.51,
+        "bugs": 0.2119
+      },
+      "maintainability_index": {
+        "maintainability_index": 53.81
+      },
+      "pylint": {
+        "score": 7.711864406779661,
+        "issue_counts": {
+          "convention": 16,
+          "refactor": 4,
+          "warning": 7
+        },
+        "total_issues": 27
+      },
+      "bandit": {
+        "total_issues": 0,
+        "by_severity": {
+          "LOW": 0,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 0
+      }
+    },
+    "dynamic_programming_iteration_1_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "find_optimal_route",
+            "type": "function",
+            "complexity": 14,
+            "rank": "C"
+          },
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 7.5,
+        "total_functions": 2
+      },
+      "raw_metrics": {
+        "loc": 75,
+        "lloc": 48,
+        "sloc": 53,
+        "comments": 9,
+        "multi": 0,
+        "blank": 15
+      },
+      "halstead": {
+        "vocabulary": 39,
+        "length": 77,
+        "volume": 406.98,
+        "difficulty": 11.11,
+        "effort": 4521.96,
+        "time": 251.22,
+        "bugs": 0.1357
+      },
+      "maintainability_index": {
+        "maintainability_index": 65.08
+      },
+      "pylint": {
+        "score": 6.875,
+        "issue_counts": {
+          "convention": 14,
+          "refactor": 1
+        },
+        "total_issues": 15
+      },
+      "bandit": {
+        "total_issues": 0,
+        "by_severity": {
+          "LOW": 0,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 0
+      }
+    },
+    "dynamic_programming_iteration_2_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "find_optimal_route",
+            "type": "function",
+            "complexity": 41,
+            "rank": "F"
+          },
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 5,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 23.0,
+        "total_functions": 2
+      },
+      "raw_metrics": {
+        "loc": 287,
+        "lloc": 171,
+        "sloc": 205,
+        "comments": 34,
+        "multi": 0,
+        "blank": 55
+      },
+      "halstead": {
+        "vocabulary": 92,
+        "length": 219,
+        "volume": 1428.66,
+        "difficulty": 15.16,
+        "effort": 21655.48,
+        "time": 1203.08,
+        "bugs": 0.4762
+      },
+      "maintainability_index": {
+        "maintainability_index": 44.86
+      },
+      "pylint": {
+        "score": 6.036585365853658,
+        "issue_counts": {
+          "convention": 56,
+          "refactor": 5,
+          "warning": 4
+        },
+        "total_issues": 65
+      },
+      "bandit": {
+        "total_issues": 0,
+        "by_severity": {
+          "LOW": 0,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 0
+      }
+    },
+    "dynamic_programming_iteration_3_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "find_optimal_route",
+            "type": "function",
+            "complexity": 34,
+            "rank": "E"
+          },
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 16,
+            "rank": "C"
+          }
+        ],
+        "average_cc": 25.0,
+        "total_functions": 2
+      },
+      "raw_metrics": {
+        "loc": 320,
+        "lloc": 173,
+        "sloc": 172,
+        "comments": 70,
+        "multi": 12,
+        "blank": 67
+      },
+      "halstead": {
+        "vocabulary": 107,
+        "length": 225,
+        "volume": 1516.83,
+        "difficulty": 14.97,
+        "effort": 22701.32,
+        "time": 1261.18,
+        "bugs": 0.5056
+      },
+      "maintainability_index": {
+        "maintainability_index": 51.13
+      },
+      "pylint": {
+        "score": 4.779874213836478,
+        "issue_counts": {
+          "convention": 73,
+          "refactor": 6,
+          "warning": 4
+        },
+        "total_issues": 83
+      },
+      "bandit": {
+        "total_issues": 9,
+        "by_severity": {
+          "LOW": 9,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 9
+      }
+    },
+    "secure_storage_iteration_1_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 3,
+            "rank": "A"
+          },
+          {
+            "name": "_derive_key",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "store_file",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "retrieve_file",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 1.5,
+        "total_functions": 4
+      },
+      "raw_metrics": {
+        "loc": 110,
+        "lloc": 67,
+        "sloc": 74,
+        "comments": 7,
+        "multi": 0,
+        "blank": 25
+      },
+      "halstead": {
+        "vocabulary": 5,
+        "length": 6,
+        "volume": 13.93,
+        "difficulty": 0.5,
+        "effort": 6.97,
+        "time": 0.39,
+        "bugs": 0.0046
+      },
+      "maintainability_index": {
+        "maintainability_index": 69.02
+      },
+      "pylint": {
+        "score": 7.11864406779661,
+        "issue_counts": {
+          "convention": 16,
+          "warning": 1
+        },
+        "total_issues": 17
+      },
+      "bandit": {
+        "total_issues": 3,
+        "by_severity": {
+          "LOW": 3,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 1
+      }
+    },
+    "secure_storage_iteration_2_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 14,
+            "rank": "C"
+          },
+          {
+            "name": "retrieve_file",
+            "type": "function",
+            "complexity": 4,
+            "rank": "A"
+          },
+          {
+            "name": "_derive_key",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "store_file",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "IntegrityError",
+            "type": "class",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "WrongPassphraseError",
+            "type": "class",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "CorruptedFileError",
+            "type": "class",
+            "complexity": 1,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 3.29,
+        "total_functions": 7
+      },
+      "raw_metrics": {
+        "loc": 219,
+        "lloc": 132,
+        "sloc": 126,
+        "comments": 23,
+        "multi": 15,
+        "blank": 50
+      },
+      "halstead": {
+        "vocabulary": 34,
+        "length": 71,
+        "volume": 361.21,
+        "difficulty": 6.09,
+        "effort": 2200.7,
+        "time": 122.26,
+        "bugs": 0.1204
+      },
+      "maintainability_index": {
+        "maintainability_index": 59.95
+      },
+      "pylint": {
+        "score": 6.583333333333333,
+        "issue_counts": {
+          "convention": 32,
+          "warning": 8,
+          "refactor": 1
+        },
+        "total_issues": 41
+      },
+      "bandit": {
+        "total_issues": 4,
+        "by_severity": {
+          "LOW": 4,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 2
+      }
+    },
+    "secure_storage_iteration_3_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 20,
+            "rank": "C"
+          },
+          {
+            "name": "retrieve_file",
+            "type": "method",
+            "complexity": 4,
+            "rank": "A"
+          },
+          {
+            "name": "SecureStorage",
+            "type": "class",
+            "complexity": 3,
+            "rank": "A"
+          },
+          {
+            "name": "_aes_ctr_keystream",
+            "type": "method",
+            "complexity": 3,
+            "rank": "A"
+          },
+          {
+            "name": "_xor_bytes",
+            "type": "method",
+            "complexity": 2,
+            "rank": "A"
+          },
+          {
+            "name": "__init__",
+            "type": "method",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "_derive_key",
+            "type": "method",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "store_file",
+            "type": "method",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "list_files",
+            "type": "method",
+            "complexity": 1,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 4.0,
+        "total_functions": 9
+      },
+      "raw_metrics": {
+        "loc": 271,
+        "lloc": 156,
+        "sloc": 175,
+        "comments": 20,
+        "multi": 31,
+        "blank": 44
+      },
+      "halstead": {
+        "vocabulary": 67,
+        "length": 101,
+        "volume": 612.68,
+        "difficulty": 10.51,
+        "effort": 6439.09,
+        "time": 357.73,
+        "bugs": 0.2042
+      },
+      "maintainability_index": {
+        "maintainability_index": 54.37
+      },
+      "pylint": {
+        "score": 9.25925925925926,
+        "issue_counts": {
+          "convention": 2,
+          "refactor": 3,
+          "warning": 5
+        },
+        "total_issues": 10
+      },
+      "bandit": {
+        "total_issues": 4,
+        "by_severity": {
+          "LOW": 3,
+          "MEDIUM": 0,
+          "HIGH": 1
+        },
+        "confidence_high": 1
+      }
+    }
+  },
+  "gemini": {
+    "api_client_iteration_1_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "fetch_all_stations",
+            "type": "function",
+            "complexity": 3,
+            "rank": "A"
+          },
+          {
+            "name": "MockStationHandler",
+            "type": "class",
+            "complexity": 3,
+            "rank": "A"
+          },
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 2,
+            "rank": "A"
+          },
+          {
+            "name": "do_GET",
+            "type": "method",
+            "complexity": 2,
+            "rank": "A"
+          },
+          {
+            "name": "start_mock_server",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "log_message",
+            "type": "method",
+            "complexity": 1,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 2.0,
+        "total_functions": 6
+      },
+      "raw_metrics": {
+        "loc": 98,
+        "lloc": 49,
+        "sloc": 69,
+        "comments": 12,
+        "multi": 6,
+        "blank": 12
+      },
+      "halstead": {
+        "vocabulary": 6,
+        "length": 6,
+        "volume": 15.51,
+        "difficulty": 1.0,
+        "effort": 15.51,
+        "time": 0.86,
+        "bugs": 0.0052
+      },
+      "maintainability_index": {
+        "maintainability_index": 79.2
+      },
+      "pylint": {
+        "score": 8.222222222222221,
+        "issue_counts": {
+          "convention": 5,
+          "warning": 3
+        },
+        "total_issues": 8
+      },
+      "bandit": {
+        "total_issues": 1,
+        "by_severity": {
+          "LOW": 0,
+          "MEDIUM": 1,
+          "HIGH": 0
+        },
+        "confidence_high": 0
+      }
+    },
+    "api_client_iteration_2_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "do_GET",
+            "type": "method",
+            "complexity": 10,
+            "rank": "B"
+          },
+          {
+            "name": "UnreliableServiceHandler",
+            "type": "class",
+            "complexity": 7,
+            "rank": "B"
+          },
+          {
+            "name": "fetch_all_stations",
+            "type": "function",
+            "complexity": 5,
+            "rank": "A"
+          },
+          {
+            "name": "run_server",
+            "type": "function",
+            "complexity": 2,
+            "rank": "A"
+          },
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 2,
+            "rank": "A"
+          },
+          {
+            "name": "log_message",
+            "type": "method",
+            "complexity": 1,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 4.5,
+        "total_functions": 6
+      },
+      "raw_metrics": {
+        "loc": 167,
+        "lloc": 122,
+        "sloc": 138,
+        "comments": 20,
+        "multi": 6,
+        "blank": 16
+      },
+      "halstead": {
+        "vocabulary": 24,
+        "length": 41,
+        "volume": 187.98,
+        "difficulty": 2.7,
+        "effort": 507.56,
+        "time": 28.2,
+        "bugs": 0.0627
+      },
+      "maintainability_index": {
+        "maintainability_index": 58.9
+      },
+      "pylint": {
+        "score": 8.130841121495328,
+        "issue_counts": {
+          "convention": 17,
+          "warning": 3
+        },
+        "total_issues": 20
+      },
+      "bandit": {
+        "total_issues": 0,
+        "by_severity": {
+          "LOW": 0,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 0
+      }
+    },
+    "api_client_iteration_3_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "_fetch_one_station",
+            "type": "function",
+            "complexity": 4,
+            "rank": "A"
+          },
+          {
+            "name": "fetch_all_stations",
+            "type": "function",
+            "complexity": 4,
+            "rank": "A"
+          },
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 4,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 4.0,
+        "total_functions": 3
+      },
+      "raw_metrics": {
+        "loc": 94,
+        "lloc": 65,
+        "sloc": 66,
+        "comments": 9,
+        "multi": 6,
+        "blank": 18
+      },
+      "halstead": {
+        "vocabulary": 17,
+        "length": 21,
+        "volume": 85.84,
+        "difficulty": 2.92,
+        "effort": 250.36,
+        "time": 13.91,
+        "bugs": 0.0286
+      },
+      "maintainability_index": {
+        "maintainability_index": 69.84
+      },
+      "pylint": {
+        "score": 7.5,
+        "issue_counts": {
+          "convention": 14
+        },
+        "total_issues": 14
+      },
+      "bandit": {
+        "total_issues": 0,
+        "by_severity": {
+          "LOW": 0,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 0
+      }
+    },
+    "dynamic_programming_iteration_1_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "find_optimal_route",
+            "type": "function",
+            "complexity": 6,
+            "rank": "B"
+          },
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 3.5,
+        "total_functions": 2
+      },
+      "raw_metrics": {
+        "loc": 71,
+        "lloc": 47,
+        "sloc": 52,
+        "comments": 3,
+        "multi": 0,
+        "blank": 16
+      },
+      "halstead": {
+        "vocabulary": 42,
+        "length": 78,
+        "volume": 420.6,
+        "difficulty": 12.75,
+        "effort": 5362.66,
+        "time": 297.93,
+        "bugs": 0.1402
+      },
+      "maintainability_index": {
+        "maintainability_index": 58.3
+      },
+      "pylint": {
+        "score": 8.72340425531915,
+        "issue_counts": {
+          "convention": 6
+        },
+        "total_issues": 6
+      },
+      "bandit": {
+        "total_issues": 0,
+        "by_severity": {
+          "LOW": 0,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 0
+      }
+    },
+    "dynamic_programming_iteration_2_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "find_optimal_route",
+            "type": "function",
+            "complexity": 27,
+            "rank": "D"
+          },
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 3,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 15.0,
+        "total_functions": 2
+      },
+      "raw_metrics": {
+        "loc": 133,
+        "lloc": 95,
+        "sloc": 105,
+        "comments": 0,
+        "multi": 0,
+        "blank": 28
+      },
+      "halstead": {
+        "vocabulary": 75,
+        "length": 161,
+        "volume": 1002.84,
+        "difficulty": 15.39,
+        "effort": 15431.63,
+        "time": 857.31,
+        "bugs": 0.3343
+      },
+      "maintainability_index": {
+        "maintainability_index": 31.81
+      },
+      "pylint": {
+        "score": 7.5,
+        "issue_counts": {
+          "convention": 16,
+          "refactor": 6
+        },
+        "total_issues": 22
+      },
+      "bandit": {
+        "total_issues": 0,
+        "by_severity": {
+          "LOW": 0,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 0
+      }
+    },
+    "dynamic_programming_iteration_3_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "find_optimal_route",
+            "type": "function",
+            "complexity": 20,
+            "rank": "C"
+          },
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 7,
+            "rank": "B"
+          }
+        ],
+        "average_cc": 13.5,
+        "total_functions": 2
+      },
+      "raw_metrics": {
+        "loc": 144,
+        "lloc": 98,
+        "sloc": 95,
+        "comments": 14,
+        "multi": 0,
+        "blank": 36
+      },
+      "halstead": {
+        "vocabulary": 87,
+        "length": 141,
+        "volume": 908.46,
+        "difficulty": 10.37,
+        "effort": 9417.22,
+        "time": 523.18,
+        "bugs": 0.3028
+      },
+      "maintainability_index": {
+        "maintainability_index": 53.1
+      },
+      "pylint": {
+        "score": 6.989247311827957,
+        "issue_counts": {
+          "convention": 24,
+          "refactor": 4
+        },
+        "total_issues": 28
+      },
+      "bandit": {
+        "total_issues": 4,
+        "by_severity": {
+          "LOW": 4,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 4
+      }
+    },
+    "secure_storage_iteration_1_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 8,
+            "rank": "B"
+          },
+          {
+            "name": "store_file",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "retrieve_file",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 3.33,
+        "total_functions": 3
+      },
+      "raw_metrics": {
+        "loc": 118,
+        "lloc": 69,
+        "sloc": 79,
+        "comments": 8,
+        "multi": 14,
+        "blank": 18
+      },
+      "halstead": {
+        "vocabulary": 8,
+        "length": 12,
+        "volume": 36.0,
+        "difficulty": 1.33,
+        "effort": 48.0,
+        "time": 2.67,
+        "bugs": 0.012
+      },
+      "maintainability_index": {
+        "maintainability_index": 73.75
+      },
+      "pylint": {
+        "score": 8.93939393939394,
+        "issue_counts": {
+          "convention": 4,
+          "warning": 3
+        },
+        "total_issues": 7
+      },
+      "bandit": {
+        "total_issues": 3,
+        "by_severity": {
+          "LOW": 3,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 1
+      }
+    },
+    "secure_storage_iteration_2_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 6,
+            "rank": "B"
+          },
+          {
+            "name": "retrieve_file",
+            "type": "function",
+            "complexity": 4,
+            "rank": "A"
+          },
+          {
+            "name": "_derive_key",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "store_file",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "SecureStorageError",
+            "type": "class",
+            "complexity": 1,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 2.6,
+        "total_functions": 5
+      },
+      "raw_metrics": {
+        "loc": 123,
+        "lloc": 82,
+        "sloc": 83,
+        "comments": 6,
+        "multi": 15,
+        "blank": 18
+      },
+      "halstead": {
+        "vocabulary": 20,
+        "length": 22,
+        "volume": 95.08,
+        "difficulty": 3.77,
+        "effort": 358.39,
+        "time": 19.91,
+        "bugs": 0.0317
+      },
+      "maintainability_index": {
+        "maintainability_index": 68.31
+      },
+      "pylint": {
+        "score": 8.947368421052632,
+        "issue_counts": {
+          "convention": 6,
+          "warning": 2
+        },
+        "total_issues": 8
+      },
+      "bandit": {
+        "total_issues": 3,
+        "by_severity": {
+          "LOW": 3,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 1
+      }
+    },
+    "secure_storage_iteration_3_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 8,
+            "rank": "B"
+          },
+          {
+            "name": "retrieve_file",
+            "type": "method",
+            "complexity": 5,
+            "rank": "A"
+          },
+          {
+            "name": "SecureStorage",
+            "type": "class",
+            "complexity": 3,
+            "rank": "A"
+          },
+          {
+            "name": "_get_or_create_metadata",
+            "type": "method",
+            "complexity": 3,
+            "rank": "A"
+          },
+          {
+            "name": "list_files",
+            "type": "method",
+            "complexity": 2,
+            "rank": "A"
+          },
+          {
+            "name": "__init__",
+            "type": "method",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "_get_user_paths",
+            "type": "method",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "_derive_key",
+            "type": "method",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "store_file",
+            "type": "method",
+            "complexity": 1,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 2.78,
+        "total_functions": 9
+      },
+      "raw_metrics": {
+        "loc": 238,
+        "lloc": 157,
+        "sloc": 182,
+        "comments": 6,
+        "multi": 3,
+        "blank": 47
+      },
+      "halstead": {
+        "vocabulary": 36,
+        "length": 47,
+        "volume": 242.99,
+        "difficulty": 3.62,
+        "effort": 879.78,
+        "time": 48.88,
+        "bugs": 0.081
+      },
+      "maintainability_index": {
+        "maintainability_index": 45.3
+      },
+      "pylint": {
+        "score": 8.25503355704698,
+        "issue_counts": {
+          "convention": 15,
+          "warning": 9,
+          "refactor": 2
+        },
+        "total_issues": 26
+      },
+      "bandit": {
+        "total_issues": 4,
+        "by_severity": {
+          "LOW": 4,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 2
+      }
+    }
+  },
+  "gpt": {
+    "api_client_iteration_1_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "fetch_all_stations",
+            "type": "function",
+            "complexity": 2,
+            "rank": "A"
+          },
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 2,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 2.0,
+        "total_functions": 2
+      },
+      "raw_metrics": {
+        "loc": 32,
+        "lloc": 21,
+        "sloc": 24,
+        "comments": 0,
+        "multi": 0,
+        "blank": 8
+      },
+      "halstead": {
+        "vocabulary": 3,
+        "length": 3,
+        "volume": 4.75,
+        "difficulty": 0.5,
+        "effort": 2.38,
+        "time": 0.13,
+        "bugs": 0.0016
+      },
+      "maintainability_index": {
+        "maintainability_index": 65.88
+      },
+      "pylint": {
+        "score": 7.5,
+        "issue_counts": {
+          "convention": 1,
+          "warning": 4
+        },
+        "total_issues": 5
+      },
+      "bandit": {
+        "total_issues": 1,
+        "by_severity": {
+          "LOW": 0,
+          "MEDIUM": 1,
+          "HIGH": 0
+        },
+        "confidence_high": 1
+      }
+    },
+    "api_client_iteration_2_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "_fetch_with_retries",
+            "type": "function",
+            "complexity": 14,
+            "rank": "C"
+          },
+          {
+            "name": "_validate_payload",
+            "type": "function",
+            "complexity": 5,
+            "rank": "A"
+          },
+          {
+            "name": "_fetch_station",
+            "type": "function",
+            "complexity": 4,
+            "rank": "A"
+          },
+          {
+            "name": "_parse_retry_after",
+            "type": "function",
+            "complexity": 3,
+            "rank": "A"
+          },
+          {
+            "name": "fetch_all_stations",
+            "type": "function",
+            "complexity": 3,
+            "rank": "A"
+          },
+          {
+            "name": "_extract_error_message",
+            "type": "function",
+            "complexity": 2,
+            "rank": "A"
+          },
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "TemporaryHTTPError",
+            "type": "class",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "MalformedResponseError",
+            "type": "class",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "IncompleteResponseError",
+            "type": "class",
+            "complexity": 1,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 3.5,
+        "total_functions": 10
+      },
+      "raw_metrics": {
+        "loc": 201,
+        "lloc": 140,
+        "sloc": 167,
+        "comments": 0,
+        "multi": 0,
+        "blank": 34
+      },
+      "halstead": {
+        "vocabulary": 39,
+        "length": 84,
+        "volume": 443.97,
+        "difficulty": 10.8,
+        "effort": 4796.5,
+        "time": 266.47,
+        "bugs": 0.148
+      },
+      "maintainability_index": {
+        "maintainability_index": 31.02
+      },
+      "pylint": {
+        "score": 9.534883720930232,
+        "issue_counts": {
+          "convention": 3,
+          "warning": 3
+        },
+        "total_issues": 6
+      },
+      "bandit": {
+        "total_issues": 1,
+        "by_severity": {
+          "LOW": 0,
+          "MEDIUM": 1,
+          "HIGH": 0
+        },
+        "confidence_high": 1
+      }
+    },
+    "api_client_iteration_3_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "mock_fetch_station",
+            "type": "function",
+            "complexity": 11,
+            "rank": "C"
+          },
+          {
+            "name": "fetch_station_with_retries",
+            "type": "function",
+            "complexity": 9,
+            "rank": "B"
+          },
+          {
+            "name": "build_example_urls",
+            "type": "function",
+            "complexity": 7,
+            "rank": "B"
+          },
+          {
+            "name": "fetch_all_stations",
+            "type": "function",
+            "complexity": 5,
+            "rank": "A"
+          },
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 3,
+            "rank": "A"
+          },
+          {
+            "name": "TemporaryError",
+            "type": "class",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "PermanentError",
+            "type": "class",
+            "complexity": 1,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 5.29,
+        "total_functions": 7
+      },
+      "raw_metrics": {
+        "loc": 150,
+        "lloc": 125,
+        "sloc": 115,
+        "comments": 0,
+        "multi": 0,
+        "blank": 35
+      },
+      "halstead": {
+        "vocabulary": 70,
+        "length": 124,
+        "volume": 760.03,
+        "difficulty": 9.35,
+        "effort": 7106.96,
+        "time": 394.83,
+        "bugs": 0.2533
+      },
+      "maintainability_index": {
+        "maintainability_index": 29.78
+      },
+      "pylint": {
+        "score": 9.196428571428571,
+        "issue_counts": {
+          "convention": 7,
+          "warning": 2
+        },
+        "total_issues": 9
+      },
+      "bandit": {
+        "total_issues": 3,
+        "by_severity": {
+          "LOW": 3,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 3
+      }
+    },
+    "dynamic_programming_iteration_1_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "find_optimal_route",
+            "type": "function",
+            "complexity": 14,
+            "rank": "C"
+          },
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 7.5,
+        "total_functions": 2
+      },
+      "raw_metrics": {
+        "loc": 78,
+        "lloc": 59,
+        "sloc": 62,
+        "comments": 0,
+        "multi": 0,
+        "blank": 16
+      },
+      "halstead": {
+        "vocabulary": 44,
+        "length": 95,
+        "volume": 518.65,
+        "difficulty": 9.12,
+        "effort": 4728.83,
+        "time": 262.71,
+        "bugs": 0.1729
+      },
+      "maintainability_index": {
+        "maintainability_index": 40.34
+      },
+      "pylint": {
+        "score": 9.12280701754386,
+        "issue_counts": {
+          "convention": 3,
+          "refactor": 2
+        },
+        "total_issues": 5
+      },
+      "bandit": {
+        "total_issues": 0,
+        "by_severity": {
+          "LOW": 0,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 0
+      }
+    },
+    "dynamic_programming_iteration_2_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "find_optimal_route",
+            "type": "function",
+            "complexity": 14,
+            "rank": "C"
+          },
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 7.5,
+        "total_functions": 2
+      },
+      "raw_metrics": {
+        "loc": 151,
+        "lloc": 103,
+        "sloc": 128,
+        "comments": 0,
+        "multi": 0,
+        "blank": 23
+      },
+      "halstead": {
+        "vocabulary": 91,
+        "length": 164,
+        "volume": 1067.28,
+        "difficulty": 11.52,
+        "effort": 12295.05,
+        "time": 683.06,
+        "bugs": 0.3558
+      },
+      "maintainability_index": {
+        "maintainability_index": 32.87
+      },
+      "pylint": {
+        "score": 9.278350515463918,
+        "issue_counts": {
+          "convention": 4,
+          "refactor": 3
+        },
+        "total_issues": 7
+      },
+      "bandit": {
+        "total_issues": 0,
+        "by_severity": {
+          "LOW": 0,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 0
+      }
+    },
+    "dynamic_programming_iteration_3_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "find_optimal_route",
+            "type": "function",
+            "complexity": 20,
+            "rank": "C"
+          },
+          {
+            "name": "_generate_random_test_case",
+            "type": "function",
+            "complexity": 8,
+            "rank": "B"
+          },
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 9.67,
+        "total_functions": 3
+      },
+      "raw_metrics": {
+        "loc": 164,
+        "lloc": 123,
+        "sloc": 143,
+        "comments": 0,
+        "multi": 0,
+        "blank": 21
+      },
+      "halstead": {
+        "vocabulary": 113,
+        "length": 195,
+        "volume": 1329.93,
+        "difficulty": 12.22,
+        "effort": 16253.2,
+        "time": 902.96,
+        "bugs": 0.4433
+      },
+      "maintainability_index": {
+        "maintainability_index": 28.77
+      },
+      "pylint": {
+        "score": 6.724137931034483,
+        "issue_counts": {
+          "convention": 4,
+          "refactor": 4,
+          "error": 6
+        },
+        "total_issues": 14
+      },
+      "bandit": {
+        "total_issues": 5,
+        "by_severity": {
+          "LOW": 5,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 5
+      }
+    },
+    "secure_storage_iteration_1_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "retrieve_file",
+            "type": "function",
+            "complexity": 4,
+            "rank": "A"
+          },
+          {
+            "name": "_xor_stream",
+            "type": "function",
+            "complexity": 3,
+            "rank": "A"
+          },
+          {
+            "name": "_derive_key",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "_keystream_block",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "_mac",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "store_file",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 1.71,
+        "total_functions": 7
+      },
+      "raw_metrics": {
+        "loc": 89,
+        "lloc": 74,
+        "sloc": 74,
+        "comments": 0,
+        "multi": 0,
+        "blank": 15
+      },
+      "halstead": {
+        "vocabulary": 45,
+        "length": 80,
+        "volume": 439.35,
+        "difficulty": 4.08,
+        "effort": 1791.19,
+        "time": 99.51,
+        "bugs": 0.1464
+      },
+      "maintainability_index": {
+        "maintainability_index": 39.78
+      },
+      "pylint": {
+        "score": 9.852941176470589,
+        "issue_counts": {
+          "convention": 1
+        },
+        "total_issues": 1
+      },
+      "bandit": {
+        "total_issues": 1,
+        "by_severity": {
+          "LOW": 1,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 0
+      }
+    },
+    "secure_storage_iteration_2_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 9,
+            "rank": "B"
+          },
+          {
+            "name": "retrieve_file",
+            "type": "function",
+            "complexity": 7,
+            "rank": "B"
+          },
+          {
+            "name": "_xor_stream",
+            "type": "function",
+            "complexity": 3,
+            "rank": "A"
+          },
+          {
+            "name": "_derive_master_key",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "_expand_keys",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "store_file",
+            "type": "function",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "SecureStorageError",
+            "type": "class",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "InvalidPassphraseError",
+            "type": "class",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "CorruptedFileError",
+            "type": "class",
+            "complexity": 1,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 2.78,
+        "total_functions": 9
+      },
+      "raw_metrics": {
+        "loc": 208,
+        "lloc": 123,
+        "sloc": 170,
+        "comments": 0,
+        "multi": 0,
+        "blank": 38
+      },
+      "halstead": {
+        "vocabulary": 73,
+        "length": 119,
+        "volume": 736.59,
+        "difficulty": 4.86,
+        "effort": 3580.96,
+        "time": 198.94,
+        "bugs": 0.2455
+      },
+      "maintainability_index": {
+        "maintainability_index": 31.91
+      },
+      "pylint": {
+        "score": 9.836065573770492,
+        "issue_counts": {
+          "convention": 1,
+          "refactor": 1
+        },
+        "total_issues": 2
+      },
+      "bandit": {
+        "total_issues": 2,
+        "by_severity": {
+          "LOW": 2,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 0
+      }
+    },
+    "secure_storage_iteration_3_solution.py": {
+      "cyclomatic_complexity": {
+        "functions": [
+          {
+            "name": "main",
+            "type": "function",
+            "complexity": 7,
+            "rank": "B"
+          },
+          {
+            "name": "list_files",
+            "type": "method",
+            "complexity": 5,
+            "rank": "A"
+          },
+          {
+            "name": "_atomic_write_json",
+            "type": "method",
+            "complexity": 3,
+            "rank": "A"
+          },
+          {
+            "name": "retrieve_file",
+            "type": "method",
+            "complexity": 3,
+            "rank": "A"
+          },
+          {
+            "name": "SecureStorage",
+            "type": "class",
+            "complexity": 2,
+            "rank": "A"
+          },
+          {
+            "name": "_keystream",
+            "type": "method",
+            "complexity": 2,
+            "rank": "A"
+          },
+          {
+            "name": "_encrypt",
+            "type": "method",
+            "complexity": 2,
+            "rank": "A"
+          },
+          {
+            "name": "_decrypt",
+            "type": "method",
+            "complexity": 2,
+            "rank": "A"
+          },
+          {
+            "name": "__init__",
+            "type": "method",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "_user_hash",
+            "type": "method",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "_user_dir",
+            "type": "method",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "_file_id",
+            "type": "method",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "_file_path",
+            "type": "method",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "_derive_keys",
+            "type": "method",
+            "complexity": 1,
+            "rank": "A"
+          },
+          {
+            "name": "store_file",
+            "type": "method",
+            "complexity": 1,
+            "rank": "A"
+          }
+        ],
+        "average_cc": 2.2,
+        "total_functions": 15
+      },
+      "raw_metrics": {
+        "loc": 198,
+        "lloc": 131,
+        "sloc": 166,
+        "comments": 0,
+        "multi": 0,
+        "blank": 32
+      },
+      "halstead": {
+        "vocabulary": 65,
+        "length": 88,
+        "volume": 529.97,
+        "difficulty": 5.27,
+        "effort": 2794.38,
+        "time": 155.24,
+        "bugs": 0.1767
+      },
+      "maintainability_index": {
+        "maintainability_index": 30.43
+      },
+      "pylint": {
+        "score": 9.68,
+        "issue_counts": {
+          "convention": 2,
+          "refactor": 1,
+          "warning": 1
+        },
+        "total_issues": 4
+      },
+      "bandit": {
+        "total_issues": 3,
+        "by_severity": {
+          "LOW": 3,
+          "MEDIUM": 0,
+          "HIGH": 0
+        },
+        "confidence_high": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,1124 @@
+Model: claude
+==================================================
+  Script: api_client_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.3224 seconds
+    Peak Memory (median of 3): 29.16 MB
+    Stdout: Fetching data from 3 station(s)...
+
+Successfully collected 3 reading(s):
+
+Reading 1:
+{
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+
+Reading 2:
+{
+  "userId": 1,
+  "id": 2,
+  "title": "qui est esse",
+  "body": "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla"
+}
+
+Reading 3:
+{
+  "userId": 1,
+  "id": 3,
+  "title": "ea molestias quasi exercitationem repellat qui ipsa sit aut",
+  "body": "et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut"
+}
+
+  Script: api_client_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 3.9213 seconds
+    Peak Memory (median of 3): 37.75 MB
+    Stdout: Fetching data from stations...
+Total stations to query: 5
+------------------------------------------------------------
+
+Successful readings: 3
+============================================================
+
+  URL: https://jsonplaceholder.typicode.com/posts/1
+  Keys: ['userId', 'id', 'title', 'body']
+  ID: 1
+  Title: sunt aut facere repellat provident occaecati excep...
+
+  URL: https://jsonplaceholder.typicode.com/posts/2
+  Keys: ['userId', 'id', 'title', 'body']
+  ID: 2
+  Title: qui est esse
+
+  URL: https://jsonplaceholder.typicode.com/users/1
+  Keys: ['id', 'name', 'username', 'email', 'address']
+  ID: 1
+  Name: Leanne Graham
+
+Failed stations: 2
+============================================================
+
+  URL: https://jsonplaceholder.typicode.com/posts/999999
+  Error Type: HTTPError
+  Message: 404 Client Error: Not Found for url: https://jsonplaceholder.typicode.com/posts/999999
+
+  URL: https://this-station-does-not-exist-12345.invalid/data
+  Error Type: ConnectionError
+  Message: HTTPSConnectionPool(host='this-station-does-not-exist-12345.invalid', port=443): Max retries exceede...
+
+============================================================
+Summary: 3/5 successful, 2/5 failed
+
+  Script: api_client_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 43.9561 seconds
+    Peak Memory (median of 3): 51.06 MB
+    Stdout: Fetching data from 70 stations with max_concurrent=10...
+============================================================
+
+Results Summary:
+  Total stations:  70
+  Successful:      50
+  Failed:          11
+  Elapsed time:    43.74s
+  Avg per station: 624.8ms
+
+Sample successful readings (first 3):
+  [1] https://jsonplaceholder.typicode.com/posts/1
+      Data: {"userId": 1, "id": 1, "title": "sunt aut facere repellat provident occaecati excepturi optio repreh...
+  [2] https://jsonplaceholder.typicode.com/posts/2
+      Data: {"userId": 1, "id": 2, "title": "qui est esse", "body": "est rerum tempore vitae\nsequi sint nihil r...
+  [3] https://jsonplaceholder.typicode.com/posts/3
+      Data: {"userId": 1, "id": 3, "title": "ea molestias quasi exercitationem repellat qui ipsa sit aut", "body...
+
+Sample errors (first 5):
+  [1] https://httpbin.org/status/500
+      Error: Failed after 3 retries: Server error (500) from https://httpbin.org/status/500
+  [2] http://192.0.2.1:9999/station/0
+      Error: Failed after 3 retries: Timeout fetching http://192.0.2.1:9999/station/0 (attempt 3)
+  [3] http://192.0.2.1:9999/station/1
+      Error: Failed after 3 retries: Timeout fetching http://192.0.2.1:9999/station/1 (attempt 3)
+  [4] http://192.0.2.1:9999/station/2
+      Error: Failed after 3 retries: Timeout fetching http://192.0.2.1:9999/station/2 (attempt 3)
+  [5] http://192.0.2.1:9999/station/3
+      Error: Failed after 3 retries: Timeout fetching http://192.0.2.1:9999/station/3 (attempt 3)
+
+============================================================
+Total elapsed time: 43.74 seconds
+
+  Script: dynamic_programming_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0585 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Optimal route: [0, 2, 3, 1, 0]
+Total energy: 80
+
+  Script: dynamic_programming_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0579 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: === Drone Route Optimization with Time Windows ===
+Number of stations: 3 (plus base)
+Inspection time: 5
+Speed: 1
+Time windows: [(5, 50), (10, 60), (30, 80)]
+
+Feasible: False
+No feasible route found!
+
+=== Infeasible Example ===
+Feasible: False
+No feasible route found (as expected with very tight windows).
+
+  Script: dynamic_programming_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1084 seconds
+    Peak Memory (median of 3): 21.08 MB
+    Stdout: Solving TSP with time windows for 15 stations...
+Inspection time: 2.0
+Speed: 1.0
+
+Result:
+  Feasible: False
+  Route: []
+  Total cost: inf
+  Arrival times: []
+  Elapsed time: 0.056 seconds
+
+  Script: secure_storage_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1128 seconds
+    Peak Memory (median of 3): 22.41 MB
+    Stdout: Storing confidential document...
+Document encrypted and saved to 'secure_document.enc'.
+
+Raw file size: 230 bytes
+Raw file is plaintext readable: False
+
+Retrieving document with correct passphrase...
+Retrieved document:
+CONFIDENTIAL MEMO
+Project Codename: Phoenix
+Budget: $4,200,000
+Timeline: Q3 2025 - Q1 2026
+This document contains proprietary information. Unauthorized disclosure is strictly prohibited.
+
+✓ Verification passed: retrieved document matches the original exactly.
+
+Attempting retrieval with wrong passphrase...
+✓ Correctly rejected wrong passphrase: InvalidTag
+
+Cleaned up 'secure_document.enc'.
+
+  Script: secure_storage_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1636 seconds
+    Peak Memory (median of 3): 23.86 MB
+    Stdout: ============================================================
+Scenario 1: Successful storage and retrieval
+============================================================
+  [OK] File stored successfully at 'test_secure_file.enc'
+  [OK] File retrieved successfully!
+  [OK] Original data:  'This is sensitive information that must be protected!'
+  [OK] Retrieved data: 'This is sensitive information that must be protected!'
+  [OK] Data integrity verified — original and retrieved data match.
+
+============================================================
+Scenario 2: Retrieval with wrong passphrase
+============================================================
+  [OK] Correctly detected wrong passphrase!
+  [OK] Error: Failed to retrieve file: incorrect passphrase or file has been corrupted.
+
+============================================================
+Scenario 3: Retrieval from corrupted file
+============================================================
+  [OK] File stored at 'test_corrupted_file.enc'
+  [OK] File corrupted (modified ciphertext bytes)
+  [OK] Correctly detected file corruption!
+  [OK] Error type: WrongPassphraseError
+  [OK] Error: Failed to retrieve file: incorrect passphrase or file has been corrupted.
+
+============================================================
+Verification: Original file still accessible after failed attempts
+============================================================
+  [OK] Original file still retrievable after failed attempts!
+  [OK] Retrieved: 'This is sensitive information that must be protected!'
+  [OK] Security of other stored files is maintained.
+
+  [CLEANUP] Removed 'test_secure_file.enc'
+  [CLEANUP] Removed 'test_corrupted_file.enc'
+
+  Script: secure_storage_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 8.3033 seconds
+    Peak Memory (median of 3): 18.92 MB
+    Stdout: ======================================================================
+SECURE STORAGE - ENTERPRISE DEMO
+======================================================================
+
+Stored 9 files for 3 users in 0.1405s
+
+--- File Listings ---
+  alice: ['credentials.txt', 'notes.txt', 'report_q1.txt', 'report_q2.txt']
+  bob: ['api_keys.txt', 'project_plan.txt', 'todo.txt']
+  charlie: ['draft_paper.txt', 'research_data.txt']
+
+--- Retrieval & Verification ---
+  Retrieved 9/9 files successfully in 0.1385s
+
+--- Security Tests ---
+  PASS: Wrong passphrase detected - Integrity check failed for file 'report_q1.txt' of user 'alice'. Data may be tampered with or passphrase is incorrect.
+  PASS: Missing file detected - File 'nonexistent.txt' not found for user 'alice'
+  PASS: Cross-user access prevented (wrong passphrase rejected)
+
+--- Scalability Test ---
+  Stored 500 files in 7.8433s (64 files/sec)
+  Listed 500 files for scale_test_user
+  Retrieved 4 sample files in 0.0610s
+
+======================================================================
+SUMMARY
+======================================================================
+  Total users:        4
+  Total files stored: 509
+  All integrity checks: PASSED
+  Security tests:       PASSED
+  Total time:           8.1833s
+======================================================================
+
+
+Model: gemini
+==================================================
+  Script: api_client_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1129 seconds
+    Peak Memory (median of 3): 25.36 MB
+    Stdout: [{'station_id': 'alpha-001', 'temperature': 23.5, 'humidity': 55.2, 'timestamp': '2023-10-27T10:00:00Z'}, {'station_id': 'beta-001', 'temperature': 19.8, 'humidity': 62.0, 'timestamp': '2023-10-27T10:01:00Z'}, {'station_id': 'gamma-001', 'temperature': 25.1, 'humidity': 48.5, 'timestamp': '2023-10-27T10:02:00Z'}]
+
+  Script: api_client_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 6.1591 seconds
+    Peak Memory (median of 3): 37.53 MB
+    Stdout: --- Successful Readings ---
+{'station_id': 'OK', 'data': 'all_good'}
+{'station_id': 'TEMP_FAIL', 'data': 'recovered'}
+{'station_id': 'TIMEOUT', 'data': 'finally_connected'}
+
+--- Error Reports ---
+{'url': 'http://mock/bad_json', 'error_type': 'JSONDecodeError', 'message': 'Malformed JSON response: Syntax error: line 1 column 1 (char 0)'}
+{'url': 'http://mock/not_found', 'error_type': 'ClientError', 'message': 'Client error: 404 Not Found'}
+{'url': 'http://mock/permanent_fail', 'error_type': 'ServerError', 'message': 'Server error: 500. Retrying in 3s.'}
+{'url': 'http://mock/rate_limit', 'error_type': 'ValueError', 'message': "invalid literal for int() with base 10: '0.1'"}
+
+  Script: api_client_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 7.2774 seconds
+    Peak Memory (median of 3): 63.44 MB
+    Stdout: Fetching data for 45 stations...
+{
+  "readings": {
+    "https://httpbin.org/json": {
+      "slideshow": {
+        "author": "Yours Truly",
+        "date": "date of publication",
+        "slides": [
+          {
+            "title": "Wake up to WonderWidgets!",
+            "type": "all"
+          },
+          {
+            "items": [
+              "Why <em>WonderWidgets</em> are great",
+              "Who <em>buys</em> WonderWidgets"
+            ],
+            "title": "Overview",
+            "type": "all"
+          }
+        ],
+        "title": "Sample Slide Show"
+      }
+    },
+    "https://httpbin.org/delay/0": {
+      "args": {},
+      "data": "",
+      "files": {},
+      "form": {},
+      "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, zstd",
+        "Host": "httpbin.org",
+        "User-Agent": "Python/3.14 aiohttp/3.13.3",
+        "X-Amzn-Trace-Id": "Root=1-69c1960a-4c74bcc76f3285327f7717cf"
+      },
+      "origin": "87.198.212.130",
+      "url": "https://httpbin.org/delay/0"
+    },
+    "https://httpbin.org/delay/1": {
+      "args": {},
+      "data": "",
+      "files": {},
+      "form": {},
+      "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, zstd",
+        "Host": "httpbin.org",
+        "User-Agent": "Python/3.14 aiohttp/3.13.3",
+        "X-Amzn-Trace-Id": "Root=1-69c1960a-73c1995b74bea8fd59a96f5e"
+      },
+      "origin": "87.198.212.130",
+      "url": "https://httpbin.org/delay/1"
+    },
+    "https://httpbin.org/delay/2": {
+      "args": {},
+      "data": "",
+      "files": {},
+      "form": {},
+      "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, zstd",
+        "Host": "httpbin.org",
+        "User-Agent": "Python/3.14 aiohttp/3.13.3",
+        "X-Amzn-Trace-Id": "Root=1-69c1960a-3e64b50b0509e3b03539dbdf"
+      },
+      "origin": "87.198.212.130",
+      "url": "https://httpbin.org/delay/2"
+    },
+    "https://httpbin.org/delay/3": {
+      "args": {},
+      "data": "",
+      "files": {},
+      "form": {},
+      "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, zstd",
+        "Host": "httpbin.org",
+        "User-Agent": "Python/3.14 aiohttp/3.13.3",
+        "X-Amzn-Trace-Id": "Root=1-69c1960a-1307e1a40399638d5b20eb3e"
+      },
+      "origin": "87.198.212.130",
+      "url": "https://httpbin.org/delay/3"
+    }
+  },
+  "errors": {
+    "https://httpbin.org/status/503": "All retries failed. Last error: Service at https://httpbin.org/status/503 is unavailable",
+    "https://httpbin.org/status/429": "All retries failed. Last error: Too many requests to https://httpbin.org/status/429",
+    "https://httpbin.org/status/404": "A non-retriable error occurred: ClientResponseError: 404, message='NOT FOUND', url='https://httpbin.org/status/404'",
+    "http://invalid.url.that.will.fail/api": "A non-retriable error occurred: ClientConnectorDNSError: Cannot connect to host invalid.url.that.will.fail:80 ssl:default [nodename nor servname provided, or not known]",
+    "https://httpbin.org/html": "A non-retriable error occurred: JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+  }
+}
+
+Total stations: 45
+Successful readings: 5
+Failed attempts: 5
+Total elapsed time: 7.19 seconds
+
+  Script: dynamic_programming_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0580 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Optimal route: [0, 2, 3, 1, 0]
+Total energy: 80
+
+  Script: dynamic_programming_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0580 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Feasible: True
+Route: [0, 1, 2, 3, 0]
+Arrival Times: ['0.00', '15.00', '55.00', '90.00', '115.00']
+Total Energy: 95
+
+--- Infeasible Example ---
+Feasible: False
+No feasible route found.
+
+  Script: dynamic_programming_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.3309 seconds
+    Peak Memory (median of 3): 88.19 MB
+    Stdout: Result: {'status': 'infeasible', 'cost': None, 'path': None}
+Elapsed time: 0.2763 seconds
+
+  Script: secure_storage_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.2238 seconds
+    Peak Memory (median of 3): 25.16 MB
+    Stdout: This is a highly confidential document. Top secret plans inside.
+
+  Script: secure_storage_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.4440 seconds
+    Peak Memory (median of 3): 25.28 MB
+    Stdout: --- 1. Testing successful storage and retrieval ---
+File 'confidential_data.bin' stored successfully.
+File 'confidential_data.bin' retrieved successfully.
+Retrieved data: 'This is a highly confidential message. The launch codes are 000-000-000.'
+Success: Retrieved data matches original data.
+
+--- 2. Testing failed retrieval with wrong passphrase ---
+Caught expected exception: Decryption failed. The passphrase may be incorrect or the file may be corrupted.
+Success: System correctly identified the access failure.
+
+--- 3. Testing failed retrieval with corrupted file ---
+File 'confidential_data.bin' has been intentionally corrupted.
+Caught expected exception: Decryption failed. The passphrase may be incorrect or the file may be corrupted.
+Success: System correctly identified the file corruption.
+
+Cleaned up file 'confidential_data.bin'.
+
+  Script: secure_storage_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 2.2198 seconds
+    Peak Memory (median of 3): 33.02 MB
+    Stdout: --- Starting Secure Storage Operations ---
+
+--- Testing Failure Cases ---
+Successfully caught expected error (wrong passphrase): Invalid passphrase or file has been tampered with.
+Successfully caught expected error (file not found): File 'non_existent_file.txt' not found for user 'alice'.
+
+--- Summary ---
+Total files stored: 9
+Total files retrieved and verified: 9
+Verification errors: 0
+Total time taken: 2.0641 seconds
+
+Files for user 'alice': ['alice_large_document.log', 'alice_notes.txt', 'alice_report.txt']
+
+
+Model: gpt
+==================================================
+  Script: api_client_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1662 seconds
+    Peak Memory (median of 3): 28.94 MB
+    Stdout: Failed to fetch station data: HTTP Error 404: Not Found
+
+  Script: api_client_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 6.1365 seconds
+    Peak Memory (median of 3): 23.75 MB
+    Stdout: Readings:
+[
+  {
+    "url": "https://example.test/station-good-1",
+    "station": "station-good-1",
+    "reading": 21.5
+  },
+  {
+    "url": "https://example.test/station-flaky-500",
+    "station": "station-flaky-500",
+    "reading": 19.7
+  },
+  {
+    "url": "https://example.test/station-rate-limit",
+    "station": "station-rate-limit",
+    "reading": 22.1
+  },
+  {
+    "url": "https://example.test/station-good-2",
+    "station": "station-good-2",
+    "reading": 18.2,
+    "unit": "C"
+  }
+]
+Errors:
+[
+  {
+    "url": "https://example.test/station-timeout",
+    "error_type": "TimeoutError",
+    "message": "request timed out"
+  },
+  {
+    "url": "https://example.test/station-malformed-json",
+    "error_type": "MalformedJSON",
+    "message": "Expecting value: line 1 column 50 (char 49)"
+  },
+  {
+    "url": "https://example.test/station-incomplete-json",
+    "error_type": "InvalidPayload",
+    "message": "JSON payload missing required keys: station, reading"
+  },
+  {
+    "url": "https://example.test/station-missing",
+    "error_type": "HTTPError",
+    "message": "HTTP 404: Not Found"
+  }
+]
+
+  Script: api_client_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 8.1810 seconds
+    Peak Memory (median of 3): 20.34 MB
+    Stdout: {
+  "readings": [
+    {
+      "station": "https://api.example.com/stations/flaky/004",
+      "value": 91.22,
+      "unit": "kWh",
+      "latency_s": 0.137
+    },
+    {
+      "station": "https://api.example.com/stations/flaky/020",
+      "value": 48.56,
+      "unit": "kWh",
+      "latency_s": 0.104
+    },
+    {
+      "station": "https://api.example.com/stations/flaky/028",
+      "value": 15.49,
+      "unit": "kWh",
+      "latency_s": 0.325
+    },
+    {
+      "station": "https://api.example.com/stations/flaky/036",
+      "value": 85.75,
+      "unit": "kWh",
+      "latency_s": 0.383
+    },
+    {
+      "station": "https://api.example.com/stations/flaky/044",
+      "value": 22.62,
+      "unit": "kWh",
+      "latency_s": 0.357
+    },
+    {
+      "station": "https://api.example.com/stations/flaky/052",
+      "value": 31.55,
+      "unit": "kWh",
+      "latency_s": 0.183
+    },
+    {
+      "station": "https://api.example.com/stations/flaky/068",
+      "value": 82.05,
+      "unit": "kWh",
+      "latency_s": 0.075
+    },
+    {
+      "station": "https://api.example.com/stations/flaky/076",
+      "value": 93.02,
+      "unit": "kWh",
+      "latency_s": 0.092
+    },
+    {
+      "station": "https://api.example.com/stations/ok/000",
+      "value": 72.09,
+      "unit": "kWh",
+      "latency_s": 0.295
+    },
+    {
+      "station": "https://api.example.com/stations/ok/001",
+      "value": 99.76,
+      "unit": "kWh",
+      "latency_s": 0.256
+    },
+    {
+      "station": "https://api.example.com/stations/ok/002",
+      "value": 71.23,
+      "unit": "kWh",
+      "latency_s": 0.203
+    },
+    {
+      "station": "https://api.example.com/stations/ok/008",
+      "value": 61.05,
+      "unit": "kWh",
+      "latency_s": 0.166
+    },
+    {
+      "station": "https://api.example.com/stations/ok/009",
+      "value": 42.67,
+      "unit": "kWh",
+      "latency_s": 0.18
+    },
+    {
+      "station": "https://api.example.com/stations/ok/010",
+      "value": 57.94,
+      "unit": "kWh",
+      "latency_s": 0.111
+    },
+    {
+      "station": "https://api.example.com/stations/ok/016",
+      "value": 20.31,
+      "unit": "kWh",
+      "latency_s": 0.204
+    },
+    {
+      "station": "https://api.example.com/stations/ok/017",
+      "value": 69.57,
+      "unit": "kWh",
+      "latency_s": 0.125
+    },
+    {
+      "station": "https://api.example.com/stations/ok/018",
+      "value": 87.5,
+      "unit": "kWh",
+      "latency_s": 0.234
+    },
+    {
+      "station": "https://api.example.com/stations/ok/024",
+      "value": 78.58,
+      "unit": "kWh",
+      "latency_s": 0.242
+    },
+    {
+      "station": "https://api.example.com/stations/ok/025",
+      "value": 22.86,
+      "unit": "kWh",
+      "latency_s": 0.136
+    },
+    {
+      "station": "https://api.example.com/stations/ok/026",
+      "value": 15.76,
+      "unit": "kWh",
+      "latency_s": 0.153
+    },
+    {
+      "station": "https://api.example.com/stations/ok/032",
+      "value": 59.79,
+      "unit": "kWh",
+      "latency_s": 0.241
+    },
+    {
+      "station": "https://api.example.com/stations/ok/033",
+      "value": 71.24,
+      "unit": "kWh",
+      "latency_s": 0.146
+    },
+    {
+      "station": "https://api.example.com/stations/ok/034",
+      "value": 59.85,
+      "unit": "kWh",
+      "latency_s": 0.148
+    },
+    {
+      "station": "https://api.example.com/stations/ok/040",
+      "value": 27.9,
+      "unit": "kWh",
+      "latency_s": 0.273
+    },
+    {
+      "station": "https://api.example.com/stations/ok/041",
+      "value": 15.3,
+      "unit": "kWh",
+      "latency_s": 0.057
+    },
+    {
+      "station": "https://api.example.com/stations/ok/042",
+      "value": 15.96,
+      "unit": "kWh",
+      "latency_s": 0.109
+    },
+    {
+      "station": "https://api.example.com/stations/ok/048",
+      "value": 69.38,
+      "unit": "kWh",
+      "latency_s": 0.075
+    },
+    {
+      "station": "https://api.example.com/stations/ok/049",
+      "value": 89.62,
+      "unit": "kWh",
+      "latency_s": 0.189
+    },
+    {
+      "station": "https://api.example.com/stations/ok/050",
+      "value": 83.96,
+      "unit": "kWh",
+      "latency_s": 0.114
+    },
+    {
+      "station": "https://api.example.com/stations/ok/056",
+      "value": 62.52,
+      "unit": "kWh",
+      "latency_s": 0.247
+    },
+    {
+      "station": "https://api.example.com/stations/ok/057",
+      "value": 46.1,
+      "unit": "kWh",
+      "latency_s": 0.119
+    },
+    {
+      "station": "https://api.example.com/stations/ok/058",
+      "value": 93.6,
+      "unit": "kWh",
+      "latency_s": 0.3
+    },
+    {
+      "station": "https://api.example.com/stations/ok/064",
+      "value": 14.88,
+      "unit": "kWh",
+      "latency_s": 0.216
+    },
+    {
+      "station": "https://api.example.com/stations/ok/065",
+      "value": 44.63,
+      "unit": "kWh",
+      "latency_s": 0.094
+    },
+    {
+      "station": "https://api.example.com/stations/ok/066",
+      "value": 61.06,
+      "unit": "kWh",
+      "latency_s": 0.08
+    },
+    {
+      "station": "https://api.example.com/stations/ok/072",
+      "value": 77.05,
+      "unit": "kWh",
+      "latency_s": 0.286
+    },
+    {
+      "station": "https://api.example.com/stations/ok/073",
+      "value": 53.97,
+      "unit": "kWh",
+      "latency_s": 0.177
+    },
+    {
+      "station": "https://api.example.com/stations/ok/074",
+      "value": 70.45,
+      "unit": "kWh",
+      "latency_s": 0.29
+    },
+    {
+      "station": "https://api.example.com/stations/slow/013",
+      "value": 86.62,
+      "unit": "kWh",
+      "latency_s": 1.452
+    },
+    {
+      "station": "https://api.example.com/stations/slow/021",
+      "value": 80.66,
+      "unit": "kWh",
+      "latency_s": 1.489
+    },
+    {
+      "station": "https://api.example.com/stations/slow/029",
+      "value": 60.87,
+      "unit": "kWh",
+      "latency_s": 1.326
+    },
+    {
+      "station": "https://api.example.com/stations/slow/037",
+      "value": 69.16,
+      "unit": "kWh",
+      "latency_s": 1.305
+    },
+    {
+      "station": "https://api.example.com/stations/slow/053",
+      "value": 55.7,
+      "unit": "kWh",
+      "latency_s": 1.204
+    },
+    {
+      "station": "https://api.example.com/stations/slow/061",
+      "value": 10.65,
+      "unit": "kWh",
+      "latency_s": 1.411
+    },
+    {
+      "station": "https://api.example.com/stations/slow/069",
+      "value": 13.58,
+      "unit": "kWh",
+      "latency_s": 1.278
+    },
+    {
+      "station": "https://api.example.com/stations/slow/077",
+      "value": 88.7,
+      "unit": "kWh",
+      "latency_s": 1.302
+    },
+    {
+      "station": "https://api.example.com/stations/unstable/003",
+      "value": 46.34,
+      "unit": "kWh",
+      "latency_s": 0.117
+    },
+    {
+      "station": "https://api.example.com/stations/unstable/011",
+      "value": 75.75,
+      "unit": "kWh",
+      "latency_s": 0.422
+    },
+    {
+      "station": "https://api.example.com/stations/unstable/019",
+      "value": 83.44,
+      "unit": "kWh",
+      "latency_s": 0.206
+    },
+    {
+      "station": "https://api.example.com/stations/unstable/027",
+      "value": 57.8,
+      "unit": "kWh",
+      "latency_s": 0.933
+    },
+    {
+      "station": "https://api.example.com/stations/unstable/035",
+      "value": 61.27,
+      "unit": "kWh",
+      "latency_s": 0.508
+    },
+    {
+      "station": "https://api.example.com/stations/unstable/043",
+      "value": 50.63,
+      "unit": "kWh",
+      "latency_s": 0.622
+    },
+    {
+      "station": "https://api.example.com/stations/unstable/051",
+      "value": 64.59,
+      "unit": "kWh",
+      "latency_s": 0.175
+    },
+    {
+      "station": "https://api.example.com/stations/unstable/059",
+      "value": 40.62,
+      "unit": "kWh",
+      "latency_s": 0.706
+    },
+    {
+      "station": "https://api.example.com/stations/unstable/067",
+      "value": 74.77,
+      "unit": "kWh",
+      "latency_s": 0.291
+    },
+    {
+      "station": "https://api.example.com/stations/unstable/075",
+      "value": 75.1,
+      "unit": "kWh",
+      "latency_s": 0.771
+    }
+  ],
+  "errors": [
+    {
+      "station": "https://api.example.com/stations/flaky/012",
+      "error": "Temporary upstream error",
+      "type": "ConnectionError",
+      "attempts": 3,
+      "retryable": true
+    },
+    {
+      "station": "https://api.example.com/stations/flaky/060",
+      "error": "Request timed out after 1.5s",
+      "type": "TimeoutError",
+      "attempts": 3,
+      "retryable": true
+    },
+    {
+      "station": "https://api.example.com/stations/forbidden/006",
+      "error": "403 Forbidden",
+      "type": "PermissionError",
+      "attempts": 1,
+      "retryable": false
+    },
+    {
+      "station": "https://api.example.com/stations/forbidden/014",
+      "error": "403 Forbidden",
+      "type": "PermissionError",
+      "attempts": 1,
+      "retryable": false
+    },
+    {
+      "station": "https://api.example.com/stations/forbidden/022",
+      "error": "403 Forbidden",
+      "type": "PermissionError",
+      "attempts": 1,
+      "retryable": false
+    },
+    {
+      "station": "https://api.example.com/stations/forbidden/030",
+      "error": "403 Forbidden",
+      "type": "PermissionError",
+      "attempts": 1,
+      "retryable": false
+    },
+    {
+      "station": "https://api.example.com/stations/forbidden/038",
+      "error": "403 Forbidden",
+      "type": "PermissionError",
+      "attempts": 1,
+      "retryable": false
+    },
+    {
+      "station": "https://api.example.com/stations/forbidden/046",
+      "error": "403 Forbidden",
+      "type": "PermissionError",
+      "attempts": 1,
+      "retryable": false
+    },
+    {
+      "station": "https://api.example.com/stations/forbidden/054",
+      "error": "403 Forbidden",
+      "type": "PermissionError",
+      "attempts": 1,
+      "retryable": false
+    },
+    {
+      "station": "https://api.example.com/stations/forbidden/062",
+      "error": "403 Forbidden",
+      "type": "PermissionError",
+      "attempts": 1,
+      "retryable": false
+    },
+    {
+      "station": "https://api.example.com/stations/forbidden/070",
+      "error": "403 Forbidden",
+      "type": "PermissionError",
+      "attempts": 1,
+      "retryable": false
+    },
+    {
+      "station": "https://api.example.com/stations/forbidden/078",
+      "error": "403 Forbidden",
+      "type": "PermissionError",
+      "attempts": 1,
+      "retryable": false
+    },
+    {
+      "station": "https://api.example.com/stations/notfound/007",
+      "error": "404 Not Found",
+      "type": "FileNotFoundError",
+      "attempts": 1,
+      "retryable": false
+    },
+    {
+      "station": "https://api.example.com/stations/notfound/015",
+      "error": "404 Not Found",
+      "type": "FileNotFoundError",
+      "attempts": 1,
+      "retryable": false
+    },
+    {
+      "station": "https://api.example.com/stations/notfound/023",
+      "error": "404 Not Found",
+      "type": "FileNotFoundError",
+      "attempts": 1,
+      "retryable": false
+    },
+    {
+      "station": "https://api.example.com/stations/notfound/031",
+      "error": "404 Not Found",
+      "type": "FileNotFoundError",
+      "attempts": 1,
+      "retryable": false
+    },
+    {
+      "station": "https://api.example.com/stations/notfound/039",
+      "error": "404 Not Found",
+      "type": "FileNotFoundError",
+      "attempts": 1,
+      "retryable": false
+    },
+    {
+      "station": "https://api.example.com/stations/notfound/047",
+      "error": "404 Not Found",
+      "type": "FileNotFoundError",
+      "attempts": 1,
+      "retryable": false
+    },
+    {
+      "station": "https://api.example.com/stations/notfound/055",
+      "error": "404 Not Found",
+      "type": "FileNotFoundError",
+      "attempts": 1,
+      "retryable": false
+    },
+    {
+      "station": "https://api.example.com/stations/notfound/063",
+      "error": "404 Not Found",
+      "type": "FileNotFoundError",
+      "attempts": 1,
+      "retryable": false
+    },
+    {
+      "station": "https://api.example.com/stations/notfound/071",
+      "error": "404 Not Found",
+      "type": "FileNotFoundError",
+      "attempts": 1,
+      "retryable": false
+    },
+    {
+      "station": "https://api.example.com/stations/notfound/079",
+      "error": "404 Not Found",
+      "type": "FileNotFoundError",
+      "attempts": 1,
+      "retryable": false
+    },
+    {
+      "station": "https://api.example.com/stations/slow/005",
+      "error": "Request timed out after 1.5s",
+      "type": "TimeoutError",
+      "attempts": 3,
+      "retryable": true
+    },
+    {
+      "station": "https://api.example.com/stations/slow/045",
+      "error": "Request timed out after 1.5s",
+      "type": "TimeoutError",
+      "attempts": 3,
+      "retryable": true
+    }
+  ]
+}
+Total elapsed time: 8.085s
+Successful readings: 56
+Errors: 24
+
+  Script: dynamic_programming_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0575 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Optimal route: [0, 2, 3, 1, 0]
+Total energy: 80
+
+  Script: dynamic_programming_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0576 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Feasible: True
+Route: [0, 1, 3, 2, 0]
+Arrival times: [0, 4, 9, 15, 23]
+Total energy: 17
+
+  Script: dynamic_programming_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.3812 seconds
+    Peak Memory (median of 3): 68.09 MB
+    Stdout: Cost matrix:
+[0, 4, 1, 9, 8, 8, 5, 4, 18, 3, 19, 14, 2, 1, 3]
+[4, 0, 7, 8, 17, 20, 1, 18, 7, 18, 14, 8, 15, 19, 9]
+[1, 7, 0, 1, 6, 14, 11, 9, 5, 7, 11, 4, 3, 13, 4]
+[9, 8, 1, 0, 12, 12, 20, 9, 2, 15, 18, 4, 13, 3, 18]
+[8, 17, 6, 12, 0, 10, 20, 12, 19, 7, 3, 2, 8, 10, 3]
+[8, 20, 14, 12, 10, 0, 8, 4, 13, 9, 15, 12, 6, 12, 12]
+[5, 1, 11, 20, 20, 8, 0, 7, 9, 3, 20, 6, 18, 8, 6]
+[4, 18, 9, 9, 12, 4, 7, 0, 15, 13, 9, 18, 8, 11, 2]
+[18, 7, 5, 2, 19, 13, 9, 15, 0, 8, 2, 11, 13, 9, 3]
+[3, 18, 7, 15, 7, 9, 3, 13, 8, 0, 7, 19, 11, 7, 16]
+[19, 14, 11, 18, 3, 15, 20, 9, 2, 7, 0, 13, 15, 5, 9]
+[14, 8, 4, 4, 2, 12, 6, 18, 11, 19, 13, 0, 5, 8, 18]
+[2, 15, 3, 13, 8, 6, 18, 8, 13, 11, 15, 5, 0, 18, 9]
+[1, 19, 13, 3, 10, 12, 8, 11, 9, 7, 5, 8, 18, 0, 19]
+[3, 9, 4, 18, 3, 12, 6, 2, 3, 16, 9, 18, 9, 19, 0]
+
+Time windows:
+0 (3, 51)
+1 (6, 33)
+2 (10, 45)
+3 (7, 54)
+4 (9, 49)
+5 (15, 48)
+6 (14, 46)
+7 (19, 47)
+8 (21, 64)
+9 (22, 70)
+10 (25, 55)
+11 (23, 56)
+12 (26, 46)
+13 (30, 74)
+14 (32, 81)
+
+Result:
+{'route': [], 'arrival_times': [], 'total_time': None, 'feasible': False}
+
+Elapsed time: 0.287106 seconds
+
+  Script: secure_storage_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1128 seconds
+    Peak Memory (median of 3): 23.30 MB
+    Stdout: Confidential corporate document: Q3 acquisition strategy.
+
+  Script: secure_storage_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1648 seconds
+    Peak Memory (median of 3): 19.41 MB
+    Stdout: Storing file...
+Stored successfully.
+
+Retrieving with correct passphrase...
+Success: Confidential report: launch at 09:00.
+
+Retrieving with wrong passphrase...
+Failed: incorrect passphrase or integrity verification failed.
+
+Retrieving corrupted file...
+Failed: corrupted file detected (integrity verification failed).
+
+  Script: secure_storage_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.3270 seconds
+    Peak Memory (median of 3): 27.58 MB
+    Stdout: SecureStorage demo complete
+Users: 3
+Files stored: 7
+Files retrieved and verified: 7
+alice: 3 files -> ['archive/log1.txt', 'notes.txt', 'report.md']
+bob: 2 files -> ['draft.txt', 'todo.txt']
+carol: 2 files -> ['large.txt', 'summary.json']
+Time taken: 0.2282 seconds
+
+

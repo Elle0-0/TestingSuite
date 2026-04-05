@@ -1,0 +1,413 @@
+{
+  "claude": {
+    "api_client_iteration_1_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 0.3228,
+      "runtime_all": [
+        0.3309,
+        0.2706,
+        0.3228
+      ],
+      "memory_median": 29.17,
+      "memory_all": [
+        29.42,
+        29.17,
+        29.12
+      ]
+    },
+    "api_client_iteration_2_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 8.6358,
+      "runtime_all": [
+        8.6358,
+        8.4579,
+        8.7026
+      ],
+      "memory_median": 38.73,
+      "memory_all": [
+        39.28,
+        38.73,
+        38.73
+      ]
+    },
+    "api_client_iteration_3_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 32.5768,
+      "runtime_all": [
+        32.5768,
+        32.2143,
+        32.7812
+      ],
+      "memory_median": 49.27,
+      "memory_all": [
+        49.08,
+        49.27,
+        49.41
+      ]
+    },
+    "dynamic_programming_iteration_1_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 0.0566,
+      "runtime_all": [
+        0.0559,
+        0.0566,
+        0.0566
+      ],
+      "memory_median": 0.03,
+      "memory_all": [
+        0.03,
+        0.03,
+        0.03
+      ]
+    },
+    "dynamic_programming_iteration_2_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 0.0566,
+      "runtime_all": [
+        0.055,
+        0.0568,
+        0.0566
+      ],
+      "memory_median": 0.03,
+      "memory_all": [
+        0.03,
+        0.03,
+        0.03
+      ]
+    },
+    "dynamic_programming_iteration_3_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 0.1667,
+      "runtime_all": [
+        0.1666,
+        0.1673,
+        0.1667
+      ],
+      "memory_median": 37.61,
+      "memory_all": [
+        37.61,
+        37.55,
+        37.75
+      ]
+    },
+    "secure_storage_iteration_1_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 0.1118,
+      "runtime_all": [
+        0.1627,
+        0.1118,
+        0.1115
+      ],
+      "memory_median": 22.53,
+      "memory_all": [
+        23.38,
+        22.53,
+        22.34
+      ]
+    },
+    "secure_storage_iteration_2_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 0.2211,
+      "runtime_all": [
+        0.2216,
+        0.2211,
+        0.2164
+      ],
+      "memory_median": 25.44,
+      "memory_all": [
+        25.23,
+        25.45,
+        25.44
+      ]
+    },
+    "secure_storage_iteration_3_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 2.821,
+      "runtime_all": [
+        2.7686,
+        2.821,
+        2.8238
+      ],
+      "memory_median": 27.09,
+      "memory_all": [
+        25.84,
+        29.95,
+        27.09
+      ]
+    }
+  },
+  "gemini": {
+    "api_client_iteration_1_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 0.7641,
+      "runtime_all": [
+        0.7669,
+        0.7641,
+        0.7534
+      ],
+      "memory_median": 34.08,
+      "memory_all": [
+        34.06,
+        34.17,
+        34.08
+      ]
+    },
+    "api_client_iteration_2_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 19.3258,
+      "runtime_all": [
+        19.5394,
+        19.3258,
+        19.2016
+      ],
+      "memory_median": 38.34,
+      "memory_all": [
+        38.14,
+        38.61,
+        38.34
+      ]
+    },
+    "api_client_iteration_3_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 45.1888,
+      "runtime_all": [
+        45.3397,
+        45.1888,
+        45.0859
+      ],
+      "memory_median": 240.55,
+      "memory_all": [
+        231.98,
+        240.55,
+        252.8
+      ]
+    },
+    "dynamic_programming_iteration_1_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 0.0567,
+      "runtime_all": [
+        0.0578,
+        0.0567,
+        0.0565
+      ],
+      "memory_median": 0.03,
+      "memory_all": [
+        0.03,
+        0.03,
+        0.03
+      ]
+    },
+    "dynamic_programming_iteration_2_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 0.0547,
+      "runtime_all": [
+        0.1547,
+        0.0547,
+        0.0542
+      ],
+      "memory_median": 0.03,
+      "memory_all": [
+        4.28,
+        0.03,
+        0.03
+      ]
+    },
+    "dynamic_programming_iteration_3_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 0.0566,
+      "runtime_all": [
+        0.0566,
+        0.0579,
+        0.0566
+      ],
+      "memory_median": 0.03,
+      "memory_all": [
+        0.03,
+        0.03,
+        0.03
+      ]
+    },
+    "secure_storage_iteration_1_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 0.3251,
+      "runtime_all": [
+        0.3781,
+        0.3206,
+        0.3251
+      ],
+      "memory_median": 25.12,
+      "memory_all": [
+        25.08,
+        25.2,
+        25.12
+      ]
+    },
+    "secure_storage_iteration_2_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 0.1632,
+      "runtime_all": [
+        0.1577,
+        0.1632,
+        0.1658
+      ],
+      "memory_median": 25.45,
+      "memory_all": [
+        25.56,
+        25.34,
+        25.45
+      ]
+    },
+    "secure_storage_iteration_3_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 0.9665,
+      "runtime_all": [
+        0.9665,
+        0.9742,
+        0.9244
+      ],
+      "memory_median": 39.66,
+      "memory_all": [
+        39.72,
+        39.66,
+        39.5
+      ]
+    }
+  },
+  "gpt": {
+    "api_client_iteration_1_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 0.1098,
+      "runtime_all": [
+        0.1071,
+        0.1098,
+        0.1114
+      ],
+      "memory_median": 23.03,
+      "memory_all": [
+        22.5,
+        23.34,
+        23.03
+      ]
+    },
+    "api_client_iteration_2_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 5.2374,
+      "runtime_all": [
+        5.2157,
+        5.2374,
+        5.2558
+      ],
+      "memory_median": 23.78,
+      "memory_all": [
+        23.78,
+        23.66,
+        23.98
+      ]
+    },
+    "api_client_iteration_3_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 11.8371,
+      "runtime_all": [
+        11.8336,
+        11.8371,
+        11.8464
+      ],
+      "memory_median": 20.55,
+      "memory_all": [
+        20.55,
+        20.5,
+        20.67
+      ]
+    },
+    "dynamic_programming_iteration_1_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 0.0568,
+      "runtime_all": [
+        0.0559,
+        0.0568,
+        0.0607
+      ],
+      "memory_median": 0.03,
+      "memory_all": [
+        0.03,
+        0.03,
+        0.03
+      ]
+    },
+    "dynamic_programming_iteration_2_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 0.0617,
+      "runtime_all": [
+        0.0618,
+        0.0617,
+        0.0604
+      ],
+      "memory_median": 0.03,
+      "memory_all": [
+        0.03,
+        0.03,
+        0.03
+      ]
+    },
+    "dynamic_programming_iteration_3_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 0.2783,
+      "runtime_all": [
+        0.2767,
+        0.2783,
+        0.3332
+      ],
+      "memory_median": 52.78,
+      "memory_all": [
+        52.78,
+        54.03,
+        52.08
+      ]
+    },
+    "secure_storage_iteration_1_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 0.1168,
+      "runtime_all": [
+        0.1168,
+        0.1179,
+        0.1151
+      ],
+      "memory_median": 17.73,
+      "memory_all": [
+        17.69,
+        17.81,
+        17.73
+      ]
+    },
+    "secure_storage_iteration_2_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 0.17,
+      "runtime_all": [
+        0.1714,
+        0.1616,
+        0.17
+      ],
+      "memory_median": 19.19,
+      "memory_all": [
+        19.38,
+        19.19,
+        19.19
+      ]
+    },
+    "secure_storage_iteration_3_solution.py": {
+      "exit_code": 0,
+      "runtime_median": 0.2872,
+      "runtime_all": [
+        0.2922,
+        0.2334,
+        0.2872
+      ],
+      "memory_median": 26.62,
+      "memory_all": [
+        26.62,
+        26.52,
+        26.66
+      ]
+    }
+  }
+}

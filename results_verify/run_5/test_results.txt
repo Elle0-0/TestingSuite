@@ -1,0 +1,700 @@
+Model: claude
+==================================================
+  Script: api_client_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1122 seconds
+    Peak Memory (median of 3): 22.98 MB
+    Stdout: Weather Station Data Collection Client
+=============================================
+Fetching data from 3 station(s)...
+
+Could not reach live endpoints (<urlopen error [Errno 8] nodename nor servname provided, or not known>).
+Demonstrating with mock data instead:
+
+Collected 3 reading(s):
+
+  Station ID  : WS-001
+  Temperature : 22.5°C
+  Humidity    : 65.3%
+  Timestamp   : 2024-01-15T10:30:00Z
+----------------------------------------
+  Station ID  : WS-002
+  Temperature : 18.2°C
+  Humidity    : 72.1%
+  Timestamp   : 2024-01-15T10:30:05Z
+----------------------------------------
+  Station ID  : WS-003
+  Temperature : 25.8°C
+  Humidity    : 58.7%
+  Timestamp   : 2024-01-15T10:30:02Z
+----------------------------------------
+
+All readings as JSON:
+[
+  {
+    "station_id": "WS-001",
+    "temperature": 22.5,
+    "humidity": 65.3,
+    "timestamp": "2024-01-15T10:30:00Z"
+  },
+  {
+    "station_id": "WS-002",
+    "temperature": 18.2,
+    "humidity": 72.1,
+    "timestamp": "2024-01-15T10:30:05Z"
+  },
+  {
+    "station_id": "WS-003",
+    "temperature": 25.8,
+    "humidity": 58.7,
+    "timestamp": "2024-01-15T10:30:02Z"
+  }
+]
+
+  Script: api_client_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 46.6277 seconds
+    Peak Memory (median of 3): 42.55 MB
+    Stdout: Fetching data from stations...
+============================================================
+
+Successful readings: 2
+----------------------------------------
+  URL: https://httpbin.org/json
+  Data: {'slideshow': {'author': 'Yours Truly', 'date': 'date of publication', 'slides': [{'title': 'Wake up...
+
+  URL: https://httpbin.org/get
+  Data: {'args': {}, 'headers': {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate, zstd', 'Host': 'httpbin...
+
+
+Errors encountered: 5
+----------------------------------------
+  URL: https://httpbin.org/status/500
+  Type: HTTPError
+  Message: Status 500: 500 Server Error: INTERNAL SERVER ERROR for url: https://httpbin.org/status/500
+
+  URL: https://httpbin.org/status/404
+  Type: HTTPError
+  Message: Status 404: 404 Client Error: NOT FOUND for url: https://httpbin.org/status/404
+
+  URL: https://httpbin.org/delay/15
+  Type: Timeout
+  Message: HTTPSConnectionPool(host='httpbin.org', port=443): Read timed out. (read timeout=10)
+
+  URL: https://this-station-does-not-exist.example.com/data
+  Type: ConnectionError
+  Message: HTTPSConnectionPool(host='this-station-does-not-exist.example.com', port=443): Max retries exceeded with url: /data (Caused by NameResolutionError("HT...
+
+  URL: https://httpbin.org/status/429
+  Type: HTTPError
+  Message: Status 429: Rate limited (429) after 3 attempts
+
+  Script: api_client_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 4.6873 seconds
+    Peak Memory (median of 3): 48.97 MB
+    Stdout: Fetching data from 53 stations concurrently...
+Max concurrent requests: 10
+------------------------------------------------------------
+
+Results Summary:
+  Total stations:     53
+  Successful:         50
+  Failed:             3
+  Total elapsed time: 4.85s
+  Avg time/station:   0.092s
+
+Sample successful readings (first 3):
+  [1] https://httpbin.org/anything?station=0
+      Data: {"args": {"station": "0"}, "data": "", "files": {}, "form": {}, "headers": {"Accept": "*/*", "Accept...
+  [2] https://httpbin.org/anything?station=1
+      Data: {"args": {"station": "1"}, "data": "", "files": {}, "form": {}, "headers": {"Accept": "*/*", "Accept...
+  [3] https://httpbin.org/anything?station=2
+      Data: {"args": {"station": "2"}, "data": "", "files": {}, "form": {}, "headers": {"Accept": "*/*", "Accept...
+
+Sample errors (first 5):
+  [1] https://nonexistent-weather-station-12345.example.com/api/data
+      Error: Connection error: Cannot connect to host nonexistent-weather-station-12345.example.com:443 ssl:default [nodename nor servname provided, or not known]
+  [2] https://another-fake-station-67890.example.com/api/readings
+      Error: Connection error: Cannot connect to host another-fake-station-67890.example.com:443 ssl:default [nodename nor servname provided, or not known]
+  [3] http://localhost:19999/api/station/data
+      Error: Connection error: Cannot connect to host localhost:19999 ssl:default [Multiple exceptions: [Errno 61] Connect call failed ('::1', 19999, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 19999)]
+
+============================================================
+Done. Total time: 4.85s
+
+  Script: dynamic_programming_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0577 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Optimal route: [0, 2, 3, 1, 0]
+Total energy: 80
+
+  Script: dynamic_programming_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0576 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: === Drone Route Optimization with Time Windows ===
+Feasible: False
+Route: []
+Arrival Times: []
+Total Energy: 0
+
+=== Infeasible Example ===
+Feasible: False
+Route: []
+Arrival Times: []
+Total Energy: 0
+
+  Script: dynamic_programming_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.2227 seconds
+    Peak Memory (median of 3): 47.23 MB
+    Stdout: Number of stations: 15
+Time windows: [(0, 500), (43.48, 161.54), (95.38, 276.76), (26.34, 151.43), (17.87, 204.76)]... (showing first 5)
+Inspection times: [2.94, 1.28, 4.04, 4.06, 1.51]... (showing first 5)
+
+Result:
+  Route: [0, 10, 9, 3, 6, 4, 11, 13, 5, 12, 7, 1, 14, 8, 2]
+  Total cost: 105.32
+  Arrival times: [0, 32.42, 53.04, 60.64, 67.95, 82.42, 93.32, 98.04, 102.41, 117.53, 135.32, 138.7, 145.52, 151.08, 182.85]
+  Feasible: True
+  Number of stations visited: 15
+
+Elapsed time: 0.1386 seconds
+
+Solution verified successfully!
+
+  Script: secure_storage_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1089 seconds
+    Peak Memory (median of 3): 23.12 MB
+    Stdout: === Secure Storage Demo ===
+
+Original document:
+CONFIDENTIAL REPORT
+====================
+Project: Phoenix
+Classification: Top Secret
+
+The quarterly revenue exceeded projections by 15%. Key acquisitions are proceeding as planned. Board approval is expected by end of Q3.
+
+— Chief Strategy Officer
+
+Document encrypted and stored to 'confidential_document.enc'.
+Raw file size: 293 bytes
+Raw file content (first 80 bytes hex): 28090fa40a7eb39c9501424f3c2ea1b2ffc83ad2f56fb1a5ac8dd6b0521709ad431c6002aaf308516d8c669ccdba6d3ab9ae5bcac3d31a4f3e57cf5006531f0bf6248cd2c45073262223390631c44dab
+
+Retrieved document (correct passphrase):
+CONFIDENTIAL REPORT
+====================
+Project: Phoenix
+Classification: Top Secret
+
+The quarterly revenue exceeded projections by 15%. Key acquisitions are proceeding as planned. Board approval is expected by end of Q3.
+
+— Chief Strategy Officer
+
+✓ Verification passed: retrieved document matches the original exactly.
+
+✓ Decryption with wrong passphrase correctly failed: InvalidTag
+
+Cleaned up 'confidential_document.enc'.
+
+  Script: secure_storage_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1125 seconds
+    Peak Memory (median of 3): 23.72 MB
+    Stdout: ============================================================
+Test 1: Successful storage and retrieval
+============================================================
+Stored file: _secure_test_file.enc
+Retrieved data: This is highly confidential information that must be protected.
+SUCCESS: Data matches original.
+
+============================================================
+Test 2: Retrieval with wrong passphrase
+============================================================
+EXPECTED FAILURE - Wrong Passphrase: Incorrect passphrase. Unable to decrypt file.
+The system correctly detected the wrong passphrase.
+
+============================================================
+Test 3: Retrieval from corrupted file
+============================================================
+Stored file: _secure_test_corrupted.enc
+File has been intentionally corrupted.
+EXPECTED FAILURE - Corrupted File: File has been corrupted. Data integrity check failed.
+The system correctly detected file corruption.
+
+============================================================
+Test 4: Verify original file unaffected by failed attempts
+============================================================
+Retrieved data: This is highly confidential information that must be protected.
+SUCCESS: Original file remains intact and accessible.
+Failed access attempts did not compromise other stored files.
+
+============================================================
+All demonstrations complete. Test files cleaned up.
+============================================================
+
+  Script: secure_storage_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 1.8146 seconds
+    Peak Memory (median of 3): 24.56 MB
+    Stdout: ======================================================================
+Secure Storage - Third Iteration: Scaling & Multi-File Operations
+======================================================================
+
+Stored 56 files across 3 users in 0.8761 seconds
+
+--- File Listings ---
+  alice: 4 file(s)
+    - report_q1.txt
+    - report_q2.txt
+    - notes.txt
+    - credentials.txt
+  bob: 2 file(s)
+    - project_plan.txt
+    - budget.txt
+  charlie: 50 file(s)
+    - document_0000.txt
+    - document_0001.txt
+    - document_0002.txt
+    ... and 47 more
+
+--- Retrieval & Verification ---
+  Retrieved 56 files in 0.8517 seconds
+  Errors: 0
+
+--- Security Checks ---
+  PASS: Wrong passphrase detected — Integrity check failed: wrong passphrase or data has been tampered with
+  PASS: Missing file detected — No file 'nonexistent.txt' found for user 'alice'
+  PASS: Cross-user isolation — No file 'report_q1.txt' found for user 'bob'
+
+--- Tamper Detection ---
+  PASS: Tampered ciphertext detected — Integrity check failed: wrong passphrase or data has been tampered with
+
+======================================================================
+Summary:
+  Total users:        3
+  Total files stored: 56
+  Store time:         0.8761s (63.9 files/sec)
+  Retrieve time:      0.8517s (65.7 files/sec)
+  Integrity errors:   0
+======================================================================
+
+
+Model: gemini
+==================================================
+  Script: api_client_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1126 seconds
+    Peak Memory (median of 3): 23.22 MB
+    Stdout: [
+  {
+    "station_id": "station-1",
+    "temperature": 25.5,
+    "humidity": 60.1,
+    "timestamp": "2023-10-27T10:00:00Z"
+  },
+  {
+    "station_id": "station-2",
+    "temperature": 24.9,
+    "humidity": 62.5,
+    "timestamp": "2023-10-27T10:01:00Z"
+  },
+  {
+    "station_id": "station-3",
+    "temperature": 26.1,
+    "humidity": 58.9,
+    "timestamp": "2023-10-27T09:59:00Z"
+  }
+]
+
+  Script: api_client_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.2650 seconds
+    Peak Memory (median of 3): 34.56 MB
+    Stdout: --- Successful Readings ---
+[]
+
+--- Error Reports ---
+[{'error_type': 'HTTPError',
+  'message': '400 Client Error: Bad Request for url: '
+             'http://127.0.0.1:8000/success',
+  'url': 'http://127.0.0.1:8000/success'},
+ {'error_type': 'HTTPError',
+  'message': '400 Client Error: Bad Request for url: '
+             'http://127.0.0.1:8000/retry_then_success',
+  'url': 'http://127.0.0.1:8000/retry_then_success'},
+ {'error_type': 'HTTPError',
+  'message': '400 Client Error: Bad Request for url: '
+             'http://127.0.0.1:8000/rate_limit',
+  'url': 'http://127.0.0.1:8000/rate_limit'},
+ {'error_type': 'HTTPError',
+  'message': '400 Client Error: Bad Request for url: '
+             'http://127.0.0.1:8000/rate_limit',
+  'url': 'http://127.0.0.1:8000/rate_limit'},
+ {'error_type': 'HTTPError',
+  'message': '400 Client Error: Bad Request for url: '
+             'http://127.0.0.1:8000/rate_limit',
+  'url': 'http://127.0.0.1:8000/rate_limit'},
+ {'error_type': 'HTTPError',
+  'message': '400 Client Error: Bad Request for url: '
+             'http://127.0.0.1:8000/rate_limit',
+  'url': 'http://127.0.0.1:8000/rate_limit'},
+ {'error_type': 'HTTPError',
+  'message': '400 Client Error: Bad Request for url: '
+             'http://127.0.0.1:8000/bad_json',
+  'url': 'http://127.0.0.1:8000/bad_json'},
+ {'error_type': 'HTTPError',
+  'message': '400 Client Error: Bad Request for url: '
+             'http://127.0.0.1:8000/timeout',
+  'url': 'http://127.0.0.1:8000/timeout'},
+ {'error_type': 'HTTPError',
+  'message': '400 Client Error: Bad Request for url: '
+             'http://127.0.0.1:8000/permanent_fail',
+  'url': 'http://127.0.0.1:8000/permanent_fail'},
+ {'error_type': 'HTTPError',
+  'message': '400 Client Error: Bad Request for url: '
+             'http://127.0.0.1:8000/not_a_real_url',
+  'url': 'http://127.0.0.1:8000/not_a_real_url'}]
+
+  Script: api_client_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 27.0055 seconds
+    Peak Memory (median of 3): 53.34 MB
+    Stdout: Fetching data for 43 stations...
+
+--- Summary ---
+Successful readings: 0
+Failed attempts:     43
+
+--- Errors ---
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/1.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/1.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/2.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/2.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/3.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/3.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/4.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/4.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/5.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/5.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/6.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/6.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/7.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/7.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/8.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/8.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/9.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/9.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/10.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/10.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/11.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/11.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/12.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/12.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/13.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/13.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/14.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/14.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/15.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/15.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/16.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/16.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/17.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/17.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/18.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/18.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/19.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/19.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/20.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/20.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/1.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/1.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/2.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/2.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/3.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/3.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/4.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/4.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/5.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/5.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/6.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/6.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/7.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/7.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/8.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/8.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/9.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/9.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/10.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/10.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/11.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/11.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/12.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/12.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/13.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/13.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/14.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/14.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/15.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/15.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/16.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/16.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/17.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/17.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/18.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/18.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/19.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/19.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/20.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/20.json after 3 attempts
+URL: https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/999.json | Error: ConnectionError: Failed to fetch https://raw.githubusercontent.com/grid-tools/static-data/main/api-client-test-data/stations/999.json after 3 attempts
+URL: http://httpbin.org/delay/10 | Error: ConnectionError: Failed to fetch http://httpbin.org/delay/10 after 3 attempts
+URL: https://invalid.domain/data.json | Error: ConnectionError: Failed to fetch https://invalid.domain/data.json after 3 attempts
+
+--- Sample of Readings (first 5) ---
+[]
+
+Total execution time: 26.66 seconds
+
+  Script: dynamic_programming_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0571 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Optimal route: [0, 1, 3, 2, 0]
+Total energy: 80
+
+  Script: dynamic_programming_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0573 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: feasible = True
+route = [0, 1, 2, 3, 0]
+arrival_times = ['0.00', '10.00', '40.00', '80.00', '105.00']
+total_energy = 90
+
+  Script: dynamic_programming_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.3261 seconds
+    Peak Memory (median of 3): 41.81 MB
+    Stdout: Generated a random test case with 15 stations.
+
+--- Optimal Route ---
+Minimum Cost: 4868.38
+Route: 0 -> 3 -> 7 -> 14 -> 5 -> 6 -> 4 -> 11 -> 13 -> 1 -> 12 -> 9 -> 10 -> 2 -> 8 -> 0
+
+Elapsed time: 0.2733 seconds
+
+  Script: secure_storage_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.3278 seconds
+    Peak Memory (median of 3): 25.09 MB
+    Stdout: Successfully stored confidential data to 'confidential_document.bin'.
+
+Attempting retrieval with the CORRECT passphrase...
+Success! Decrypted content matches original content:
+--------------------
+This is a highly confidential document.
+Project: Chimera
+Status: Active
+Details: All agents must report to Site-B by 0400.
+--------------------
+
+Attempting retrieval with the WRONG passphrase...
+Success! Decryption failed as expected with the wrong passphrase.
+
+Cleaned up file: 'confidential_document.bin'
+
+  Script: secure_storage_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.4379 seconds
+    Peak Memory (median of 3): 25.56 MB
+    Stdout: --- Secure Storage Demo ---
+
+[DEMO 1: Successful Storage and Retrieval]
+File 'my_secure_file.dat' stored successfully.
+File retrieved successfully.
+  - Original data:    'This is a highly confidential message that needs integrity.'
+  - Retrieved data:   'This is a highly confidential message that needs integrity.'
+
+[DEMO 2: Failed Retrieval (Wrong Passphrase)]
+Attempting to retrieve 'my_secure_file.dat' with a wrong passphrase...
+Caught expected exception: Failed to retrieve file: incorrect passphrase or file has been corrupted.
+
+[DEMO 3: Failed Retrieval (Corrupted File)]
+File 'my_secure_file.dat' has been intentionally corrupted.
+Attempting to retrieve the corrupted file with the correct passphrase...
+Caught expected exception: Failed to retrieve file: incorrect passphrase or file has been corrupted.
+
+Cleanup: Removed 'my_secure_file.dat'.
+
+  Script: secure_storage_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.7032 seconds
+    Peak Memory (median of 3): 45.03 MB
+    Stdout: --- Storing Files ---
+Storing files for user_alice...
+  Stored 'notes.txt'
+  Stored 'project_plan.docx'
+  Stored 'large_log.log'
+Storing files for user_bob...
+  Stored 'shopping_list.txt'
+  Stored 'vacation_ideas.md'
+
+--- Listing and Retrieving Files ---
+Files for user_alice: ['notes.txt', 'project_plan.docx', 'large_log.log']
+Retrieved 'notes.txt' for alice: 'This is a secret note.'
+Retrieved 'shopping_list.txt' for bob: 'Milk, Bread, Eggs'
+
+--- Testing Error Handling ---
+Successfully caught error: Invalid passphrase or corrupted metadata.
+Successfully caught error: File 'non_existent_file.txt' not found for user 'user_alice'.
+
+--- Summary ---
+Total files stored: 5
+Time taken for storage operations: 0.3492 seconds
+
+Cleaned up storage directory: 'secure_storage_demo'
+
+
+Model: gpt
+==================================================
+  Script: api_client_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.2170 seconds
+    Peak Memory (median of 3): 28.97 MB
+    Stdout: Demo request failed: HTTP Error 404: Not Found
+
+  Script: api_client_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 5.1264 seconds
+    Peak Memory (median of 3): 23.81 MB
+    Stdout: Readings:
+[
+  {
+    "station": "alpha",
+    "temperature": 21.4,
+    "timestamp": "2026-03-23T12:00:00Z"
+  },
+  {
+    "station": "retry-500",
+    "temperature": 19.8,
+    "timestamp": "2026-03-23T12:01:00Z"
+  },
+  {
+    "station": "rate-limit",
+    "temperature": 20.1,
+    "timestamp": "2026-03-23T12:02:00Z"
+  }
+]
+Errors:
+[
+  {
+    "url": "https://example.com/stations/malformed-json",
+    "error_type": "MalformedResponseError",
+    "message": "invalid JSON: expecting value"
+  },
+  {
+    "url": "https://example.com/stations/incomplete",
+    "error_type": "IncompleteResponseError",
+    "message": "missing required fields: temperature"
+  },
+  {
+    "url": "https://example.com/stations/timeout",
+    "error_type": "URLError",
+    "message": "<urlopen error timed out>"
+  }
+]
+
+  Script: api_client_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 3.5861 seconds
+    Peak Memory (median of 3): 20.14 MB
+    Stdout: Readings:
+  station-001: 21.37
+  station-002: 22.74
+  station-003: 24.11
+  station-004: 25.48
+  station-005: 22.52
+  station-006: 28.22
+  station-008: 30.96
+  station-010: 54.85
+  station-012: 36.44
+  station-013: 37.81
+  station-015: 88.46
+  station-016: 41.92
+  station-017: 43.29
+  station-019: 46.03
+  station-020: 33.59
+  station-023: 51.51
+  station-024: 52.88
+  station-025: 95.32
+  station-026: 55.62
+  station-029: 59.73
+  station-030: 43.76
+  station-031: 62.47
+  station-032: 63.84
+  station-034: 66.58
+  station-037: 20.69
+  station-038: 22.06
+  station-039: 23.43
+  station-040: 42.4
+  station-041: 26.17
+  station-043: 28.91
+  station-046: 33.02
+  station-047: 34.39
+  station-048: 35.76
+  station-050: 13.98
+  station-051: 39.87
+  station-052: 41.24
+  station-053: 42.61
+  station-057: 48.09
+  station-058: 49.46
+  station-059: 50.83
+  station-060: 37.46
+
+Errors:
+  station-007: {'type': 'temporary', 'message': 'temporary failure from station-007', 'attempts': 4}
+  station-009: {'type': 'permanent', 'message': 'service restriction for station-009', 'attempts': 1}
+  station-011: {'type': 'permanent', 'message': 'permanent failure from station-011', 'attempts': 1}
+  station-014: {'type': 'temporary', 'message': 'temporary failure from station-014', 'attempts': 4}
+  station-018: {'type': 'permanent', 'message': 'service restriction for station-018', 'attempts': 1}
+  station-021: {'type': 'temporary', 'message': 'temporary failure from station-021', 'attempts': 4}
+  station-022: {'type': 'permanent', 'message': 'permanent failure from station-022', 'attempts': 1}
+  station-027: {'type': 'permanent', 'message': 'service restriction for station-027', 'attempts': 1}
+  station-028: {'type': 'temporary', 'message': 'temporary failure from station-028', 'attempts': 4}
+  station-033: {'type': 'permanent', 'message': 'permanent failure from station-033', 'attempts': 1}
+  station-035: {'type': 'temporary', 'message': 'temporary failure from station-035', 'attempts': 4}
+  station-036: {'type': 'permanent', 'message': 'service restriction for station-036', 'attempts': 1}
+  station-042: {'type': 'temporary', 'message': 'temporary failure from station-042', 'attempts': 4}
+  station-044: {'type': 'permanent', 'message': 'permanent failure from station-044', 'attempts': 1}
+  station-045: {'type': 'permanent', 'message': 'service restriction for station-045', 'attempts': 1}
+  station-049: {'type': 'temporary', 'message': 'temporary failure from station-049', 'attempts': 4}
+  station-054: {'type': 'permanent', 'message': 'service restriction for station-054', 'attempts': 1}
+  station-055: {'type': 'permanent', 'message': 'permanent failure from station-055', 'attempts': 1}
+  station-056: {'type': 'temporary', 'message': 'temporary failure from station-056', 'attempts': 4}
+
+Total stations: 60
+Successful readings: 41
+Errors: 19
+Elapsed time: 3.501s
+
+  Script: dynamic_programming_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0583 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Optimal route: [2, 3, 1, 0, 0]
+Total energy: 80
+
+  Script: dynamic_programming_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0551 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Feasible: True
+Route: [0, 1, 3, 2, 0]
+Arrival times: [0, 4, 9, 15, 25]
+Total energy: 19
+
+  Script: dynamic_programming_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.2762 seconds
+    Peak Memory (median of 3): 53.45 MB
+    Stdout: Result:
+{'feasible': True, 'route': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], 'arrival_times': [0.0, 49.2614557888613, 124.90117529927053, 190.869143873937, 246.32961311895667, 300.048062270351, 338.22211960686616, 415.53274872307844, 460.7052661238604, 551.811470781134, 628.764458591102, 711.4860581727908, 778.7180683966258, 870.431229378288, 963.3545004760352], 'start_times': [5.780284550940596, 58.20336475571644, 127.87219958122266, 196.95794294251561, 246.32961311895667, 300.048062270351, 342.23399882098533, 415.53274872307844, 466.95458734681125, 557.5994523225645, 637.9854281660874, 712.4183440771258, 778.7180683966258, 870.431229378288, 969.3274663525399], 'finish_times': [7.780284550940596, 60.20336475571644, 129.87219958122267, 198.95794294251561, 248.32961311895667, 302.048062270351, 344.23399882098533, 417.53274872307844, 468.95458734681125, 559.5994523225645, 639.9854281660874, 714.4183440771258, 780.7180683966258, 872.431229378288, 971.3274663525399], 'total_travel_cost': 885.3700461498878, 'total_time': 971.3274663525399}
+Elapsed time: 0.211155 seconds
+
+  Script: secure_storage_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1121 seconds
+    Peak Memory (median of 3): 17.83 MB
+    Stdout: Confidential corporate document: Q3 acquisition strategy.
+
+  Script: secure_storage_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1125 seconds
+    Peak Memory (median of 3): 19.22 MB
+    Stdout: 1) Successful storage and retrieval
+Success: Sensitive report: launch code is 12345.
+
+2) Failed retrieval with wrong passphrase
+Failed as expected: wrong passphrase or file tampering detected
+
+3) Failed retrieval with corrupted file
+Failed as expected: file corruption or tampering detected
+
+  Script: secure_storage_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.5480 seconds
+    Peak Memory (median of 3): 23.58 MB
+    Stdout: SecureStorage demonstration complete
+Users: 2
+Files stored: 7
+Files verified: 7
+alice: 3 files -> ['notes.txt', 'report.md', 'todo.txt']
+bob: 4 files -> ['data.csv', 'draft.doc', 'large.txt', 'resume.txt']
+Time taken: 0.449382 seconds
+
+

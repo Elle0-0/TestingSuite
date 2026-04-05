@@ -1,0 +1,1203 @@
+Model: claude
+==================================================
+  Script: api_client_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.3228 seconds
+    Peak Memory (median of 3): 29.17 MB
+    Stdout: Successfully fetched 3 station readings:
+{
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+{
+  "userId": 1,
+  "id": 2,
+  "title": "qui est esse",
+  "body": "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla"
+}
+{
+  "userId": 1,
+  "id": 3,
+  "title": "ea molestias quasi exercitationem repellat qui ipsa sit aut",
+  "body": "et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut"
+}
+
+  Script: api_client_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 8.6358 seconds
+    Peak Memory (median of 3): 38.73 MB
+    Stdout: Fetching data from stations...
+============================================================
+
+Successful readings: 3
+----------------------------------------
+  Reading 1: {'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto'}
+  Reading 2: {'userId': 1, 'id': 2, 'title': 'qui est esse', 'body': 'est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla'}
+  Reading 3: {'id': 1, 'name': 'Leanne Graham', 'username': 'Bret', 'email': 'Sincere@april.biz', 'address': {'street': 'Kulas Light', 'suite': 'Apt. 556', 'city': 'Gwenborough', 'zipcode': '92998-3874', 'geo': {'lat': '-37.3159', 'lng': '81.1496'}}}
+
+Errors encountered: 3
+----------------------------------------
+  Error 1:
+    URL: https://nonexistent-station-abc123.example.com/data
+    Type: connection_error
+    Message: HTTPSConnectionPool(host='nonexistent-station-abc123.example.com', port=443): Max retries exceeded w...
+  Error 2:
+    URL: https://jsonplaceholder.typicode.com/posts/99999999
+    Type: client_error
+    Message: 404 Client Error: Not Found for url: https://jsonplaceholder.typicode.com/posts/99999999...
+  Error 3:
+    URL: https://httpbin.org/status/500
+    Type: server_error
+    Message: 500 Server Error: INTERNAL SERVER ERROR for url: https://httpbin.org/status/500...
+
+============================================================
+Summary: 3 succeeded, 3 failed out of 6 total stations
+
+  Script: api_client_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 32.5768 seconds
+    Peak Memory (median of 3): 49.27 MB
+    Stdout: Fetching data from 75 stations with max 10 concurrent requests...
+======================================================================
+
+Results Summary:
+  Total stations: 75
+  Successful:     55
+  Failed:         20
+  Elapsed time:   32.52 seconds
+  Avg per station: 0.434 seconds
+
+Sample successful readings:
+  https://httpbin.org/json?station=0:
+    {
+  "slideshow": {
+    "author": "Yours Truly",
+    "date": "date of publication",
+    "slides": [
+ ...
+  https://httpbin.org/json?station=1:
+    {
+  "slideshow": {
+    "author": "Yours Truly",
+    "date": "date of publication",
+    "slides": [
+ ...
+  https://httpbin.org/json?station=2:
+    {
+  "slideshow": {
+    "author": "Yours Truly",
+    "date": "date of publication",
+    "slides": [
+ ...
+
+Errors encountered:
+  https://httpbin.org/status/500?station=err_0:
+    Failed after 3 retries: Server error (500) at https://httpbin.org/status/500?station=err_0
+  https://httpbin.org/status/500?station=err_1:
+    Failed after 3 retries: Server error (500) at https://httpbin.org/status/500?station=err_1
+  https://httpbin.org/status/500?station=err_2:
+    Failed after 3 retries: Server error (500) at https://httpbin.org/status/500?station=err_2
+  https://httpbin.org/status/500?station=err_3:
+    Failed after 3 retries: Server error (500) at https://httpbin.org/status/500?station=err_3
+  https://httpbin.org/status/500?station=err_4:
+    Failed after 3 retries: Server error (500) at https://httpbin.org/status/500?station=err_4
+  https://httpbin.org/status/500?station=err_5:
+    Failed after 3 retries: Server error (500) at https://httpbin.org/status/500?station=err_5
+  https://httpbin.org/status/500?station=err_6:
+    Failed after 3 retries: Server error (500) at https://httpbin.org/status/500?station=err_6
+  https://httpbin.org/status/500?station=err_7:
+    Failed after 3 retries: Server error (500) at https://httpbin.org/status/500?station=err_7
+  https://httpbin.org/status/500?station=err_8:
+    Failed after 3 retries: Server error (500) at https://httpbin.org/status/500?station=err_8
+  https://httpbin.org/status/500?station=err_9:
+    Failed after 3 retries: Server error (500) at https://httpbin.org/status/500?station=err_9
+  ... and 10 more errors
+
+Total elapsed time: 32.52s
+Estimated sequential time would be: ~325s
+Speedup factor: ~10.0x
+
+  Script: dynamic_programming_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0566 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Optimal route: [0, 2, 3, 1, 0]
+Total energy: 80
+
+  Script: dynamic_programming_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0566 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: === Drone Route Optimization with Time Windows ===
+Number of stations: 4
+Inspection time per station: 5
+Speed: 1
+
+Time windows:
+  Station 1: [5, 50]
+  Station 2: [10, 60]
+  Station 3: [30, 90]
+
+Feasible: True
+Route: [0, 1, 2, 3, 0]
+Arrival times: [0, 10, 50, 85, 110]
+Total energy: 95
+
+=== Infeasible Example ===
+Feasible: False
+Route: []
+Arrival times: []
+Total energy: 0
+
+  Script: dynamic_programming_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1667 seconds
+    Peak Memory (median of 3): 37.61 MB
+    Stdout: Number of stations: 15
+Inspection time: 2.0
+Speed: 1.0
+
+Route: [0, 10, 9, 3, 6, 8, 14, 1, 7, 12, 5, 13, 4, 11, 2, 0]
+Cost: 167.58
+Feasible: True
+Arrival times: [0, 16.21, 28.14, 38.73, 47.79, 64.28, 73.4, 84.57, 91.86, 110.68, 127.99, 136.43, 150.78, 165.48, 197.32, 205.45]
+Stations visited: 15
+Elapsed time: 0.1032 seconds
+
+  Script: secure_storage_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1118 seconds
+    Peak Memory (median of 3): 22.53 MB
+    Stdout: === Secure Storage Demo ===
+
+Original document:
+CONFIDENTIAL REPORT
+====================
+Project Titan - Q4 Financial Summary
+Revenue: $12,450,000
+Net Profit: $3,200,000
+This document is classified and must not be shared outside the executive team.
+
+Document encrypted and stored to 'secure_document.enc'.
+
+Raw file contents (first 80 bytes, hex): bb641a3fc8578e600048ddabe0caefec876cee77b55e8d8d2708cddc76dc51887623224469da7223c69bdab0d4380e343b2d68d71c85127f31f07e60e98689d0b91d60b09776483d8eea1f08f7fec6fa
+
+Retrieved document (correct passphrase):
+CONFIDENTIAL REPORT
+====================
+Project Titan - Q4 Financial Summary
+Revenue: $12,450,000
+Net Profit: $3,200,000
+This document is classified and must not be shared outside the executive team.
+
+✓ Verification passed: retrieved document matches the original.
+
+✓ Decryption with wrong passphrase correctly failed: InvalidTag
+
+Cleaned up 'secure_document.enc'.
+
+  Script: secure_storage_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.2211 seconds
+    Peak Memory (median of 3): 25.44 MB
+    Stdout: ============================================================
+Scenario 1: Successful storage and retrieval
+============================================================
+Storing data: 'This is a highly confidential document containing ...'
+File saved to: /var/folders/nb/fg4_h6k54dv4bjfsygp7r2mh0000gn/T/secure_storage_3t_fsjsm/secret_document.enc
+File size: 148 bytes
+Retrieved data: 'This is a highly confidential document containing ...'
+SUCCESS: Data retrieved correctly and matches original.
+
+============================================================
+Scenario 2: Retrieval with wrong passphrase
+============================================================
+Attempting retrieval with wrong passphrase: 'wrong-passphrase-attempt'
+CAUGHT WrongPassphraseError: HMAC verification failed. The passphrase is likely incorrect, or the file may be corrupted.
+SUCCESS: System correctly detected wrong passphrase.
+
+Verifying original file is still intact after failed attempt...
+VERIFIED: Original file remains secure and accessible.
+
+============================================================
+Scenario 3: Retrieval from corrupted file
+============================================================
+Stored file: /var/folders/nb/fg4_h6k54dv4bjfsygp7r2mh0000gn/T/secure_storage_3t_fsjsm/corrupted_document.enc
+Corrupting file by flipping bits in ciphertext...
+Attempting retrieval from corrupted file...
+CAUGHT WrongPassphraseError: HMAC verification failed. The passphrase is likely incorrect, or the file may be corrupted.
+SUCCESS: System correctly detected file corruption.
+
+============================================================
+Scenario 4: Verify other files remain secure
+============================================================
+File 3 retrieved successfully: 'This file should remain completely unaffected by o...'
+VERIFIED: Other stored files remain secure and uncompromised.
+
+File 1 still accessible: 'This is a highly confidential document containing ...'
+VERIFIED: All non-corrupted files remain intact.
+
+============================================================
+All scenarios completed successfully!
+============================================================
+
+  Script: secure_storage_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 2.8210 seconds
+    Peak Memory (median of 3): 27.09 MB
+    Stdout: ============================================================
+Secure Storage - Third Iteration Demo
+============================================================
+
+Stored 150 files for 3 users in 2.685s
+Average store time per file: 17.90ms
+
+alice has 50 files: [document_0000.txt, ..., document_0049.txt]
+
+bob has 50 files: [document_0000.txt, ..., document_0049.txt]
+
+charlie has 50 files: [document_0000.txt, ..., document_0049.txt]
+
+Retrieved and verified 150 files in 0.000s
+Average retrieve time per file: 0.00ms
+
+--- Security Tests ---
+PASS: Wrong passphrase correctly rejected
+PASS: Nonexistent file correctly raises KeyError
+PASS: Tamper detection working correctly
+
+--- Large File Test ---
+1MB file: store=18.11ms, retrieve=0.22ms
+
+============================================================
+Summary: 151 total files across 3 users
+All operations completed successfully.
+============================================================
+
+
+Model: gemini
+==================================================
+  Script: api_client_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.7641 seconds
+    Peak Memory (median of 3): 34.08 MB
+    Stdout: [{'station_id': 'alpha-123', 'temperature': 15.5, 'humidity': 65.2, 'timestamp': '2023-10-27T10:00:00Z'}, {'station_id': 'beta-456', 'temperature': 18.2, 'humidity': 55.0, 'timestamp': '2023-10-27T10:01:00Z'}, {'station_id': 'gamma-789', 'temperature': 12.8, 'humidity': 72.8, 'timestamp': '2023-10-27T09:59:00Z'}]
+
+  Script: api_client_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 19.3258 seconds
+    Peak Memory (median of 3): 38.34 MB
+    Stdout: --- Successful Readings ---
+Station: https://api.weather.gov/stations/KNYC (2026-03-18T19:51:00+00:00)
+  -> Clear
+Station: https://api.weather.gov/stations/KLAX (2026-03-18T20:00:00+00:00)
+  -> Clear
+
+--- Error Report ---
+URL: https://api.weather.gov/stations/THIS_IS_INVALID/observations/latest
+  Type: ClientError
+  Message: HTTP 404: Not Found
+
+URL: http://10.255.255.1
+  Type: MaxRetriesExceeded
+  Message: Failed after 3 attempts. Last error: Request timed out: HTTPConnectionPool(host='10.255.255.1', port=80): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPConnection(host='10.255.255.1', port=80) at 0x10a35e490>, 'Connection to 10.255.255.1 timed out. (connect timeout=5)'))
+
+URL: http://non-existent-domain-for-testing-123.local/
+  Type: RequestException
+  Message: HTTPConnectionPool(host='non-existent-domain-for-testing-123.local', port=80): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPConnection(host='non-existent-domain-for-testing-123.local', port=80): Failed to resolve 'non-existent-domain-for-testing-123.local' ([Errno 8] nodename nor servname provided, or not known)"))
+
+URL: https://gist.githubusercontent.com/dbgrandi/59846f535359b6620577764703a55a80/raw/ca4f3a7469772b14619f7062a7428f572979b08f/malformed.json
+  Type: ClientError
+  Message: HTTP 404: Not Found
+
+  Script: api_client_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 45.1888 seconds
+    Peak Memory (median of 3): 240.55 MB
+    Stdout: Fetching data for 76 stations...
+
+--- Fetched Readings ---
+
+--- Errors ---
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=72
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=79
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=82
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=83
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=116
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=119
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=120
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=127
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=128
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=143
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=144
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=146
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=147
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=150
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=151
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=152
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=153
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=157
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=161
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=164
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=167
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=168
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=173
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=174
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=195
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=212
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=216
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=217
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=218
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=223
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=224
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=225
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=228
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=229
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=232
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=233
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=236
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=237
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=238
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=239
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=241
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=242
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=243
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=244
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=245
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=247
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=248
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=249
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=250
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=251
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=252
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=253
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=254
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=257
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=258
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=259
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=260
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=261
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=262
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=263
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=264
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=265
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=266
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=267
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=268
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=270
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=271
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=274
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=275
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=276
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=278
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: https://gbfs.citibikenyc.com/gbfs/en/station_information.json?station_id=999999
+  Error: TypeError: Key 'station_id' has incorrect type. Expected int, got str
+URL: http://httpbin.org/delay/15
+  Error: ValueError: Missing 'data' key in response
+URL: http://invalid.url/data.json
+  Error: ClientConnectorDNSError: Cannot connect to host invalid.url:80 ssl:default [nodename nor servname provided, or not known]
+URL: http://httpbin.org/status/500
+  Error: ClientResponseError: 500, message='INTERNAL SERVER ERROR', url='http://httpbin.org/status/500'
+URL: http://httpbin.org/html
+  Error: ContentTypeError: 200, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url='http://httpbin.org/html'
+
+Successfully fetched: 0 stations
+Failed to fetch: 76 stations
+Total execution time: 44.84 seconds
+
+  Script: dynamic_programming_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0567 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Optimal route: [0, 1, 3, 2, 0]
+Total energy: 80
+
+  Script: dynamic_programming_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0547 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Feasible: True
+Route: [0, 0, 1, 4, 2, 3, 0]
+Arrival Times: [0, 10.0, 40.0, 95.0, 143.0, 165.0, 210.0]
+Total Energy: 150
+
+--- Infeasible Example ---
+Feasible: False
+Route: []
+Arrival Times: []
+Total Energy: -1
+
+  Script: dynamic_programming_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0566 seconds
+    Peak Memory (median of 3): 0.03 MB
+
+  Script: secure_storage_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.3251 seconds
+    Peak Memory (median of 3): 25.12 MB
+    Stdout: Storing file 'confidential_document.bin'...
+File stored successfully.
+----------------------------------------
+Attempting to retrieve with the CORRECT passphrase...
+Retrieval successful!
+Original:    'This is a top-secret document containing sensitive corporate information.'
+Retrieved:   'This is a top-secret document containing sensitive corporate information.'
+Verification: PASS
+----------------------------------------
+Attempting to retrieve with an INCORRECT passphrase...
+Retrieval failed as expected: Invalid passphrase or corrupted file
+Verification: PASS
+----------------------------------------
+Cleaned up file 'confidential_document.bin'.
+
+  Script: secure_storage_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1632 seconds
+    Peak Memory (median of 3): 25.45 MB
+    Stdout: --- 1. Testing successful storage and retrieval ---
+File 'secure_document.bin' stored successfully.
+File retrieved and decrypted successfully.
+Retrieved data: 'This is a highly confidential message. Handle with care.'
+--------------------------------------------------
+
+--- 2. Testing retrieval with a wrong passphrase ---
+Attempting to retrieve 'secure_document.bin' with a wrong passphrase...
+Caught expected exception: Failed to retrieve file: incorrect passphrase or file is corrupted.
+--------------------------------------------------
+
+--- 3. Testing retrieval with a corrupted file ---
+Corrupting file 'secure_document.bin'...
+Attempting to retrieve the corrupted file...
+Caught expected exception: Failed to retrieve file: incorrect passphrase or file is corrupted.
+
+Cleaned up file: 'secure_document.bin'
+
+  Script: secure_storage_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.9665 seconds
+    Peak Memory (median of 3): 39.66 MB
+    Stdout: --- Starting Secure Storage Test ---
+
+--- Storing Files ---
+Storing files for user: alice
+  - Stored 'report.txt'
+  - Stored 'project_plan.docx'
+  - Stored 'notes_2024.md'
+Storing files for user: bob
+  - Stored 'report.txt'
+  - Stored 'project_plan.docx'
+  - Stored 'notes_2024.md'
+
+--- Retrieving and Verifying Files ---
+Verifying files for user: alice
+  - Found files: ['project_plan.docx', 'report.txt', 'notes_2024.md']
+  - Successfully retrieved and verified 'project_plan.docx'
+  - Successfully retrieved and verified 'report.txt'
+  - Successfully retrieved and verified 'notes_2024.md'
+Verifying files for user: bob
+  - Found files: ['project_plan.docx', 'report.txt', 'notes_2024.md']
+  - Successfully retrieved and verified 'project_plan.docx'
+  - Successfully retrieved and verified 'report.txt'
+  - Successfully retrieved and verified 'notes_2024.md'
+
+--- Testing Failure Cases ---
+Attempting to retrieve 'report.txt' for 'alice' with wrong passphrase...
+  - SUCCESS: Caught expected error: Invalid passphrase or file has been tampered with.
+Attempting to retrieve non-existent file 'ghost.txt' for 'bob'...
+  - SUCCESS: Caught expected error: File 'ghost.txt' not found for user 'bob'
+Attempting to list files for non-existent user 'charlie'...
+  - SUCCESS: Received empty list for non-existent user: []
+
+--- Test Summary ---
+Total files stored and verified: 6
+Total time taken: 0.8613 seconds
+
+Cleaned up storage directory: secure_storage_data_v3
+
+
+Model: gpt
+==================================================
+  Script: api_client_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1098 seconds
+    Peak Memory (median of 3): 23.03 MB
+    Stdout: [{'station_id': '1', 'temperature': 20.0, 'humidity': 50, 'timestamp': '2026-01-01T00:00:00Z'}, {'station_id': '2', 'temperature': 20.0, 'humidity': 50, 'timestamp': '2026-01-01T00:00:00Z'}, {'station_id': '3', 'temperature': 20.0, 'humidity': 50, 'timestamp': '2026-01-01T00:00:00Z'}]
+
+  Script: api_client_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 5.2374 seconds
+    Peak Memory (median of 3): 23.78 MB
+    Stdout: Readings:
+[
+  {
+    "station": "ok-1",
+    "reading": 21.5
+  },
+  {
+    "station": "recovered-500",
+    "reading": 22.1
+  },
+  {
+    "station": "rate-limited",
+    "reading": 18.4
+  },
+  {
+    "station": "ok-2",
+    "reading": 19.8
+  }
+]
+Errors:
+[
+  {
+    "url": "https://example.com/station/timeout",
+    "error_type": "TimeoutError",
+    "message": "Network error or timeout: timed out"
+  },
+  {
+    "url": "https://example.com/station/malformed-json",
+    "error_type": "ValueError",
+    "message": "Malformed JSON: Expecting value: line 1 column 36 (char 35)"
+  }
+]
+
+  Script: api_client_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 11.8371 seconds
+    Peak Memory (median of 3): 20.55 MB
+    Stdout: {
+  "errors": [
+    {
+      "attempts": 3,
+      "message": "Missing expected station data",
+      "type": "invalid_response",
+      "url": "https://api.example.com/stations/badjson-001"
+    },
+    {
+      "attempts": 3,
+      "message": "Missing expected station data",
+      "type": "invalid_response",
+      "url": "https://api.example.com/stations/badjson-002"
+    },
+    {
+      "attempts": 3,
+      "message": "Missing expected station data",
+      "type": "invalid_response",
+      "url": "https://api.example.com/stations/badjson-003"
+    },
+    {
+      "attempts": 3,
+      "message": "Connection failed",
+      "type": "connection_error",
+      "url": "https://api.example.com/stations/dead-001"
+    },
+    {
+      "attempts": 3,
+      "message": "Connection failed",
+      "type": "connection_error",
+      "url": "https://api.example.com/stations/dead-002"
+    },
+    {
+      "attempts": 3,
+      "message": "Connection failed",
+      "type": "connection_error",
+      "url": "https://api.example.com/stations/dead-003"
+    },
+    {
+      "attempts": 3,
+      "message": "Request timed out after 2.0s",
+      "type": "timeout",
+      "url": "https://api.example.com/stations/hang-001"
+    },
+    {
+      "attempts": 3,
+      "message": "Request timed out after 2.0s",
+      "type": "timeout",
+      "url": "https://api.example.com/stations/hang-002"
+    },
+    {
+      "attempts": 3,
+      "message": "Request timed out after 2.0s",
+      "type": "timeout",
+      "url": "https://api.example.com/stations/hang-003"
+    },
+    {
+      "attempts": 1,
+      "message": "HTTP status 404",
+      "status_code": 404,
+      "type": "http_error",
+      "url": "https://api.example.com/stations/missing-001"
+    },
+    {
+      "attempts": 1,
+      "message": "HTTP status 404",
+      "status_code": 404,
+      "type": "http_error",
+      "url": "https://api.example.com/stations/missing-002"
+    },
+    {
+      "attempts": 1,
+      "message": "HTTP status 404",
+      "status_code": 404,
+      "type": "http_error",
+      "url": "https://api.example.com/stations/missing-003"
+    },
+    {
+      "attempts": 1,
+      "message": "HTTP status 404",
+      "status_code": 404,
+      "type": "http_error",
+      "url": "https://api.example.com/stations/missing-004"
+    }
+  ],
+  "readings": [
+    {
+      "humidity_pct": 35,
+      "station": "flaky-001",
+      "temperature_c": 22.5,
+      "timestamp": 1773865353
+    },
+    {
+      "humidity_pct": 36,
+      "station": "flaky-002",
+      "temperature_c": 22.6,
+      "timestamp": 1773865356
+    },
+    {
+      "humidity_pct": 37,
+      "station": "flaky-003",
+      "temperature_c": 22.7,
+      "timestamp": 1773865353
+    },
+    {
+      "humidity_pct": 38,
+      "station": "flaky-004",
+      "temperature_c": 22.8,
+      "timestamp": 1773865354
+    },
+    {
+      "humidity_pct": 39,
+      "station": "flaky-005",
+      "temperature_c": 22.9,
+      "timestamp": 1773865358
+    },
+    {
+      "humidity_pct": 40,
+      "station": "flaky-006",
+      "temperature_c": 23.0,
+      "timestamp": 1773865354
+    },
+    {
+      "humidity_pct": 41,
+      "station": "flaky-007",
+      "temperature_c": 23.1,
+      "timestamp": 1773865353
+    },
+    {
+      "humidity_pct": 42,
+      "station": "flaky-008",
+      "temperature_c": 23.2,
+      "timestamp": 1773865353
+    },
+    {
+      "humidity_pct": 78,
+      "station": "ok-001",
+      "temperature_c": 10.8,
+      "timestamp": 1773865355
+    },
+    {
+      "humidity_pct": 79,
+      "station": "ok-002",
+      "temperature_c": 10.9,
+      "timestamp": 1773865354
+    },
+    {
+      "humidity_pct": 80,
+      "station": "ok-003",
+      "temperature_c": 11.0,
+      "timestamp": 1773865354
+    },
+    {
+      "humidity_pct": 81,
+      "station": "ok-004",
+      "temperature_c": 11.1,
+      "timestamp": 1773865357
+    },
+    {
+      "humidity_pct": 82,
+      "station": "ok-005",
+      "temperature_c": 11.2,
+      "timestamp": 1773865357
+    },
+    {
+      "humidity_pct": 83,
+      "station": "ok-006",
+      "temperature_c": 11.3,
+      "timestamp": 1773865354
+    },
+    {
+      "humidity_pct": 84,
+      "station": "ok-007",
+      "temperature_c": 11.4,
+      "timestamp": 1773865354
+    },
+    {
+      "humidity_pct": 85,
+      "station": "ok-008",
+      "temperature_c": 11.5,
+      "timestamp": 1773865354
+    },
+    {
+      "humidity_pct": 86,
+      "station": "ok-009",
+      "temperature_c": 11.6,
+      "timestamp": 1773865352
+    },
+    {
+      "humidity_pct": 78,
+      "station": "ok-010",
+      "temperature_c": 10.8,
+      "timestamp": 1773865355
+    },
+    {
+      "humidity_pct": 79,
+      "station": "ok-011",
+      "temperature_c": 10.9,
+      "timestamp": 1773865355
+    },
+    {
+      "humidity_pct": 80,
+      "station": "ok-012",
+      "temperature_c": 11.0,
+      "timestamp": 1773865357
+    },
+    {
+      "humidity_pct": 81,
+      "station": "ok-013",
+      "temperature_c": 11.1,
+      "timestamp": 1773865352
+    },
+    {
+      "humidity_pct": 82,
+      "station": "ok-014",
+      "temperature_c": 11.2,
+      "timestamp": 1773865357
+    },
+    {
+      "humidity_pct": 83,
+      "station": "ok-015",
+      "temperature_c": 11.3,
+      "timestamp": 1773865357
+    },
+    {
+      "humidity_pct": 84,
+      "station": "ok-016",
+      "temperature_c": 11.4,
+      "timestamp": 1773865352
+    },
+    {
+      "humidity_pct": 85,
+      "station": "ok-017",
+      "temperature_c": 11.5,
+      "timestamp": 1773865354
+    },
+    {
+      "humidity_pct": 86,
+      "station": "ok-018",
+      "temperature_c": 11.6,
+      "timestamp": 1773865357
+    },
+    {
+      "humidity_pct": 87,
+      "station": "ok-019",
+      "temperature_c": 11.7,
+      "timestamp": 1773865354
+    },
+    {
+      "humidity_pct": 79,
+      "station": "ok-020",
+      "temperature_c": 10.9,
+      "timestamp": 1773865354
+    },
+    {
+      "humidity_pct": 80,
+      "station": "ok-021",
+      "temperature_c": 11.0,
+      "timestamp": 1773865354
+    },
+    {
+      "humidity_pct": 81,
+      "station": "ok-022",
+      "temperature_c": 11.1,
+      "timestamp": 1773865354
+    },
+    {
+      "humidity_pct": 82,
+      "station": "ok-023",
+      "temperature_c": 11.2,
+      "timestamp": 1773865354
+    },
+    {
+      "humidity_pct": 83,
+      "station": "ok-024",
+      "temperature_c": 11.3,
+      "timestamp": 1773865352
+    },
+    {
+      "humidity_pct": 84,
+      "station": "ok-025",
+      "temperature_c": 11.4,
+      "timestamp": 1773865354
+    },
+    {
+      "humidity_pct": 85,
+      "station": "ok-026",
+      "temperature_c": 11.5,
+      "timestamp": 1773865356
+    },
+    {
+      "humidity_pct": 86,
+      "station": "ok-027",
+      "temperature_c": 11.6,
+      "timestamp": 1773865356
+    },
+    {
+      "humidity_pct": 87,
+      "station": "ok-028",
+      "temperature_c": 11.7,
+      "timestamp": 1773865357
+    },
+    {
+      "humidity_pct": 88,
+      "station": "ok-029",
+      "temperature_c": 11.8,
+      "timestamp": 1773865357
+    },
+    {
+      "humidity_pct": 80,
+      "station": "ok-030",
+      "temperature_c": 11.0,
+      "timestamp": 1773865356
+    },
+    {
+      "humidity_pct": 81,
+      "station": "ok-031",
+      "temperature_c": 11.1,
+      "timestamp": 1773865352
+    },
+    {
+      "humidity_pct": 82,
+      "station": "ok-032",
+      "temperature_c": 11.2,
+      "timestamp": 1773865357
+    },
+    {
+      "humidity_pct": 83,
+      "station": "ok-033",
+      "temperature_c": 11.3,
+      "timestamp": 1773865352
+    },
+    {
+      "humidity_pct": 84,
+      "station": "ok-034",
+      "temperature_c": 11.4,
+      "timestamp": 1773865353
+    },
+    {
+      "humidity_pct": 85,
+      "station": "ok-035",
+      "temperature_c": 11.5,
+      "timestamp": 1773865356
+    },
+    {
+      "humidity_pct": 86,
+      "station": "ok-036",
+      "temperature_c": 11.6,
+      "timestamp": 1773865357
+    },
+    {
+      "humidity_pct": 87,
+      "station": "ok-037",
+      "temperature_c": 11.7,
+      "timestamp": 1773865353
+    },
+    {
+      "humidity_pct": 88,
+      "station": "ok-038",
+      "temperature_c": 11.8,
+      "timestamp": 1773865355
+    },
+    {
+      "humidity_pct": 89,
+      "station": "ok-039",
+      "temperature_c": 11.9,
+      "timestamp": 1773865354
+    },
+    {
+      "humidity_pct": 81,
+      "station": "ok-040",
+      "temperature_c": 11.1,
+      "timestamp": 1773865353
+    },
+    {
+      "humidity_pct": 51,
+      "station": "ratelimit-001",
+      "temperature_c": 26.1,
+      "timestamp": 1773865354
+    },
+    {
+      "humidity_pct": 52,
+      "station": "ratelimit-002",
+      "temperature_c": 26.2,
+      "timestamp": 1773865353
+    },
+    {
+      "humidity_pct": 53,
+      "station": "ratelimit-003",
+      "temperature_c": 26.3,
+      "timestamp": 1773865355
+    },
+    {
+      "humidity_pct": 54,
+      "station": "ratelimit-004",
+      "temperature_c": 26.4,
+      "timestamp": 1773865354
+    },
+    {
+      "humidity_pct": 55,
+      "station": "ratelimit-005",
+      "temperature_c": 26.5,
+      "timestamp": 1773865354
+    },
+    {
+      "humidity_pct": 56,
+      "station": "ratelimit-006",
+      "temperature_c": 26.6,
+      "timestamp": 1773865353
+    },
+    {
+      "humidity_pct": 43,
+      "station": "server-001",
+      "temperature_c": 15.3,
+      "timestamp": 1773865357
+    },
+    {
+      "humidity_pct": 44,
+      "station": "server-002",
+      "temperature_c": 15.4,
+      "timestamp": 1773865354
+    },
+    {
+      "humidity_pct": 45,
+      "station": "server-003",
+      "temperature_c": 15.5,
+      "timestamp": 1773865355
+    },
+    {
+      "humidity_pct": 46,
+      "station": "server-004",
+      "temperature_c": 15.6,
+      "timestamp": 1773865356
+    },
+    {
+      "humidity_pct": 47,
+      "station": "server-005",
+      "temperature_c": 15.7,
+      "timestamp": 1773865355
+    },
+    {
+      "humidity_pct": 73,
+      "station": "slow-001",
+      "temperature_c": 14.3,
+      "timestamp": 1773865355
+    },
+    {
+      "humidity_pct": 74,
+      "station": "slow-002",
+      "temperature_c": 14.4,
+      "timestamp": 1773865357
+    },
+    {
+      "humidity_pct": 75,
+      "station": "slow-003",
+      "temperature_c": 14.5,
+      "timestamp": 1773865356
+    },
+    {
+      "humidity_pct": 76,
+      "station": "slow-004",
+      "temperature_c": 14.6,
+      "timestamp": 1773865354
+    },
+    {
+      "humidity_pct": 77,
+      "station": "slow-005",
+      "temperature_c": 14.7,
+      "timestamp": 1773865357
+    },
+    {
+      "humidity_pct": 78,
+      "station": "slow-006",
+      "temperature_c": 14.8,
+      "timestamp": 1773865357
+    },
+    {
+      "humidity_pct": 79,
+      "station": "slow-007",
+      "temperature_c": 14.9,
+      "timestamp": 1773865355
+    },
+    {
+      "humidity_pct": 80,
+      "station": "slow-008",
+      "temperature_c": 15.0,
+      "timestamp": 1773865356
+    },
+    {
+      "humidity_pct": 81,
+      "station": "slow-009",
+      "temperature_c": 15.1,
+      "timestamp": 1773865356
+    },
+    {
+      "humidity_pct": 73,
+      "station": "slow-010",
+      "temperature_c": 14.3,
+      "timestamp": 1773865354
+    }
+  ]
+}
+Total stations: 82
+Successful readings: 69
+Errors: 13
+Elapsed time: 11.72s
+
+  Script: dynamic_programming_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0568 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Optimal route: [2, 3, 1, 0, 0]
+Total energy: 80
+
+  Script: dynamic_programming_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.0617 seconds
+    Peak Memory (median of 3): 0.03 MB
+    Stdout: Feasible: True
+Route: [0, 1, 3, 2, 0]
+Arrival times: [0, 4.0, 10, 16.0, 24.0]
+Total energy: 17
+
+  Script: dynamic_programming_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.2783 seconds
+    Peak Memory (median of 3): 52.78 MB
+    Stdout: Result:
+{'feasible': True, 'cost': 1019.4799999999999, 'route': [1, 2, 4, 0, 11, 9, 5, 14, 7, 13, 8, 3, 12, 10, 6], 'arrival_times': [0.0, 83.82, 176.07, 239.6, 326.95, 381.12, 454.01, 528.87, 598.24, 675.05, 774.3499999999999, 880.31, 958.51, 1035.1499999999999, 1088.07], 'service_start_times': [0.0, 83.82, 176.07, 241.37, 330.92, 381.12, 461.01, 532.59, 598.24, 675.93, 774.3499999999999, 885.78, 962.29, 1035.1499999999999, 1088.07], 'completion_time': 1091.07, 'start_time': 0.0}
+Elapsed time: 0.241554 seconds
+
+  Script: secure_storage_iteration_1_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1168 seconds
+    Peak Memory (median of 3): 17.73 MB
+    Stdout: Confidential corporate document: Q4 acquisition strategy.
+
+  Script: secure_storage_iteration_2_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.1700 seconds
+    Peak Memory (median of 3): 19.19 MB
+    Stdout: 1. Successful storage and retrieval
+Success: Confidential project notes: launch at 09:00.
+
+2. Failed retrieval with wrong passphrase
+Access denied: Wrong passphrase or file integrity check failed
+
+3. Failed retrieval with corrupted file
+Integrity failure detected: Wrong passphrase or file integrity check failed
+
+  Script: secure_storage_iteration_3_solution.py
+    Exit code: 0
+    Runtime (median of 3): 0.2872 seconds
+    Peak Memory (median of 3): 26.62 MB
+    Stdout: SecureStorage demonstration summary
+Users: 2
+Files stored: 6
+Files retrieved and verified: 6
+alice: 3 files -> ['large.txt', 'notes.txt', 'project.md']
+bob: 3 files -> ['design.json', 'log.txt', 'todo.txt']
+Time taken: 0.1833 seconds
+
+

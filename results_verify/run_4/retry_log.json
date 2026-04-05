@@ -1,0 +1,386 @@
+{
+  "gpt": {
+    "api_client_iteration_1.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "Demo request failed: HTTP Error 404: Not Found",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "api_client_iteration_2.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "Readings:\n[]\nErrors:\n[\n  {\n    \"url\": \"https://example.com/stations/alpha\",\n    \"type\": \"HTTPError\",\n    \"message\": \"HTTP 404: Not Found\"\n  },\n  {\n    \"url\": \"https://example.com/stations/retry-later\",\n    \"type\": \"HTTPError\",\n    \"message\": \"HTTP 404: Not Found\"\n  },\n  {\n    \"url\": \"https://example",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "api_client_iteration_3.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "Readings:\nhttps://api.example.com/station-10?mode=ok&delay=0.09 -> {'station': 'station-10', 'value': 39.17, 'unit': 'kWh'}\nhttps://api.example.com/station-4?mode=ok&delay=0.4 -> {'station': 'station-4', 'value': 35.42, 'unit': 'kWh'}\nhttps://api.example.com/station-8?mode=ok&delay=0.58 -> {'station",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "dynamic_programming_iteration_1.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "Optimal route: [2, 3, 1, 0, 0]\nTotal energy: 80",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "dynamic_programming_iteration_2.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 1,
+          "stdout_snippet": "",
+          "stderr_snippet": "Traceback (most recent call last):\n  File \"/Users/michelleandreavaz/Desktop/Michelle FYP/TestingSuite/scripts/../outputs_verify/run_4/gpt/.dynamic_programming_iteration_2_pending.py\", line 158, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/michelleandreavaz/Desktop/Michelle FYP/TestingSuite/scripts/../outputs_verify/run_4/gpt/.dynamic_programming_iteration_2_pending.py\", line 149, in main\n    result = find_optimal_route(cost_matrix, time_windows, inspection_time, speed=1)\n  File \"/Users/miche",
+          "success": false
+        },
+        {
+          "attempt": 2,
+          "label": "retry_1",
+          "exit_code": 0,
+          "stdout_snippet": "Feasible: False\nRoute: []\nArrival times: []\nTotal energy: 0",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 2
+    },
+    "dynamic_programming_iteration_3.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "Result:\n{'route': [14, 13, 3, 5, 2, 10, 4, 9, 6, 1, 8, 7, 11, 0, 12], 'arrival_times': [0.0, 92.92, 174.87, 256.16, 312.70000000000005, 329.78, 408.85999999999996, 449.67999999999995, 532.3, 559.27, 598.28, 643.4499999999999, 695.1999999999999, 729.8399999999999, 776.3499999999999], 'start_times': [",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "secure_storage_iteration_1.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "Confidential corporate document: Q4 strategy and financial projections.",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "secure_storage_iteration_2.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "1) Successful storage and retrieval\nSuccess: Sensitive document contents.\n\n2) Failed retrieval with wrong passphrase\nAccess denied: Wrong passphrase or file integrity check failed.\n\n3) Failed retrieval with corrupted file\nRetrieval failed: Wrong passphrase or file integrity check failed.",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "secure_storage_iteration_3.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "SecureStorage Demo Summary\nUsers: 3\nFiles stored: 8\nFiles retrieved successfully: 8\nalice: 3 files -> ['notes.txt', 'report.txt', 'todo.md']\nbob: 3 files -> ['archive.log', 'budget.csv', 'draft.txt']\ncarol: 2 files -> ['design.md', 'meeting.txt']\nTime taken: 0.4930 seconds",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    }
+  },
+  "claude": {
+    "api_client_iteration_1.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "Fetching data from 3 weather stations...\n\nSuccessfully collected 3 readings:\n\n  Station: WS-001\n    Temperature: 22.5\u00b0C\n    Humidity:    65.3%\n    Timestamp:   2024-01-15T10:30:00Z\n\n  Station: WS-002\n    Temperature: 18.2\u00b0C\n    Humidity:    72.1%\n    Timestamp:   2024-01-15T10:30:05Z\n\n  Station: WS-",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "api_client_iteration_2.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "======================================================================\nFetching data from multiple stations...\n======================================================================\n\nSuccessful readings: 3\n--------------------------------------------------\n  URL: https://jsonplaceholder.typicode.com",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "api_client_iteration_3.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "Fetching data from 70 stations with max concurrency of 10...\n======================================================================\n\nResults Summary:\n  Total stations:     70\n  Successful:         50\n  Failed:             20\n  Total elapsed time: 16.86s\n  Avg time/station:   0.241s\n\nFirst 3 successf",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "dynamic_programming_iteration_1.txt": {
+      "attempts": [],
+      "final_status": "api_error",
+      "total_attempts": 0,
+      "error": "Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': 'req_011CZLf96EHvE6Kbt6t7jxAg'}"
+    },
+    "dynamic_programming_iteration_2.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "=== Drone Route Optimization with Time Windows ===\nFeasible: True\nRoute: [0, 1, 2, 3, 0]\nArrival Times: [0, 10, 50, 85, 110]\nTotal Energy: 95\n\n=== Infeasible Example ===\nFeasible: False\nRoute: []\nArrival Times: []\nTotal Energy: 0",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "dynamic_programming_iteration_3.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "Number of stations: 15\nInspection time: 5\nSpeed: 1.0\n\nFeasible: False\nRoute: [3, 9, 10, 0, 8, 14, 1, 7, 12, 5, 13, 4, 11, 2]\nTotal cost: 148.80999999999997\nArrival times: [26.34, 39.93, 67.97, 79.31, 93.22, 105.34, 119.51, 129.8, 151.62, 171.93, 183.37, 200.72, 218.42, 253.26]\nElapsed time: 0.4891 s",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "secure_storage_iteration_1.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "=== Secure Storage Demo ===\n\nOriginal document:\nCONFIDENTIAL REPORT\nProject Falcon - Q4 Financial Summary\nRevenue: $12,450,000\nNet Profit: $3,200,000\nThis document is classified and must not be disclosed.\n\nDocument encrypted and stored to 'secure_document.enc'.\n\nRaw file contents (first 80 bytes): b",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "secure_storage_iteration_2.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "============================================================\nScenario 1: Successful storage and retrieval\n============================================================\n  [STORE] File stored successfully at '_secure_test_file.enc'\n  [RETRIEVE] Success!\n  [DATA] 'This is highly confidential information",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "secure_storage_iteration_3.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "============================================================\nSecure Storage - Enterprise Scale Demonstration\n============================================================\n\nStored 250 files for 5 users\nTotal plaintext size: 222,100 bytes\nStore time: 0.111s (2246.4 files/sec)\n\nList files time (all user",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    }
+  },
+  "gemini": {
+    "api_client_iteration_1.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "[{'humidity': 60.2,\n  'station_id': 'alpha-123',\n  'temperature': 25.5,\n  'timestamp': '2023-10-27T10:00:00Z'},\n {'humidity': 62.5,\n  'station_id': 'beta-456',\n  'temperature': 24.9,\n  'timestamp': '2023-10-27T10:01:00Z'},\n {'humidity': 58.8,\n  'station_id': 'gamma-789',\n  'temperature': 26.1,\n  'ti",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "api_client_iteration_2.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "--- Successful Readings ---\n1: {'slideshow': {'author': 'Yours Truly', 'date': 'date of publication', 'slides': [{'title': 'Wake up to WonderWidgets!', 'type': 'all'}, {'items': ['Why <em>WonderWidgets</em> are great', 'Who <em>buys</em> WonderWidgets'], 'title': 'Overview', 'type': 'all'}], 'title'",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "api_client_iteration_3.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "Fetching data from 30 stations...\n\n{\n  \"readings\": [],\n  \"errors\": [\n    {\n      \"url\": \"https://raw.githubusercontent.com/prijatelj/py-testing-primer-api/main/station_15.json\",\n      \"error\": \"404 Client Error: Not Found for url: https://raw.githubusercontent.com/prijatelj/py-testing-primer-api/mai",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "dynamic_programming_iteration_1.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "Optimal route: [0, 2, 3, 1, 0]\nTotal energy: 80",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "dynamic_programming_iteration_2.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "Example 1:\nFeasible: True\nRoute: [0, 3, 2, 1, 0]\nArrival Times: [0.0, 20.0, 65.0, 95.0, 110.0]\nTotal Energy: 85\n--------------------\nExample 2:\nFeasible: False\nRoute: []\nArrival Times: []\nTotal Energy: -1\n--------------------\nExample 3:\nFeasible: True\nRoute: [0, 2, 3, 1, 0]\nArrival Times: [0.0, 15.0",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "dynamic_programming_iteration_3.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "Optimal Cost: 167.72\nOptimal Path: [0, 13, 0]\nVisited Stations: [13]\nElapsed Time: 0.0801 seconds",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "secure_storage_iteration_1.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "1. Storing confidential data to 'confidential_document.bin'...\n   File stored and encrypted successfully.\n----------------------------------------\n2. Retrieving data with the CORRECT passphrase...\n   Retrieval successful. Contents:\n   ------------------------------\n   Meeting Notes - Project Chimera",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "secure_storage_iteration_2.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "--- 1. Testing successful storage and retrieval ---\nFile 'my_secret_data.bin' stored successfully.\nFile 'my_secret_data.bin' retrieved successfully.\nOriginal data:    'The crow flies at midnight.'\nRetrieved data:   'The crow flies at midnight.'\nSuccess: Data matches.\n\n--- 2. Testing retrieval with w",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    },
+    "secure_storage_iteration_3.txt": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "label": "initial",
+          "exit_code": 0,
+          "stdout_snippet": "--- Storing Files ---\n\n--- Storage Summary ---\nStored 12 files for 3 users.\nTime taken: 1.1065 seconds.\n\n--- Verifying Files ---\nRetrieving 'project_plan.docx' for 'user_alice'...\n -> Success: Content matches.\nRetrieving 'large_file.txt' for 'user_bob'...\n -> Success: Content matches.\nTesting retrie",
+          "stderr_snippet": "",
+          "success": true
+        }
+      ],
+      "final_status": "pass",
+      "total_attempts": 1
+    }
+  }
+}

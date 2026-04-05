@@ -1,0 +1,158 @@
+{
+  "claude": {
+    "api_client_iteration_1_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "api_client_iteration_2_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "api_client_iteration_3_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "dynamic_programming_iteration_1_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "dynamic_programming_iteration_2_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "dynamic_programming_iteration_3_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "secure_storage_iteration_1_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "secure_storage_iteration_2_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "secure_storage_iteration_3_solution.py": {
+      "coverage_mean": 0.96,
+      "coverage_std": 0.0894,
+      "n": 5
+    },
+    "_overall": {
+      "coverage_mean": 0.9956,
+      "coverage_std": 0.0298,
+      "n": 45
+    }
+  },
+  "gemini": {
+    "api_client_iteration_1_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "api_client_iteration_2_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "api_client_iteration_3_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "dynamic_programming_iteration_1_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "dynamic_programming_iteration_2_solution.py": {
+      "coverage_mean": 0.9667,
+      "coverage_std": 0.0746,
+      "n": 5
+    },
+    "dynamic_programming_iteration_3_solution.py": {
+      "coverage_mean": 0.8,
+      "coverage_std": 0.4472,
+      "n": 5
+    },
+    "secure_storage_iteration_1_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "secure_storage_iteration_2_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "secure_storage_iteration_3_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "_overall": {
+      "coverage_mean": 0.9741,
+      "coverage_std": 0.1506,
+      "n": 45
+    }
+  },
+  "gpt": {
+    "api_client_iteration_1_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "api_client_iteration_2_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "api_client_iteration_3_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "dynamic_programming_iteration_1_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "dynamic_programming_iteration_2_solution.py": {
+      "coverage_mean": 0.9667,
+      "coverage_std": 0.0746,
+      "n": 5
+    },
+    "dynamic_programming_iteration_3_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "secure_storage_iteration_1_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "secure_storage_iteration_2_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "secure_storage_iteration_3_solution.py": {
+      "coverage_mean": 1.0,
+      "coverage_std": 0.0,
+      "n": 5
+    },
+    "_overall": {
+      "coverage_mean": 0.9963,
+      "coverage_std": 0.0249,
+      "n": 45
+    }
+  }
+}
